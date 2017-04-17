@@ -1,4 +1,23 @@
-# Hi, I'm bones
+# wisefridge-grace-shopper
+Let's sell quotable fridge magnets!
+
+reference site: www.wisefridge.com
+
+## Style Guide
+#### Naming conventions
+* Models are capitalized
+* camelCase
+
+#### Linter:
+* FS Config with ESLint (with semicolons)
+
+#### File Structure:
+* Each Model has its own file
+* Each Router has its own file
+* Container Components have their own folder ('containers')
+* Components have their own folder ('components')
+
+# BONES INFORMATION
 
 I'm a happy little skeleton. You can clone me to use as a starter on your projects!
 I have React, Redux, Sequelize, and Express all just rattling around in here ready
