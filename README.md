@@ -3,6 +3,17 @@ Let's sell quotable fridge magnets!
 
 reference site: www.wisefridge.com
 
+## API Routes (Back End)
+/api
+* /magnets (/:id)
+* /orders (/:id)
+* /speakers (/:id)
+* /reviews
+* /users (/:id)
+
+## React Routes (Front End)
+
+
 ## Style Guide
 #### Naming conventions
 * Models are capitalized
