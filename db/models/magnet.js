@@ -1,6 +1,6 @@
 'use strict'
 
-const {STRING, INTEGER, TEXT, ARRAY} = require('sequelize')
+const {STRING, INTEGER, TEXT, ARRAY, FLOAT} = require('sequelize')
 
 module.exports = db => db.define('magnet', {
   quote: {
@@ -8,7 +8,7 @@ module.exports = db => db.define('magnet', {
     allowNull: false
   },
   price: {
-    type: INTEGER,
+    type: FLOAT,
     allowNull: false
   },
   image: {
