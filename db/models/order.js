@@ -73,15 +73,9 @@ module.exports = db => db.define('order', {
   state: {
     type: ENUM(...states),
   },
-  zip: {
-    type: STRING,
-    allowNull: true,
-    validate: {
-      len: [5]
-    }
-  },
+  zip: STRING,
   shippingMethod: ENUM('Express', 'Standard'),
-  isPurchase: {
+  completedPurchase: {
     type: BOOLEAN,
     defaultValue: false
   },
@@ -99,5 +93,5 @@ module.exports = db => db.define('order', {
 
 module.exports.associations = (Order, {User, Magnet}) => {
   Order.belongsTo(User)
-  Order.hasMany(Magnet, {as: 'Magnets'})
+  Order.hasMany(Magnet)
 }
