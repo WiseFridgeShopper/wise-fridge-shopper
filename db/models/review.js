@@ -11,7 +11,8 @@ module.exports = db => db.define('reviews', {
     }
   },
   comment: {
-    type: TEXT
+    type: TEXT,
+    allowNull: true
   }
 })
 

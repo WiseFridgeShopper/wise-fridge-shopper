@@ -11,7 +11,8 @@ module.exports = db => db.define('speakers', {
     }
   },
   bio: {
-    type: TEXT
+    type: TEXT,
+    allowNull: true
   }
 })
 
