@@ -50,7 +50,9 @@ module.exports = require('express').Router()
     mustBeLoggedIn,
     (req, res, next) =>
       User.destroy({
-        where: req.params
+        where: {
+          id: req.params.id
+        }
       })
       .then(deletedUser => res.send('user deleted'))
       .catch(next))
