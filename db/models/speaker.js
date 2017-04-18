@@ -6,9 +6,9 @@ module.exports = db => db.define('speakers', {
   name: {
     type: STRING,
     allowNull: false,
-    validate: {
-      isAlphanumeric: true
-    }
+    // validate: {
+    //   isAlphanumeric: true
+    // }
   },
   bio: {
     type: TEXT,

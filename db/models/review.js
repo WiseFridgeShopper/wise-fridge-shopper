@@ -6,9 +6,9 @@ module.exports = db => db.define('reviews', {
   rating: {
     type: FLOAT,
     allowNull: false,
-    validate: {
-      isNumeric: true
-    }
+    // validate: {
+    //   isNumeric: true
+    // }
   },
   comment: {
     type: TEXT,
