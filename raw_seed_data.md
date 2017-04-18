@@ -1,5 +1,5 @@
 Images
-	//cdn.shopify.com/s/files/1/0273/4903/products/marcus-aurelius-quote-fridge-magnet-1_large.jpg?v=1380466387
+	<!--//cdn.shopify.com/s/files/1/0273/4903/products/marcus-aurelius-quote-fridge-magnet-1_large.jpg?v=1380466387-->
 	//cdn.shopify.com/s/files/1/0273/4903/products/marcus-aurelius-quote-fridge-magnet-2_large.jpg?v=1380466539
 	//cdn.shopify.com/s/files/1/0273/4903/products/marcus-aurelius-quote-fridge-magnet-3_large.jpg?v=1380466642
 	//cdn.shopify.com/s/files/1/0273/4903/products/virginia-woolf-quote-fridge-magnet-1_large.jpg?v=1380467337
@@ -19,7 +19,7 @@ Images
 	//cdn.shopify.com/s/files/1/0273/4903/products/george-bernard-shaw-quote-fridge-magnet-3_large.jpeg?v=1380465747
 
 Quotes
-  Though no one can go back and make a brand new start, anyone can start from now and make a brand new ending.
+  <!--Though no one can go back and make a brand new start, anyone can start from now and make a brand new ending.-->
   When you arise in the morning, think of what a precious privilege it is to be alive - to breathe, to think, to enjoy, to love.
   You have power over your mind - not oustide events. Realize this, and you will find strength.
   Lock up your libraries if you like; but there is no gate, no lock, no bolt that you can set upon the freedom of my mind.
