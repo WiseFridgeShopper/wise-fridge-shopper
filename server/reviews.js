@@ -15,7 +15,10 @@ module.exports = require('express').Router()
       .catch(next)
   })
   .post('/', (req, res, next) => {
+    const magnetId = req.queryId
     Review.create(req.body)
+    // .then(review => review.setUser(userIdFromSessionObject)) <-- Will need to setUser in production build
+    .then(review => review.setMagnet(magnetId))
     .then(review => res.status(201).json(review))
     .catch(next)
   })
