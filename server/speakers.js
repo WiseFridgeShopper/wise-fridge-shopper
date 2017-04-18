@@ -2,7 +2,7 @@
 
 const db = require('APP/db')
 const Speaker = db.model('speakers')
-const Magnets = db.model('magnets')
+const Magnets = db.model('magnet')
 
 module.exports = require('express').Router()
   .get('/', (req, res, next) => {
@@ -19,8 +19,7 @@ module.exports = require('express').Router()
     Speaker.findById(req.params.id, {
       include: [{
         model: Magnets,
-        as: 'Magnets',
-        where: {speakerId: req.params.id}
+        where: {speaker_id: req.params.id}
       }]
     })
     .then(speaker => res.json(speaker))
@@ -46,6 +45,6 @@ module.exports = require('express').Router()
       plain: true
     })
     .then(updatedSpeaker => {
-      updatedSpeaker ? res.send(updatedSpeaker) : res.sendStatus(404)
+      updatedSpeaker ? res.send(updatedSpeaker[1]) : res.sendStatus(404)
     })
   })
