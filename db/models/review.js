@@ -17,6 +17,6 @@ module.exports = db => db.define('reviews', {
 })
 
 module.exports.associations = (Review, {Magnet, User}) => {
-  Review.hasOne(User)
-  Review.hasOne(Magnet)
+  Review.belongsTo(User)
+  Review.belongsTo(Magnet)
 }
