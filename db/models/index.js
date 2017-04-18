@@ -15,8 +15,10 @@ const app = require('APP')
     , metaModels = {
       OAuth: require('./oauth'),
       User: require('./user'),
-      Thing: require('./thing'),
-      Favorite: require('./favorite'),
+      Order: require('./order'),
+      Magnet: require('./magnet'),
+      Review: require('./review'),
+      Speaker: require('./speaker'),
       // ---------- Add new models here ----------
     }
     , {mapValues} = require('lodash')
