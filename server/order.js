@@ -1,12 +1,18 @@
 'use strict'
 
 const db = require('APP/db')
-const Order = db.model('orders')
+const Order = db.model('order')
 const User = db.model('users')
 
 module.exports = require('express').Router()
+  // find by order ID
+  .get('/:orderId', (req, res, next) => {
+    Order.findById(req.params.id)
+    .then(foundOrder => res.send(foundOrder))
+    .catch(next)
+  })
   // find user purchase history
-  .get('/orderHistory/:userId', (req, res, next) => {
+  .get('/history/:userId', (req, res, next) => {
     Order.findAll({
       where: {
         user_id: req.params.userId,
@@ -17,7 +23,7 @@ module.exports = require('express').Router()
     .catch(next)
   })
   // get a user's shopping cart
-  .get('/shoppingCart/:userId', (req, res, next) => {
+  .get('/cart/:userId', (req, res, next) => {
     Order.findOne({where: {
       user_id: req.params.userId,
       completedPurchase: false
