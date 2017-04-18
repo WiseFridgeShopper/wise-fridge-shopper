@@ -7,8 +7,8 @@ const db = require('APP/db')
 function seedEverything() {
   const seeded = {
     users: users(),
-    magnets: magnets(),
-    speakers: speakers()
+    speakers: speakers(),
+    magnets: magnets()
   }
 
   // seeded.favorites = favorites(seeded)
@@ -67,7 +67,8 @@ const magnets = seed(Magnet, {
     description: 'High-quality button style magnet with full magnetic back.',
     price: 3.95,
     size: [2, 3],
-    mood: ['happy']
+    mood: ['happy'],
+    speaker_id: 1
   },
   mag2: {
     title: 'Marcus Aurelius Fridge Magnet #2',
@@ -77,7 +78,8 @@ const magnets = seed(Magnet, {
     description: 'High-quality button style magnet with full magnetic back.',
     price: 3.95,
     size: [2, 3],
-    mood: ['happy']
+    mood: ['happy'],
+    speaker_id: 1
   },
   mag3: {
     title: 'Marcus Aurelius Fridge Magnet #3',
@@ -87,7 +89,8 @@ const magnets = seed(Magnet, {
     description: 'High-quality button style magnet with full magnetic back.',
     price: 3.95,
     size: [2, 3],
-    mood: ['happy']
+    mood: ['happy'],
+    speaker_id: 1
   },
   mag4: {
     title: 'Virginia Woolf Fridge Magnet #1',
@@ -97,7 +100,8 @@ const magnets = seed(Magnet, {
     description: 'High-quality button style magnet with full magnetic back.',
     price: 3.95,
     size: [2, 3],
-    mood: ['happy']
+    mood: ['happy'],
+    speaker_id: 3
   },
   mag5: {
     title: 'Virginia Woolf Fridge Magnet #2',
@@ -107,7 +111,8 @@ const magnets = seed(Magnet, {
     description: 'High-quality button style magnet with full magnetic back.',
     price: 3.95,
     size: [2, 3],
-    mood: ['happy']
+    mood: ['happy'],
+    speaker_id: 3
   },
   mag6: {
     title: 'Virginia Woolf Fridge Magnet #3',
@@ -117,7 +122,8 @@ const magnets = seed(Magnet, {
     description: 'High-quality button style magnet with full magnetic back.',
     price: 3.95,
     size: [2, 3],
-    mood: ['happy']
+    mood: ['happy'],
+    speaker_id: 3
   },
   mag7: {
     title: 'Ralph Waldo Emerson Fridge Magnet #1',
@@ -127,7 +133,8 @@ const magnets = seed(Magnet, {
     description: 'High-quality button style magnet with full magnetic back.',
     price: 3.95,
     size: [2, 3],
-    mood: ['happy']
+    mood: ['happy'],
+    speaker_id: 2
   },
   mag8: {
     title: 'Ralph Waldo Emerson Fridge Magnet #2',
@@ -137,7 +144,8 @@ const magnets = seed(Magnet, {
     description: 'High-quality button style magnet with full magnetic back.',
     price: 3.95,
     size: [2, 3],
-    mood: ['happy']
+    mood: ['happy'],
+    speaker_id: 2
   },
   mag9: {
     title: 'Ralph Waldo Emerson Fridge Magnet #3',
@@ -147,17 +155,19 @@ const magnets = seed(Magnet, {
     description: 'High-quality button style magnet with full magnetic back.',
     price: 3.95,
     size: [2, 3],
-    mood: ['happy']
+    mood: ['happy'],
+    speaker_id: 2
   },
   mag10: {
     title: 'Henry David Thoreau Fridge Magnet #1',
-    quote: "YWhat you get by achieving your goals is not as important as what you become by achieving your goals.",
+    quote: "What you get by achieving your goals is not as important as what you become by achieving your goals.",
     image: 'cdn.shopify.com/s/files/1/0273/4903/products/henry-david-thoreau-quote-fridge-magnet-1_large.jpg?v=1380465723',
     itemNumber: 10,
     description: 'High-quality button style magnet with full magnetic back.',
     price: 3.95,
     size: [2, 3],
-    mood: ['happy']
+    mood: ['happy'],
+    speaker_id: 4
   },
   mag11: {
     title: 'Henry David Thoreau Fridge Magnet #2',
@@ -167,7 +177,8 @@ const magnets = seed(Magnet, {
     description: 'High-quality button style magnet with full magnetic back.',
     price: 3.95,
     size: [2, 3],
-    mood: ['happy']
+    mood: ['happy'],
+    speaker_id: 4
   },
   mag12: {
     title: 'Henry David Thoreau Fridge Magnet #3',
@@ -177,7 +188,8 @@ const magnets = seed(Magnet, {
     description: 'High-quality button style magnet with full magnetic back.',
     price: 3.95,
     size: [2, 3],
-    mood: ['happy']
+    mood: ['happy'],
+    speaker_id: 4
   },
   mag13: {
     title: 'Oscar Wilde Shaw Fridge Magnet #1',
@@ -187,7 +199,8 @@ const magnets = seed(Magnet, {
     description: 'High-quality button style magnet with full magnetic back.',
     price: 3.95,
     size: [2, 3],
-    mood: ['happy']
+    mood: ['happy'],
+    speaker_id: 5
   },
   mag14: {
     title: 'Oscar Wilde Shaw Fridge Magnet #2',
@@ -197,7 +210,8 @@ const magnets = seed(Magnet, {
     description: 'High-quality button style magnet with full magnetic back.',
     price: 3.95,
     size: [2, 3],
-    mood: ['happy']
+    mood: ['happy'],
+    speaker_id: 5
   },
   mag15: {
     title: 'Oscar Wilde Shaw Fridge Magnet #3',
@@ -207,7 +221,8 @@ const magnets = seed(Magnet, {
     description: 'High-quality button style magnet with full magnetic back.',
     price: 3.95,
     size: [2, 3],
-    mood: ['happy']
+    mood: ['happy'],
+    speaker_id: 5
   },
   mag16: {
     title: 'George Bernard Shaw Fridge Magnet #1',
@@ -217,7 +232,8 @@ const magnets = seed(Magnet, {
     description: 'High-quality button style magnet with full magnetic back.',
     price: 3.95,
     size: [2, 3],
-    mood: ['happy']
+    mood: ['happy'],
+    speaker_id: 6
   },
   mag17: {
     title: 'George Bernard Shaw Fridge Magnet #2',
@@ -227,7 +243,8 @@ const magnets = seed(Magnet, {
     description: 'High-quality button style magnet with full magnetic back.',
     price: 3.95,
     size: [2, 3],
-    mood: ['happy']
+    mood: ['happy'],
+    speaker_id: 6
   },
   mag18: {
     title: 'George Bernard Shaw Fridge Magnet #3',
@@ -237,7 +254,8 @@ const magnets = seed(Magnet, {
     description: 'High-quality button style magnet with full magnetic back.',
     price: 3.95,
     size: [2, 3],
-    mood: ['happy']
+    mood: ['happy'],
+    speaker_id: 6
   }
 })
 
@@ -349,4 +367,4 @@ function seed(Model, rows) {
   }
 }
 
-module.exports = Object.assign(seed, {users, magnets, speakers})
+module.exports = Object.assign(seed, {users, speakers, magnets})
