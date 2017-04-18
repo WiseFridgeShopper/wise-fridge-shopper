@@ -5,6 +5,12 @@ const Order = db.model('orders')
 const User = db.model('users')
 
 module.exports = require('express').Router()
+  // find by order ID
+  .get('/:orderId', (req, res, next) => {
+    Order.findById(req.params.id)
+    .then(foundOrder => res.send(foundOrder))
+    .catch(next)
+  })
   // find user purchase history
   .get('/orderHistory/:userId', (req, res, next) => {
     Order.findAll({
