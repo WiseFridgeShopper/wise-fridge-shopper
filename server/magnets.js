@@ -1,8 +1,8 @@
 'use strict'
 
 const db = require('APP/db')
-const Magnet = db.model('magnets')
-const reviews = ('APP/server/reviews')
+const Magnet = db.model('magnet')
+const reviews = require('APP/server/reviews')
 
 module.exports = require('express').Router()
   .get('/', (req, res, next) => {

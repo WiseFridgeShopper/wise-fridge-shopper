@@ -5,10 +5,7 @@ const {TEXT, FLOAT} = require('sequelize')
 module.exports = db => db.define('reviews', {
   rating: {
     type: FLOAT,
-    allowNull: false,
-    // validate: {
-    //   isNumeric: true
-    // }
+    allowNull: false
   },
   comment: {
     type: TEXT,
