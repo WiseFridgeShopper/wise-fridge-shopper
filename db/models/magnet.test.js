@@ -99,26 +99,20 @@ describe('Magnet', () => {
     })
   })
   describe('check types for specific fields', () => {
-    it('doesnt create instance if size is an array of string', () => {
+    it('doesnt create instance if size is an array of strings', () => {
       testMagnet.size = ['2', '4']
-      return Magnet.build(testMagnet).validate()
-        .then(function(err) {
-          expect(err).to.be.null
-        })
+      const nonexistentMagnet = Magnet.build(testMagnet)
+      expect(nonexistentMagnet.id).to.be.null
     })
     it('doesnt create instance if mood is a comma delimited string', () => {
       testMagnet.mood = 'zany, moody'
-      return Magnet.build(testMagnet).validate()
-        .then(function(err) {
-          expect(err).to.be.null
-        })
+      const nonexistentMagnet = Magnet.build(testMagnet)
+      expect(nonexistentMagnet.id).to.be.null
     })
     it('doesnt create instance if itemNumber is a float', () => {
       testMagnet.itemNumber = 30.96
-      return Magnet.build(testMagnet).validate()
-        .then(function(err) {
-          expect(err).to.be.null
-        })
+      const nonexistentMagnet = Magnet.build(testMagnet)
+      expect(nonexistentMagnet.id).to.be.null
     })
   })
 })

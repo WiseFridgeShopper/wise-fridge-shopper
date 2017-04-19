@@ -25,7 +25,10 @@ module.exports = db => db.define('magnet', {
   },
   itemNumber: {
     type: INTEGER,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      isInt: true
+    }
   },
   size: {
     type: ARRAY(INTEGER),
