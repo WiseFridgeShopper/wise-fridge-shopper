@@ -13,6 +13,7 @@ module.exports = require('express').Router()
   })
   // find user purchase history
   .get('/history/:userId', (req, res, next) => {
+    console.log('user logged here', req.session)
     Order.findAll({
       where: {
         user_id: req.params.userId,
