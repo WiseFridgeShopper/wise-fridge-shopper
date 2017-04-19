@@ -3,14 +3,22 @@ import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 
 export const Login = ({ login }) => (
-  <form onSubmit={evt => {
-    evt.preventDefault()
-    login(evt.target.username.value, evt.target.password.value)
-  } }>
-    <TextField name="username" />
-    <TextField name="password" type="password" />
-    <RaisedButton label="login" type="submit" value="Login" />
-  </form>
+  <div className='container-fluid'>
+    <form className='row' onSubmit={evt => {
+      evt.preventDefault()
+      login(evt.target.username.value, evt.target.password.value)
+    } }>
+      <div className='col-md-4'>
+        <TextField name="username" />
+      </div>
+      <div className='col-md-4'>
+        <TextField name="password" type="password" />
+      </div>
+      <div className='col-md-4'>
+        <RaisedButton label="login" type="submit" value="Login" />
+      </div>
+    </form>
+  </div>
 )
 
 import {login} from 'APP/app/reducers/auth'
