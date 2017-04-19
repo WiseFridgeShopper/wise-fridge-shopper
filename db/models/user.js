@@ -15,6 +15,7 @@ module.exports = db => db.define('users', {
   email: {
     type: STRING,
     allowNull: false,
+    unique: true,
     validate: {
       isEmail: true,
       notEmpty: true,
