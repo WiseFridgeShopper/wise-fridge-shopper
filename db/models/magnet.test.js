@@ -48,7 +48,7 @@ describe('Magnet', () => {
           expect(err.message).to.equal('notNull Violation: image cannot be null')
         })
     })
-    xit('throws error if image is not a URL', () => {
+    // xit('throws error if image is not a URL', () => {
       // testMagnet.quote = null
       // let Magnet.build(testMagnet) = Magnet.build(testMagnet)
       // return Magnet.build(testMagnet).validate()
@@ -56,7 +56,7 @@ describe('Magnet', () => {
       //     expect(err).to.exist
       //     expect(err.message).to.equal('notNull Violation: quote cannot be null')
       //   })
-    })
+    // })
     it('throws error if title is null', () => {
       testMagnet.title = null
       return Magnet.build(testMagnet).validate()
@@ -95,6 +95,29 @@ describe('Magnet', () => {
         .then(function(err) {
           expect(err).to.exist
           expect(err.message).to.equal('notNull Violation: mood cannot be null')
+        })
+    })
+  })
+  describe('check types for specific fields', () => {
+    it('doesnt create instance if size is an array of string', () => {
+      testMagnet.size = ['2', '4']
+      return Magnet.build(testMagnet).validate()
+        .then(function(err) {
+          expect(err).to.be.null
+        })
+    })
+    it('doesnt create instance if mood is a comma delimited string', () => {
+      testMagnet.mood = 'zany, moody'
+      return Magnet.build(testMagnet).validate()
+        .then(function(err) {
+          expect(err).to.be.null
+        })
+    })
+    it('doesnt create instance if itemNumber is a float', () => {
+      testMagnet.itemNumber = 30.96
+      return Magnet.build(testMagnet).validate()
+        .then(function(err) {
+          expect(err).to.be.null
         })
     })
   })
