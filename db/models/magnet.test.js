@@ -48,15 +48,17 @@ describe('Magnet', () => {
           expect(err.message).to.equal('notNull Violation: image cannot be null')
         })
     })
-    // xit('throws error if image is not a URL', () => {
-      // testMagnet.quote = null
-      // let Magnet.build(testMagnet) = Magnet.build(testMagnet)
-      // return Magnet.build(testMagnet).validate()
-      //   .then(function(err) {
-      //     expect(err).to.exist
-      //     expect(err.message).to.equal('notNull Violation: quote cannot be null')
-      //   })
-    // })
+    it('throws error if image is not a URL', () => {
+      testMagnet.image = 'sdghawlghw342353gj'
+      return Magnet.create(testMagnet)
+        .then(magnet => {
+          expect(magnet).not.to.exist // Tests that Magnet.create does not return a magnet successfully, causing false positive in test
+        })
+        .catch(err => {
+          expect(err).to.exist
+          expect(err.message).to.equal('Validation error: Validation isUrl failed')
+        })
+    })
     it('throws error if title is null', () => {
       testMagnet.title = null
       return Magnet.build(testMagnet).validate()

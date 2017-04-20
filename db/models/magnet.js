@@ -13,7 +13,10 @@ module.exports = db => db.define('magnet', {
   },
   image: {
     type: STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      isUrl: true
+    }
   },
   title: {
     type: STRING,
