@@ -1,5 +1,6 @@
 'use strict'
 
+// JM/RT - consider making routes as 'RESTful' as possible - they should reflect the models's associations
 const db = require('APP/db')
 const Order = db.model('order')
 const User = db.model('users')

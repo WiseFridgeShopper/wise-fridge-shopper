@@ -8,6 +8,8 @@ module.exports = db => db.define('users', {
   name: {
     type: STRING,
     allowNull: false,
+    // JM/RB - always kill old code...
+
     // validate: {
     //   isAlphanumeric: true,
     // }

@@ -1,5 +1,6 @@
 'use strict'
 const {STRING, TEXT, FLOAT, JSON, ENUM, DATE, INTEGER, BOOLEAN} = require('sequelize')
+// JM/RT - for taxes, maybe have a big object of states: tax ?
 const states = [
   'AL',
   'AK',
@@ -57,6 +58,7 @@ module.exports = db => db.define('order', {
     type: JSON,
   },
   subtotal: {
+    // JM/RB - maybe consider integers for some of these
     type: FLOAT,
     defaultValue: 0.00
   },
@@ -73,12 +75,14 @@ module.exports = db => db.define('order', {
   state: {
     type: ENUM(...states),
   },
+  // JM/RT - zip validation? sequelize?
   zip: STRING,
   shippingMethod: ENUM('Express', 'Standard'),
   completedPurchase: {
     type: BOOLEAN,
     defaultValue: false
   },
+  // JM/RT - consider https://momentjs.com/ if having difficulty with dates
   purchaseDate: DATE
 }, {
   getterMethods: {
@@ -93,4 +97,5 @@ module.exports = db => db.define('order', {
 
 module.exports.associations = (Order, {User, Magnet}) => {
   Order.belongsTo(User)
+  // JM/RT - also belongs to magnets through MagnetsOrders
 }
