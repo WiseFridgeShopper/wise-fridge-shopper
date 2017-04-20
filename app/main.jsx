@@ -12,7 +12,6 @@ import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-
 import store from './store'
 import Jokes from './components/Jokes'
 import Login from './components/Login'
@@ -29,18 +28,8 @@ import History from './components/History'
 import Cart from './components/Cart'
 import Root from './components/Root'
 
-// put in navbar logic
-// const ExampleApp = connect(
-//   ({ auth }) => ({ user: auth })
-// )(
-//   ({ user, children }) =>
-//     <div>
-//       <nav>
-//         {user ? <WhoAmI/> : <Login/>}
-//       </nav>
-//       {children}
-//     </div>
-// )
+import ErrorPage from './components/ErrorPage'
+import Forbidden from './components/Forbidden'
 
 render(
   <Provider store={store}>
@@ -54,9 +43,11 @@ render(
           <Route path="/singleMagnet" component={SingleMagnet} />
           <Route path="/singleSpeaker" component={SingleSpeaker} />
           <Route path="/checkout" component={Checkout} />
-          <Route path="/History" component={History} />
+          <Route path="/history" component={History} />
           <Route path="/cart" component={Cart} />
           <Route path="/account" component={Account} />
+          <Route path="/error" component={ErrorPage} />
+          <Route path="/forbidden" component={Forbidden} />
         </Route>
         <Route path='*' component={NotFound} />
       </Router>
@@ -64,6 +55,3 @@ render(
   </Provider>,
   document.getElementById('main')
 )
-
-
-
