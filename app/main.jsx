@@ -27,27 +27,16 @@ import Account from './components/Account'
 import Checkout from './components/Checkout'
 import History from './components/History'
 import Cart from './components/Cart'
+import Root from './components/Root'
 
 import ErrorPage from './components/ErrorPage'
 import Forbidden from './components/Forbidden'
-
-const ExampleApp = connect(
-  ({ auth }) => ({ user: auth })
-)(
-  ({ user, children }) =>
-    <div>
-      <nav>
-        {user ? <WhoAmI/> : <Login/>}
-      </nav>
-      {children}
-    </div>
-)
 
 render(
   <Provider store={store}>
     <MuiThemeProvider>
       <Router history={browserHistory}>
-        <Route path="/" component={ExampleApp}>
+        <Route path="/" component={Root}>
           <IndexRedirect to="/home" />
           <Route path="/home" component={Home} />
           <Route path="/allMagnets" component={AllMagnets} />
