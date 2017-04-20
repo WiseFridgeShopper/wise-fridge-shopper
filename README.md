@@ -18,6 +18,7 @@ reference site: www.wisefridge.com
 #### Naming conventions
 * Models are capitalized
 * camelCase
+* Join tables are alphabetical and pluralized based on two tables being joined i.e. MagnetsOrders
 
 #### Linter:
 * FS Config with ESLint (with semicolons)
