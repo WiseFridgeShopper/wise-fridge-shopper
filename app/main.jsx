@@ -27,24 +27,26 @@ import Account from './components/Account'
 import Checkout from './components/Checkout'
 import History from './components/History'
 import Cart from './components/Cart'
+import Root from './components/Root'
 
-const ExampleApp = connect(
-  ({ auth }) => ({ user: auth })
-)(
-  ({ user, children }) =>
-    <div>
-      <nav>
-        {user ? <WhoAmI/> : <Login/>}
-      </nav>
-      {children}
-    </div>
-)
+// put in navbar logic
+// const ExampleApp = connect(
+//   ({ auth }) => ({ user: auth })
+// )(
+//   ({ user, children }) =>
+//     <div>
+//       <nav>
+//         {user ? <WhoAmI/> : <Login/>}
+//       </nav>
+//       {children}
+//     </div>
+// )
 
 render(
   <Provider store={store}>
     <MuiThemeProvider>
       <Router history={browserHistory}>
-        <Route path="/" component={ExampleApp}>
+        <Route path="/" component={Root}>
           <IndexRedirect to="/jokes" />
           <Route path="/jokes" component={Jokes} />
           <Route path="/allMagnets" component={AllMagnets} />
