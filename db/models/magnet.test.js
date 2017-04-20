@@ -1,5 +1,7 @@
 `use strict`
 
+// JM/RB - test associations? Create a instance with associated other instances, test they are associated properly
+// with create function, use an 'include' option...
 const db = require('APP/db')
     , {Magnet} = db
     , {expect} = require('chai')
