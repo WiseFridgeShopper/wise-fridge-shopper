@@ -99,7 +99,7 @@ describe('/api/magnets', () => {
 
   describe('POST /', () => {
     describe('creates a new magnet with a post request', () =>
-      it.only('responds with a 201 and a new magnet', () =>
+      it('responds with a 201 and a new magnet', () =>
       request(app)
         .post(`/api/magnets`)
         .send({
@@ -131,5 +131,4 @@ describe('/api/magnets', () => {
         )
       ))
   })
-  // get reviews id/reviews
 })
