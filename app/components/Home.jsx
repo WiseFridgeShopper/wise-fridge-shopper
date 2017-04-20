@@ -85,7 +85,6 @@ export default class Home extends React.Component {
   // local state search bar handler
   handleChange(evt) {
     this.setState({ query: evt.target.value })
-    console.log(this.state.query)
   }
 
   // Set up speaker name filtering here
