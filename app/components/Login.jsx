@@ -1,21 +1,20 @@
 import React from 'react'
-import RaisedButton from 'material-ui/RaisedButton'
-import TextField from 'material-ui/TextField'
+// import RaisedButton from 'material-ui/RaisedButton'
+// import TextField from 'material-ui/TextField'
 
 export const Login = ({ login }) => (
   <div className='container-fluid'>
     <form className='row' onSubmit={evt => {
       evt.preventDefault()
-      login(evt.target.username.value, evt.target.password.value)
+      console.log('testing', evt.target)
+      login(evt.target.email.value, evt.target.password.value)
     } }>
-      <div className='col-md-4'>
-        <TextField name="username" />
-      </div>
-      <div className='col-md-4'>
-        <TextField name="password" type="password" />
-      </div>
-      <div className='col-md-4'>
-        <RaisedButton label="login" type="submit" value="Login" />
+      <div>
+        <input name="email" type="text" placeholder="Enter Email Address"/>
+
+        <input name="password" type="password" placeholder="Enter Password" />
+
+        <button label="login" type="submit" value="Login" >Login</button>
       </div>
     </form>
   </div>
