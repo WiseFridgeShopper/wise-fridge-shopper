@@ -54,7 +54,7 @@ render(
           <Route path="/singleMagnet" component={SingleMagnet} />
           <Route path="/singleSpeaker" component={SingleSpeaker} />
           <Route path="/checkout" component={Checkout} />
-          <Route path="/History" component={History} />
+          <Route path="/history" component={History} />
           <Route path="/cart" component={Cart} />
           <Route path="/account" component={Account} />
           <Route path="/error" component={ErrorPage} />
