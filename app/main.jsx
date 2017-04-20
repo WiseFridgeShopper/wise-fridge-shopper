@@ -12,12 +12,12 @@ import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-
 import store from './store'
 import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
+import Home from './components/Home'
 
 import AllMagnets from './components/AllMagnets'
 import AllSpeakers from './components/AllSpeakers'
@@ -45,8 +45,8 @@ render(
     <MuiThemeProvider>
       <Router history={browserHistory}>
         <Route path="/" component={ExampleApp}>
-          <IndexRedirect to="/jokes" />
-          <Route path="/jokes" component={Jokes} />
+          <IndexRedirect to="/home" />
+          <Route path="/home" component={Home} />
           <Route path="/allMagnets" component={AllMagnets} />
           <Route path="/allSpeakers" component={AllSpeakers} />
           <Route path="/singleMagnet" component={SingleMagnet} />
@@ -62,6 +62,3 @@ render(
   </Provider>,
   document.getElementById('main')
 )
-
-
-
