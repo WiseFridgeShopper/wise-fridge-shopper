@@ -41,7 +41,6 @@ export default class Cart extends React.Component {
   render() {
     return (
       <div>
-        <h1>Cart Route</h1>
         <RaisedButton
           label="View Cart"
           onTouchTap={this.handleToggle}
@@ -53,7 +52,7 @@ export default class Cart extends React.Component {
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}
         >
-          <AppBar title="Shopping Cart" />
+          <AppBar title="Shopping Cart" style={{ backgroundColor: 'black' }} />
           <MenuItem>Magnets</MenuItem>
           {this.state.cartMagnets.map(magnet => {
             return (
