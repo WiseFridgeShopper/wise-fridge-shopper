@@ -6,7 +6,8 @@ export const Login = ({ login }) => (
   <div className='container-fluid'>
     <form className='row' onSubmit={evt => {
       evt.preventDefault()
-      login(evt.target.username.value, evt.target.password.value)
+      console.log('testing', evt.target)
+      login(evt.target.email.value, evt.target.password.value)
     } }>
       <div>
         <input name="email" type="text" placeholder="Enter Email Address"/>
