@@ -291,3 +291,12 @@ input.form-like[disabled] {
   height: 15%;
   width: 15%
 }
+
+.whoami-user-name {
+  color: white
+}
+
+.navbar {
+  color: black
+}
+

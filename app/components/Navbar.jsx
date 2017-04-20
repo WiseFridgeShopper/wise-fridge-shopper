@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link, hashHistory } from 'react-router'
 import Login from './Login'
 import WhoAmI from './WhoAmI'
+import Cart from './Cart'
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -16,10 +17,15 @@ class Navbar extends React.Component {
           <div>
             <ul className="nav navbar-nav">
               <li>
-                <Link to="/speakers" activeClassName="active">Speakers</Link>
+                <Link to="/allSpeakers" activeClassName="active">Speakers</Link>
               </li>
               <li>
-                <Link to="/magnets" activeClassName="active">Magnets</Link>
+                <Link to="/allMagnets" activeClassName="active">Magnets</Link>
+              </li>
+              <li>
+                <div>
+                  { <Cart/> }
+                </div>
               </li>
             </ul>
             <ul className="nav pull-right">
