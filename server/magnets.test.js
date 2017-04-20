@@ -6,11 +6,21 @@ const request = require('supertest')
 
 /* global describe it before beforeEach afterEach */
 
+const postBody = {
+  quote: 'An amazing quote',
+  price: 4.95,
+  image: 'cdn.shopify.com/s/files/1/0273/4903/products/ralph-waldo-emerson-fridge-magnet-1_large.jpg?v=1380467104',
+  title: 'More Koans about Testing',
+  description: 'Mediocre magnet',
+  itemNumber: 54321,
+  size: [3, 5],
+  mood: ['thoughtful', 'brooding']
+}
+
 describe('/api/magnets', () => {
   before('Await database sync', () => db.didSync)
   beforeEach(() => {
     Magnet.create({
-      id: 1,
       quote: 'Many a test has failed',
       price: 3.95,
       image: 'cdn.shopify.com/s/files/1/0273/4903/products/ralph-waldo-emerson-fridge-magnet-1_large.jpg?v=1380467104',
@@ -102,23 +112,23 @@ describe('/api/magnets', () => {
       it('responds with a 201 and a new magnet', () =>
       request(app)
         .post(`/api/magnets`)
-        .send({
-          id: 2,
-          quote: 'An amazing quote',
-          price: 4.95,
-          image: 'cdn.shopify.com/s/files/1/0273/4903/products/ralph-waldo-emerson-fridge-magnet-1_large.jpg?v=1380467104',
-          title: 'More Koans about Testing',
-          description: 'Mediocre magnet',
-          itemNumber: 54321,
-          size: [3, 5],
-          mood: ['thoughtful', 'brooding']
-        })
+        .send(postBody)
         .expect(201)
         .then(res => {
+          // scrubs timing-specific data and speaker association from response so we can compare response to our post easily
+          res.body.updated_at = null
+          res.body.speaker_id = null
+          res.body.created_at = null
+          const comparisonBody = Object.assign(postBody, { // Temp object to make comparison easier
+            id: 2,
+            quote: 'An amazing quote',
+            description: 'Mediocre magnet',
+            updated_at: null,
+            speaker_id: null,
+            created_at: null
+          })
           expect(res.body).to.be.ok
-          expect(res.body.quote).to.equal('An amazing quote')
-          expect(res.body.id).to.equal(2)
-          expect(res.body.description).to.equal('Mediocre magnet')
+          expect(res.body).to.deep.equal(comparisonBody)
         })
         .then(() =>
           request(app)
