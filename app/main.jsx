@@ -28,6 +28,9 @@ import Checkout from './components/Checkout'
 import History from './components/History'
 import Cart from './components/Cart'
 
+import ErrorPage from './components/ErrorPage'
+import Forbidden from './components/Forbidden'
+
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
 )(
@@ -52,9 +55,11 @@ render(
           <Route path="/singleMagnet" component={SingleMagnet} />
           <Route path="/singleSpeaker" component={SingleSpeaker} />
           <Route path="/checkout" component={Checkout} />
-          <Route path="/History" component={History} />
+          <Route path="/history" component={History} />
           <Route path="/cart" component={Cart} />
           <Route path="/account" component={Account} />
+          <Route path="/error" component={ErrorPage} />
+          <Route path="/forbidden" component={Forbidden} />
         </Route>
         <Route path='*' component={NotFound} />
       </Router>
