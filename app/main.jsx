@@ -19,6 +19,14 @@ import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 
+import AllMagnets from './components/AllMagnets'
+import AllSpeakers from './components/AllSpeakers'
+import SingleMagnet from './components/SingleMagnet'
+import SingleSpeaker from './components/SingleSpeaker'
+import Account from './components/Account'
+import Checkout from './components/Checkout'
+import History from './components/History'
+import Cart from './components/Cart'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -39,6 +47,14 @@ render(
         <Route path="/" component={ExampleApp}>
           <IndexRedirect to="/jokes" />
           <Route path="/jokes" component={Jokes} />
+          <Route path="/allMagnets" component={AllMagnets} />
+          <Route path="/allSpeakers" component={AllSpeakers} />
+          <Route path="/singleMagnet" component={SingleMagnet} />
+          <Route path="/singleSpeaker" component={SingleSpeaker} />
+          <Route path="/checkout" component={Checkout} />
+          <Route path="/History" component={History} />
+          <Route path="/cart" component={Cart} />
+          <Route path="/account" component={Account} />
         </Route>
         <Route path='*' component={NotFound} />
       </Router>
@@ -46,3 +62,6 @@ render(
   </Provider>,
   document.getElementById('main')
 )
+
+
+
