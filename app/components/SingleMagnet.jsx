@@ -13,17 +13,31 @@ const magnet = {
   speaker_id: 4
 }
 
+const styles = {
+  description: {
+    color: 'blue'
+  },
+  reviews: {
+    color: 'red'
+  }
+}
+
 const SingleMagnet = props => {
   return (
     <div>
-      <Paper>
-        <h1>Single Magnet Route</h1>
+      <Paper style={styles.description}>
         <List>
           <ListItem primaryText={magnet.title} />
           <ListItem primaryText={`Product description: ${magnet.description}`} />
           <ListItem primaryText={`Size: ${magnet.size}`} />
           <ListItem primaryText={`Item #: ${magnet.itemNumber}`} />
           <ListItem primaryText={`Mood: ${magnet.mood}`} />
+        </List>
+      </Paper>
+      <Paper style={styles.reviews}>
+        <List>
+          <ListItem> This is awesome!</ListItem>
+          <ListItem> This is shit!</ListItem>
         </List>
       </Paper>
     </div>
