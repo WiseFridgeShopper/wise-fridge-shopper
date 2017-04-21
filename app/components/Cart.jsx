@@ -56,8 +56,8 @@ export default class Cart extends React.Component {
           <MenuItem>Magnets</MenuItem>
           {this.state.cartMagnets.map(magnet => {
             return (
-              <div>
-                <CartMenuItem key={magnet.itemNumber} magnet={magnet}/>
+              <div key={magnet.itemNumber}>
+                <CartMenuItem magnet={magnet}/>
                 <hr/>
               </div>
             )
