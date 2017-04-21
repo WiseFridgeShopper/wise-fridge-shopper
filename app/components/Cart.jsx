@@ -40,7 +40,6 @@ class Cart extends React.Component {
   handleClose = () => this.setState({open: false});
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <RaisedButton onTouchTap={this.handleToggle} style={{ paddingTop: 12 }}
