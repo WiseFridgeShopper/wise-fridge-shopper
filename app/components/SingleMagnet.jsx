@@ -5,6 +5,8 @@ import {Card, CardMedia, CardHeader, CardText} from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 import {GridList, GridTile} from 'material-ui/GridList'
 
+import Review from '.components/Review'
+
 const magnet = {
   title: 'Henry David Thoreau Fridge Magnet #1',
   quote: "What you get by achieving your goals is not as important as what you become by achieving your goals.",

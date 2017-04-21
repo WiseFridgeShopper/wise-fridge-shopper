@@ -6,11 +6,12 @@ const Review = (props) => {
   return (
     <Card>
       <CardHeader
-        title="Product/ User Name Here"
+        title={props.name}
+        subtitle={props.rating}
         avatar={<Stars/>}
         />
       <CardText>
-        Review for crappy product goes here.
+        Review for crappy product goes here. {props.text}
       </CardText>
     </Card>
   )
