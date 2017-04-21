@@ -118,19 +118,19 @@ export default class Home extends React.Component {
 
   renderFilteredMagnets() {
     if (this.state.query) {
-      return testMagnets.filter(item => this.filterByQuote(item) || this.filterByTitle(item))
+      return this.props.allMagnets.filter(item => this.filterByQuote(item) || this.filterByTitle(item))
         .map(item => <MagnetThumbnail key={item.id} id={item.id} image={item.image} />)
     } else {
-      return testMagnets.map(item => <MagnetThumbnail key={item.id} id={item.id} image={item.image} />)
+      return this.props.allMagnets.map(item => <MagnetThumbnail key={item.id} id={item.id} image={item.image} />)
     }
   }
 
   renderFilteredSpeakers() {
     if (this.state.query) {
-      return testSpeakers.filter(item => this.filterBySpeakerName(item))
+      return this.props.allSpeakers.filter(item => this.filterBySpeakerName(item))
         .map(item => <SpeakerThumbnail key={item.id} id={item.id} name={item.name} bio={item.bio} />)
     } else {
-      return testSpeakers.map(item => <SpeakerThumbnail key={item.id} id={item.id} name={item.name} bio={item.bio} />)
+      return this.props.allSpeakers.map(item => <SpeakerThumbnail key={item.id} id={item.id} name={item.name} bio={item.bio} />)
     }
   }
 
@@ -148,7 +148,7 @@ export default class Home extends React.Component {
         <div className='row'>
           <div className='col-md-12'>
             <GridList cols={3} title='My Grid'>
-              { this.props.selectedTab === 'speakers' ? this.renderFilteredSpeakers() : this.renderFilteredMagnets() }
+              { this.props.selectedView === 'speakers' ? this.renderFilteredSpeakers() : this.renderFilteredMagnets() }
             </GridList>
           </div>
         </div>
