@@ -9,7 +9,7 @@ export const Login = ({ login }) => (
       console.log('testing', evt.target)
       login(evt.target.email.value, evt.target.password.value)
     } }>
-      <div>
+      <div style={{ paddingTop: 12 }}>
         <input name="email" type="text" placeholder="Enter Email Address"/>
 
         <input name="password" type="password" placeholder="Enter Password" />
