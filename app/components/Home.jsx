@@ -2,7 +2,9 @@ import React from 'react'
 import GridList, {GridTile} from 'material-ui/GridList'
 import {Link} from 'react-router'
 import TextField from 'material-ui/TextField' // used for search bar
-import IconButton, {StarBorder} from 'material-ui/IconButton' // used for purchase button
+import IconButton from 'material-ui/IconButton' // used for purchase button
+import MagnetThumbnail from './MagnetThumbnail'
+import SpeakerThumbnail from './SpeakerThumbnail'
 
 const testMagnets = [
   {
@@ -73,7 +75,22 @@ const testMagnets = [
   }
 ]
 
+const testSpeakers = [
+  {
+    id: 1,
+    name: 'Batman',
+    bio: 'Im rich',
+  },
+  {
+    id: 2,
+    name: 'Superman',
+    bio: 'With great power comes great responsibility',
+  }
+]
+
 export default class Home extends React.Component {
+  // THIS COMPONENT IS AWAITING REDUX STATE! We need to toggle this.props.selectedTab from our redux store
+  // so that we can render either speakers or magnets from this view.
   constructor(props) {
     super(props)
     this.state = {
@@ -87,44 +104,39 @@ export default class Home extends React.Component {
     this.setState({ query: evt.target.value })
   }
 
-  // Set up speaker name filtering here
-  // filterBySpeaker(items) {
-  //   return items.filter(item => item.authorName)
-  // }
+  filterBySpeakerName(item) {
+    return item.name.toLowerCase().includes(this.state.query) || item.bio.toLowerCase().includes(this.state.query)
+  }
 
   filterByQuote(item) {
-    return item.quote.includes(this.state.query)
+    return item.quote.toLowerCase().includes(this.state.query.toLowerCase())
   }
 
   filterByTitle(item) {
-    return item.title.includes(this.state.query)
+    return item.title.toLowerCase().includes(this.state.query.toLowerCase())
   }
 
-  // Renders filtered results from grid view
-  renderFilteredResults() {
+  renderFilteredMagnets() {
     if (this.state.query) {
       return testMagnets.filter(item => this.filterByQuote(item) || this.filterByTitle(item))
-        .map(item => <Link key={item.id} to={`/magnets/${item.id}`}><GridTile
-                    key={item.id}
-                    // title={item.title}
-                    // subtitle={<span><b>'Marcus Aurelius'</b></span>}
-                    // actionIcon={<IconButton children={<i className="material-icons md-light">add shopping cart</i>}></IconButton>}
-                    >
-                      <img src={`http://${item.image}`}/>
-
-                    </GridTile></Link>)
+        .map(item => <MagnetThumbnail key={item.id} id={item.id} image={item.image} />)
     } else {
-      return testMagnets.map(item => <Link key={item.id} to={`/magnets/${item.id}`}><GridTile
-                  key={item.id}
-                  // title={item.title}
-                  // subtitle={<span><b>'Marcus Aurelius'</b></span>}
-                  >
-                    <img src={`http://${item.image}`}/>
-                  </GridTile></Link>
-                  )
+      return testMagnets.map(item => <MagnetThumbnail key={item.id} id={item.id} image={item.image} />)
     }
   }
 
+  renderFilteredSpeakers() {
+    if (this.state.query) {
+      return testSpeakers.filter(item => this.filterBySpeakerName(item))
+        .map(item => <SpeakerThumbnail key={item.id} id={item.id} name={item.name} bio={item.bio} />)
+    } else {
+      return testSpeakers.map(item => <SpeakerThumbnail key={item.id} id={item.id} name={item.name} bio={item.bio} />)
+    }
+  }
+
+  /* Check global state for selected tab ('magnets' or 'speakers').
+  *  Change which filter we run to match the tab. || operator can be used inside gridlist to
+  *  render proper thumbnails. */
   render() {
     return (
       <div>
@@ -136,7 +148,7 @@ export default class Home extends React.Component {
         <div className='row'>
           <div className='col-md-12'>
             <GridList cols={3} title='My Grid'>
-              {this.renderFilteredResults()}
+              { this.props.selectedTab === 'speakers' ? this.renderFilteredSpeakers() : this.renderFilteredMagnets() }
             </GridList>
           </div>
         </div>
