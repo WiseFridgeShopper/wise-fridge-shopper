@@ -6,7 +6,7 @@ const Review = (props) => {
   return (
     <Card>
       <CardHeader
-        title="Product Name Here"
+        title="Product/ User Name Here"
         avatar={<Stars/>}
         />
       <CardText>
