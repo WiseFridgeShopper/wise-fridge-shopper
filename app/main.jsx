@@ -41,8 +41,8 @@ render(
           <Route path="/home" component={Home} />
           <Route path="/allMagnets" component={AllMagnets} />
           <Route path="/allSpeakers" component={AllSpeakers} />
-          <Route path="/singleMagnet" component={SingleMagnet} />
-          <Route path="/singleSpeaker" component={SingleSpeaker} />
+          <Route path="/magnets/:id" component={SingleMagnet} />
+          <Route path="/speakers/:id" component={SingleSpeaker} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/history" component={History} />
           <Route path="/cart" component={Cart} />
