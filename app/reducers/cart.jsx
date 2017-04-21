@@ -1,8 +1,6 @@
 import axios from 'axios'
 import store from '../store'
-const initialState = {
-  order: {}
-}
+import initialState from '../initialState'
 
 const reducer = (state = initialState, action) => {
   const newState = Object.assign({}, state)
