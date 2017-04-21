@@ -49,15 +49,16 @@ export const addToOrder = (orderId, magnetId) => dispatch => {
 }
 
 export const removeFromOrder = (orderId, magnetId) => dispatch => {
+  // updating an order will create a new Order.product object (corresponding to the row)
   const tempCart = Object.assign({}, store.state.cart)
+  // Loop searches for the product key we are removing and deletes it
   for (let magnet in tempCart) {
     if (magnet === magnetId) { delete tempCart[magnet] }
   }
+  // Axios request sends new product object (with removed key)
   axios.put(`/api/orders/${orderId}`, {product: tempCart})
   .then((order) => dispatch(RemoveFromCart(order)))
   .catch(err => console.log(err))
-  // needs to take an order id and magnet id and remove the matching row from the magnet from the order.product
-  // and the MagnetsOrders 'through table'?
 }
 
 export const updateQuant = (orderId, magnetId, quant) => dispatch =>
@@ -66,5 +67,3 @@ export const updateQuant = (orderId, magnetId, quant) => dispatch =>
 
 export default reducer
 
-
-//[null,{5:3, 4: 5}]
