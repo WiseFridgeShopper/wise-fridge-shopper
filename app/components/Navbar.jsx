@@ -12,27 +12,26 @@ class Navbar extends React.Component {
   render() {
     return (
       <nav className="navbar navbar-inverse bg-inverse">
-        <div className="container">
-          <Link className="logo" to="/"><img src="" /></Link>
-          <div>
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span className="sr-only">Toggle navigation</span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+            </button>
+            <a className="navbar-brand" href="/home">Wisefridge</a>
+          </div>
+          <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
-              <li>
-                <Link to="/allSpeakers" activeClassName="active">Speakers</Link>
-              </li>
-              <li>
-                <Link to="/allMagnets" activeClassName="active">Magnets</Link>
-              </li>
-              <li>
-                <div>
-                  { <Cart/> }
-                </div>
-              </li>
+              <li className="active"><Link to="/allSpeakers" activeClassName="active">Speakers</Link></li>
+              <li className="active"><Link to="/allMagnets" activeClassName="active">Magnets</Link></li>
+              <li className="active">{ <Cart/> }</li>
             </ul>
-            <ul className="nav pull-right">
-              <li>
-                <div>
-                  {this.props.user ? <WhoAmI/> : <Login/>}
-                </div>
+            <ul className="nav navbar-nav navbar-right">
+              <li><Link to="signup" classname="signup" activeClassName="active">Signup</Link></li>
+              <li className="active">
+                {this.props.user ? <WhoAmI/> : <Login/>}
               </li>
             </ul>
           </div>
@@ -49,6 +48,6 @@ import {login} from 'APP/app/reducers/auth'
 const mapProps = null
 const mapDispatch = dispatch => {
   return {}
-}
+        }
 
 export default connect(mapProps, {login})(Navbar)

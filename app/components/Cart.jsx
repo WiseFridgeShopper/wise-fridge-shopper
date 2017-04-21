@@ -2,9 +2,8 @@ import React from 'react'
 import Drawer from 'material-ui/Drawer'
 import CartMenuItem from './CartMenuItem'
 import RaisedButton from 'material-ui/RaisedButton'
-import MenuItem from 'material-ui/MenuItem';
-import AppBar from 'material-ui/AppBar';
-
+import MenuItem from 'material-ui/MenuItem'
+import AppBar from 'material-ui/AppBar'
 
 export default class Cart extends React.Component {
   constructor(props) {
@@ -41,10 +40,8 @@ export default class Cart extends React.Component {
   render() {
     return (
       <div>
-        <RaisedButton
-          label="View Cart"
-          onTouchTap={this.handleToggle}
-        />
+        <RaisedButton onTouchTap={this.handleToggle} style={{ paddingTop: 12 }}
+        ><i className="material-icons">shopping_cart</i></RaisedButton>
         <Drawer
           docked={false}
           width={700}
