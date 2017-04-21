@@ -5,15 +5,24 @@ const {STRING, INTEGER, TEXT, ARRAY, FLOAT} = require('sequelize')
 module.exports = db => db.define('magnet', {
   quote: {
     type: TEXT,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   price: {
-    type: FLOAT,
-    allowNull: false
+    type: INTEGER,
+    allowNull: false,
+    validate: {
+      isInt: true
+    }
   },
   image: {
     type: STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      isUrl: true
+    }
   },
   title: {
     type: STRING,
@@ -26,6 +35,7 @@ module.exports = db => db.define('magnet', {
   itemNumber: {
     type: INTEGER,
     allowNull: false,
+    unique: true,
     validate: {
       isInt: true
     }
@@ -44,5 +54,5 @@ module.exports = db => db.define('magnet', {
 module.exports.associations = (Magnet, {Speaker, Review, Order}) => {
   Magnet.belongsTo(Speaker)
   Magnet.hasMany(Review, {as: 'reviews'})
-  Magnet.belongsToMany(Order, {through: 'ProductOrders'})
+  Magnet.belongsToMany(Order, {through: 'MagnetsOrders'})
 }

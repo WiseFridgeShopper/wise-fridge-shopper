@@ -12,12 +12,12 @@ import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-
 import store from './store'
 import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
+import Home from './components/Home'
 
 import AllMagnets from './components/AllMagnets'
 import AllSpeakers from './components/AllSpeakers'
@@ -27,34 +27,28 @@ import Account from './components/Account'
 import Checkout from './components/Checkout'
 import History from './components/History'
 import Cart from './components/Cart'
+import Root from './components/Root'
 
-const ExampleApp = connect(
-  ({ auth }) => ({ user: auth })
-)(
-  ({ user, children }) =>
-    <div>
-      <nav>
-        {user ? <WhoAmI/> : <Login/>}
-      </nav>
-      {children}
-    </div>
-)
+import ErrorPage from './components/ErrorPage'
+import Forbidden from './components/Forbidden'
 
 render(
   <Provider store={store}>
     <MuiThemeProvider>
       <Router history={browserHistory}>
-        <Route path="/" component={ExampleApp}>
-          <IndexRedirect to="/jokes" />
-          <Route path="/jokes" component={Jokes} />
+        <Route path="/" component={Root}>
+          <IndexRedirect to="/home" />
+          <Route path="/home" component={Home} />
           <Route path="/allMagnets" component={AllMagnets} />
           <Route path="/allSpeakers" component={AllSpeakers} />
           <Route path="/singleMagnet" component={SingleMagnet} />
           <Route path="/singleSpeaker" component={SingleSpeaker} />
           <Route path="/checkout" component={Checkout} />
-          <Route path="/History" component={History} />
+          <Route path="/history" component={History} />
           <Route path="/cart" component={Cart} />
           <Route path="/account" component={Account} />
+          <Route path="/error" component={ErrorPage} />
+          <Route path="/forbidden" component={Forbidden} />
         </Route>
         <Route path='*' component={NotFound} />
       </Router>
@@ -62,6 +56,3 @@ render(
   </Provider>,
   document.getElementById('main')
 )
-
-
-
