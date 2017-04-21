@@ -54,14 +54,14 @@ class Cart extends React.Component {
         >
           <AppBar title="Shopping Cart" style={{ backgroundColor: 'black' }} />
           <MenuItem>Magnets</MenuItem>
-          {/*this.props.cart.map(magnet => {
+          {Object.keys(this.props.cart).map(magnet => {
             return (
               <div key={magnet.itemNumber}>
                 <CartMenuItem magnet={magnet}/>
                 <hr/>
               </div>
             )
-          })*/}
+          })}
           <RaisedButton
           label="Checkout"
           onTouchTap={this.handleToggle}
@@ -73,6 +73,7 @@ class Cart extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
     cart: state.cart
   }

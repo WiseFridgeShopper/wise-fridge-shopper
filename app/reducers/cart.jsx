@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from '../store'
 import initialState from '../initialState'
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState.cart, action) => {
   const newState = Object.assign({}, state)
 
   switch (action.type) {
