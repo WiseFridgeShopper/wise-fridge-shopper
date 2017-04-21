@@ -51,14 +51,19 @@ module.exports = require('express').Router()
   })
   // update an order
   .put('/:orderId', (req, res, next) => {
-    Order.update(req.body, {
-      where: {
-        id: req.params.orderId
-      },
-      returning: true,
-      plain: true
-    })
-    .then(updatedOrder => {
-      updatedOrder ? res.send(updatedOrder) : res.sendStatus(404)
+    // **THIS IS QUESTIONABLE** if you reach a bug here... beware
+    Order.findById(req.params.orderId)
+    .then((order) => {
+      const updatedOrder = Object.assign(order, req.body)
+      Order.update(updatedOrder, {
+        where: {
+          id: req.params.orderId
+        },
+        returning: true,
+        plain: true
+      })
+      .then(updatedOrder => {
+        updatedOrder ? res.send(updatedOrder) : res.sendStatus(404)
+      })
     })
   })
