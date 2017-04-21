@@ -22,7 +22,7 @@ import Home from './components/Home'
 import AllMagnets from './components/AllMagnets'
 import AllSpeakers from './components/AllSpeakers'
 import SingleMagnet from './components/SingleMagnet'
-import SingleSpeaker from './components/SingleSpeaker'
+import SingleSpeakerContainer from './components/SingleSpeakerContainer'
 import Account from './components/Account'
 import Checkout from './components/Checkout'
 import History from './components/History'
@@ -43,7 +43,7 @@ render(
           <Route path="/allMagnets" component={AllMagnets} />
           <Route path="/allSpeakers" component={AllSpeakers} />
           <Route path="/magnets/:id" component={SingleMagnet} />
-          <Route path="/speakers/:id" component={SingleSpeaker} />
+          <Route path="/speakers/:id" component={SingleSpeakerContainer} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/history" component={History} />
           <Route path="/cart" component={Cart} />
