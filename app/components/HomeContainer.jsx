@@ -1,5 +1,6 @@
 import React from 'react'
 import GridList, {GridTile} from 'material-ui/GridList'
+import {connect} from 'react-redux'
 import {Link} from 'react-router'
 import TextField from 'material-ui/TextField' // used for search bar
 import IconButton from 'material-ui/IconButton' // used for purchase button
@@ -88,7 +89,7 @@ const testSpeakers = [
   }
 ]
 
-export default class Home extends React.Component {
+class Home extends React.Component {
   // THIS COMPONENT IS AWAITING REDUX STATE! We need to toggle this.props.selectedTab from our redux store
   // so that we can render either speakers or magnets from this view.
   constructor(props) {
@@ -155,3 +156,15 @@ export default class Home extends React.Component {
       </div>)
   }
 }
+
+const mapStateToProps = (storeState) => {
+  return {
+    selectedView: storeState.selectedView,
+    allMagnets: storeState.allMagnets,
+    allSpeakers: storeState.allSpeakers
+  }
+}
+
+const HomeContainer = connect(mapStateToProps)(Home)
+
+export default HomeContainer

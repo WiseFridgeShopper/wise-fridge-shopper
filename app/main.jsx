@@ -17,7 +17,7 @@ import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
-import Home from './components/Home'
+import HomeContainer from './components/HomeContainer'
 
 import AllMagnets from './components/AllMagnets'
 import AllSpeakers from './components/AllSpeakers'
@@ -38,7 +38,7 @@ render(
       <Router history={browserHistory}>
         <Route path="/" component={Root}>
           <IndexRedirect to="/home" />
-          <Route path="/home" component={Home} />
+          <Route path="/home" component={HomeContainer} />
           <Route path="/allMagnets" component={AllMagnets} />
           <Route path="/allSpeakers" component={AllSpeakers} />
           <Route path="/singleMagnet" component={SingleMagnet} />
