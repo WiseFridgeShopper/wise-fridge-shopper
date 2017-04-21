@@ -1,11 +1,13 @@
 import React from 'react'
+import store from '../store'
 import Drawer from 'material-ui/Drawer'
 import CartMenuItem from './CartMenuItem'
 import RaisedButton from 'material-ui/RaisedButton'
 import MenuItem from 'material-ui/MenuItem'
 import AppBar from 'material-ui/AppBar'
+import {connect} from 'react-redux'
 
-export default class Cart extends React.Component {
+class Cart extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -51,7 +53,7 @@ export default class Cart extends React.Component {
         >
           <AppBar title="Shopping Cart" style={{ backgroundColor: 'black' }} />
           <MenuItem>Magnets</MenuItem>
-          {this.state.cartMagnets.map(magnet => {
+          {Object.keys(this.props.cart).map(magnet => {
             return (
               <div key={magnet.itemNumber}>
                 <CartMenuItem magnet={magnet}/>
@@ -69,4 +71,15 @@ export default class Cart extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart
+  }
+}
+
+const mapDispatchToProps = (dispatch) => ({})
+
+const CartContainer = connect(mapStateToProps, mapDispatchToProps)(Cart)
+
+export default CartContainer
 // onTouchTap={this.handleClose}
