@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import {List, ListItem} from 'material-ui/List'
 import Paper from 'material-ui/Paper'
 import {Card, CardMedia, CardHeader, CardText} from 'material-ui/Card'
@@ -60,6 +61,8 @@ const styles = {
 }
 
 const SingleMagnet = props => {
+  const getRelatedMagnets = allMagnets => props.allMagnets.filter(magnet => magnet.speaker_id === props.selectedMagnet.speaker_id)
+
   // when we implement a controlled component for this dumb component, below line show be uncommented
   // const magnet = props.selectedMagnet
   return (
@@ -67,21 +70,20 @@ const SingleMagnet = props => {
       <div className={'col-md-6'}>
         <Card>
           <CardHeader
-            title={magnet.title}
+            title={props.selectedMagnet.title}
             actAsExpander={true}
-
             >
           </CardHeader>
           <CardMedia >
-            <img src={magnet.image} className={'img-responsive'}/>
+            <img src={props.selectedMagnet.image} className={'img-responsive'}/>
           </CardMedia>
           <CardText >
             <List>
-              <ListItem primaryText={`Price: $${magnet.price}`}><FlatButton label='buy me' primary={true}></FlatButton></ListItem>
-              <ListItem primaryText={magnet.title} />
-              <ListItem primaryText={`Size: ${magnet.size}`} />
-              <ListItem primaryText={`Item #: ${magnet.itemNumber}`} />
-              <ListItem primaryText={`Mood: ${magnet.mood}`} />
+              <ListItem primaryText={`Price: $${props.selectedMagnet.price}`}><FlatButton label='buy me' primary={true}></FlatButton></ListItem>
+              <ListItem primaryText={props.selectedMagnet.title} />
+              <ListItem primaryText={`Size: ${props.selectedMagnet.size}`} />
+              <ListItem primaryText={`Item #: ${props.selectedMagnet.itemNumber}`} />
+              <ListItem primaryText={`Mood: ${props.selectedMagnet.mood}`} />
             </List>
           </CardText>
           <CardText expandable={true}>
@@ -98,14 +100,14 @@ const SingleMagnet = props => {
             title="Buy other awesome Quotes by me!"
             actAsExpander={true}></CardHeader>
             <GridList style={styles.gridList} cols={2.2}>
-              {relatedMagnets.map((tile) => (
+              {getRelatedMagnets(props.allMagnets).map((magnet) => (
                 <GridTile
-                  key={tile.image}
-                  title={tile.title}
+                  key={magnet.image}
+                  title={magnet.title}
                   titleStyle={styles.titleStyle}
                   titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
                 >
-                  <img src={tile.image} />
+                  <img src={magnet.image} />
                 </GridTile>
               ))}
             </GridList>
@@ -115,4 +117,13 @@ const SingleMagnet = props => {
   )
 }
 
-export default SingleMagnet
+function mapStateToProps(storeState) {
+  return {
+    selectedMagnet: storeState.selectedMagnet,
+    allMagnets: storeState.allMagnets
+  }
+}
+
+const SingleMagnetContainer = connect(mapStateToProps)(SingleMagnet)
+
+export default SingleMagnetContainer
