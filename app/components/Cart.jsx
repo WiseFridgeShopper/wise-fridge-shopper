@@ -2,8 +2,8 @@ import React from 'react'
 import Drawer from 'material-ui/Drawer'
 import CartMenuItem from './CartMenuItem'
 import RaisedButton from 'material-ui/RaisedButton'
-import MenuItem from 'material-ui/MenuItem';
-import AppBar from 'material-ui/AppBar';
+import MenuItem from 'material-ui/MenuItem'
+import AppBar from 'material-ui/AppBar'
 
 
 export default class Cart extends React.Component {
