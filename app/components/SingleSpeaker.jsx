@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import {Card, CardHeader, CardText} from 'material-ui/Card'
 import {GridList, GridTile} from 'material-ui/GridList'
 
@@ -56,26 +57,35 @@ const SingleSpeaker = props => {
   return (
     <Card>
       <CardHeader
-        title="Speaker Name"
+        title={props.selectedSpeaker.name}
         actAsExpander={true}
         showExpandableButton={true}></CardHeader>
         <GridList style={styles.gridList} cols={2.2}>
-          {tilesData.map((tile) => (
+          {props.allMagnets.filter(magnet => magnet.speaker_id === props.selectedSpeaker.id).map((magnet) => (
             <GridTile
-              key={tile.image}
-              title={tile.title}
+              key={magnet.id}
+              title={magnet.title}
               titleStyle={styles.titleStyle}
               titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
             >
-              <img src={tile.image} />
+              <img src={magnet.image} />
             </GridTile>
           ))}
         </GridList>
       <CardText expandable={true}>
-        I am the bio.
+        {props.selectedSpeaker.bio}
       </CardText>
     </Card>
   )
 }
 
-export default SingleSpeaker
+function mapStateToProps(storeState) {
+  return {
+    selectedSpeaker: storeState.selectedSpeaker,
+    allMagnets: storeState.allMagnets,
+  }
+}
+
+const SingleSpeakerContainer = connect(mapStateToProps)(SingleSpeaker)
+
+export default SingleSpeakerContainer
