@@ -5,11 +5,17 @@ const {STRING, INTEGER, TEXT, ARRAY, FLOAT} = require('sequelize')
 module.exports = db => db.define('magnet', {
   quote: {
     type: TEXT,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   price: {
-    type: FLOAT,
-    allowNull: false
+    type: INTEGER,
+    allowNull: false,
+    validate: {
+      isInt: true
+    }
   },
   image: {
     type: STRING,
@@ -29,6 +35,7 @@ module.exports = db => db.define('magnet', {
   itemNumber: {
     type: INTEGER,
     allowNull: false,
+    unique: true,
     validate: {
       isInt: true
     }
