@@ -39,10 +39,11 @@ export const ChangeItemQuantity = magnetWithQuant => ({
   type: CHANGE_ITEM_QUANTITY, magnetWithQuant
 })
 
-export const addToOrder = magnetId => dispatch =>
-    axios.get(`/api/magnets/${magnetId}`)
-      .then((magnet) => dispatch(addToCart(magnet)))
-      .catch(err => console.log(err))
+export const addToOrder = magnetId => dispatch => {
+  const newMagnet = store.state.allMagnets.filter(magnet => magnet.id === magnetId)
+  const newMagnetId = newMagnet.id
+  dispatch(addToCart({newMagnetId: 1}))
+}
 
 export const removeFromOrder = (orderId, magnetId) => dispatch => {
   const tempCart = Object.assign({}, store.state.cart)
