@@ -9,7 +9,7 @@ const reducer = (state = initialState, action) => {
     newState.reviews = action.reviews
     break
   case ADD_REVIEW:
-    newState.reviews = [...newState.reviews, action.review]
+    newState.reviews = newState.reviews.concat([action.review])
     break
   default:
     return state
@@ -18,8 +18,6 @@ const reducer = (state = initialState, action) => {
 }
 
 const SELECT_REVIEWS = 'SELECT_REVIEWS'
-const GET_REVIEWS_MAGNET = 'GET_REVIEWS_MAGNET'
-const GET_REVIEWS_USER = 'GET_REVIEWS_USER'
 const ADD_REVIEW = 'ADD_REVIEW'
 
 const receiveReviews = reviews => ({
