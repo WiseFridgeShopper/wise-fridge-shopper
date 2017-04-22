@@ -138,10 +138,6 @@ export default class Home extends React.Component {
   *  Change which filter we run to match the tab. || operator can be used inside gridlist to
   *  render proper thumbnails. */
   render() {
-    const style = {
-
-      // minHeight: '300%'
-    }
     return (
       <div>
         <div className='row'>
@@ -151,7 +147,7 @@ export default class Home extends React.Component {
         </div>
         <div className='row'>
           <div className='col-md-12'>
-            <GridList style={style} padding={50} cols={4} title='Products' >
+            <GridList padding={50} cols={4} title='Products' >
               { this.props.selectedTab === 'speakers' ? this.renderFilteredSpeakers() : this.renderFilteredMagnets() }
             </GridList>
           </div>
