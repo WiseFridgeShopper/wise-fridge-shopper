@@ -19,8 +19,8 @@ import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import Home from './components/Home'
 
-import AllMagnets from './components/AllMagnets'
-import AllSpeakers from './components/AllSpeakers'
+// import AllMagnets from './components/AllMagnets'
+// import AllSpeakers from './components/AllSpeakers'
 import SingleMagnet from './components/SingleMagnet'
 import SingleSpeakerContainer from './components/SingleSpeakerContainer'
 import Account from './components/Account'
@@ -40,14 +40,12 @@ render(
         <Route path="/" component={Root}>
           <IndexRedirect to="/home" />
           <Route path="/home" component={Home} />
-          <Route path="/allMagnets" component={AllMagnets} />
-          <Route path="/allSpeakers" component={AllSpeakers} />
           <Route path="/magnets/:id" component={SingleMagnet} />
           <Route path="/speakers/:id" component={SingleSpeakerContainer} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/history" component={History} />
           <Route path="/cart" component={Cart} />
-          <Route path="/account" component={Account} />
+
           <Route path="/error" component={ErrorPage} />
           <Route path="/forbidden" component={Forbidden} />
           <Route path="/profile" component={Profile} />
@@ -58,3 +56,7 @@ render(
   </Provider>,
   document.getElementById('main')
 )
+
+          // <Route path="/allMagnets" component={AllMagnets} />
+          // <Route path="/allSpeakers" component={AllSpeakers} />
+          // <Route path="/account" component={Account} />
