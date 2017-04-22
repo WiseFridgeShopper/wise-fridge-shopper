@@ -11,7 +11,7 @@ const Review = (props) => {
         avatar={<Stars/>}
         />
       <CardText>
-        Review for crappy product goes here. {props.text}
+        {props.text}
       </CardText>
     </Card>
   )
