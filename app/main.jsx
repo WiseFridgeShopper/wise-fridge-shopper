@@ -50,6 +50,7 @@ render(
           <Route path="/error" component={ErrorPage} />
           <Route path="/forbidden" component={Forbidden} />
           <Route path="/profile" component={Profile} />
+
         </Route>
         <Route path='*' component={NotFound} />
       </Router>

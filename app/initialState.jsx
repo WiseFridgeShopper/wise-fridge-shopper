@@ -5,7 +5,8 @@ const initialState = {
   selectedMagnet: {},
   selectedView: 'speaker',
   cart: {},
-  user: {}
+  user: {},
+  reviews: {}
 }
 
 export default initialState
