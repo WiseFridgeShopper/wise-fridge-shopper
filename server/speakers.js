@@ -16,13 +16,16 @@ module.exports = require('express').Router()
     .catch(next)
   })
   .get('/:id', (req, res, next) => {
+    // Be careful here. Tests indicate that you won't receive a Speaker if no magnet associations exist
     Speaker.findById(req.params.id, {
       include: [{
         model: Magnets,
         where: {speaker_id: req.params.id}
       }]
     })
-    .then(speaker => res.json(speaker))
+    .then(speaker => {
+      speaker ? res.json(speaker) : res.sendStatus(404)
+    })
     .catch(next)
   })
   .delete('/:id', (req, res, next) => {
@@ -45,6 +48,6 @@ module.exports = require('express').Router()
       plain: true
     })
     .then(updatedSpeaker => {
-      updatedSpeaker ? res.send(updatedSpeaker[1]) : res.sendStatus(404)
+      updatedSpeaker ? res.send(updatedSpeaker) : res.sendStatus(404)
     })
   })

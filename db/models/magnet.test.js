@@ -13,7 +13,7 @@ describe('Magnet', () => {
   beforeEach(function() {
     testMagnet = {
       quote: 'Many a test has failed',
-      price: 3.95,
+      price: 395,
       image: 'cdn.shopify.com/s/files/1/0273/4903/products/ralph-waldo-emerson-fridge-magnet-1_large.jpg?v=1380467104',
       title: 'Koans about Testing',
       description: 'Amazing magnet with Koans from testing',
