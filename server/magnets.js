@@ -17,7 +17,7 @@ module.exports = require('express').Router()
   })
   .get('/:id', (req, res, next) => {
     Magnet.findById(req.params.id)
-    .then(magnet => res.json(magnet))
+    .then(magnet => magnet ? res.json(magnet) : res.sendStatus(404))
     .catch(next)
   })
   .delete('/:id', (req, res, next) => {
@@ -26,9 +26,7 @@ module.exports = require('express').Router()
         id: req.params.id
       }
     })
-    .then(destroyedRows => {
-      destroyedRows ? res.sendStatus(204) : res.sendStatus(404)
-    })
+    .then(destroyedRows => res.sendStatus(204))
     .catch(next)
   })
   .put('/:id', (req, res, next) => {
@@ -40,7 +38,7 @@ module.exports = require('express').Router()
       plain: true
     })
     .then(updatedMagnet => {
-      updatedMagnet ? res.send(updatedMagnet) : res.sendStatus(404)
+      updatedMagnet ? res.json(updatedMagnet) : res.sendStatus(404)
     })
     .catch(next)
   })
