@@ -1,6 +1,6 @@
 'use strict'
 
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import injectTapEventPlugin from 'react-tap-event-plugin'
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -29,6 +29,7 @@ import History from './components/History'
 import Cart from './components/Cart'
 import Root from './components/Root'
 import Profile from './components/Profile'
+import Signup from './components/Signup'
 
 import ErrorPage from './components/ErrorPage'
 import Forbidden from './components/Forbidden'
@@ -40,8 +41,8 @@ render(
         <Route path="/" component={Root}>
           <IndexRedirect to="/home" />
           <Route path="/home" component={Home} />
-          <Route path="/allMagnets" component={AllMagnets} />
-          <Route path="/allSpeakers" component={AllSpeakers} />
+          <Route path="/magnets" component={AllMagnets} />
+          <Route path="/speakers" component={AllSpeakers} />
           <Route path="/magnets/:id" component={SingleMagnet} />
           <Route path="/speakers/:id" component={SingleSpeaker} />
           <Route path="/checkout" component={Checkout} />
@@ -51,6 +52,7 @@ render(
           <Route path="/error" component={ErrorPage} />
           <Route path="/forbidden" component={Forbidden} />
           <Route path="/profile" component={Profile} />
+          <Route path="/signup" component={Signup} />
         </Route>
         <Route path='*' component={NotFound} />
       </Router>
