@@ -18,12 +18,11 @@ import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import Home from './components/Home'
-
 import AllMagnets from './components/AllMagnets'
 import AllSpeakers from './components/AllSpeakers'
 import SingleMagnetContainer from './components/SingleMagnetContainer'
 import SingleSpeaker from './components/SingleSpeaker'
-import Account from './components/Account'
+// import Account from './components/Account'
 import Checkout from './components/Checkout'
 import History from './components/History'
 import Cart from './components/Cart'
@@ -47,7 +46,7 @@ render(
           <Route path="/checkout" component={Checkout} />
           <Route path="/history" component={History} />
           <Route path="/cart" component={Cart} />
-          <Route path="/account" component={Account} />
+
           <Route path="/error" component={ErrorPage} />
           <Route path="/forbidden" component={Forbidden} />
           <Route path="/profile" component={Profile} />
@@ -58,3 +57,7 @@ render(
   </Provider>,
   document.getElementById('main')
 )
+
+          // <Route path="/allMagnets" component={AllMagnets} />
+          // <Route path="/allSpeakers" component={AllSpeakers} />
+          // <Route path="/account" component={Account} />
