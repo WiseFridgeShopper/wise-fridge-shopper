@@ -8,6 +8,9 @@ const reducer = (state = initialState, action) => {
   case SELECT_REVIEWS:
     newState.reviews = action.reviews
     break
+  case ADD_REVIEW:
+    newState.reviews = [...newState.reviews, action.review]
+    break
   default:
     return state
   }
@@ -22,6 +25,11 @@ const ADD_REVIEW = 'ADD_REVIEW'
 const receiveReviews = reviews => ({
   type: SELECT_REVIEWS,
   reviews
+})
+
+const receiveNewReview = review => ({
+  type: ADD_REVIEW,
+  review
 })
 
 const getReviewsByMagnet = magnetId => {
@@ -42,4 +50,12 @@ const getReviewsByUser = userId => {
   }
 }
 
+const addNewReview = (newReviewData, magnetId) => {
+  return dispatch => {
+    axios.post(`/api/magnets/${magnetId}/reviews`, newReviewData)
+    .then(response => {
+      dispatch(receiveNewReview(response.data))
+    })
+  }
+}
 export default reducer

@@ -5,7 +5,7 @@ import {Card, CardMedia, CardHeader, CardText} from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 import {GridList, GridTile} from 'material-ui/GridList'
 
-import Review from '.components/Review'
+import Review from './Review'
 
 const magnet = {
   title: 'Henry David Thoreau Fridge Magnet #1',
