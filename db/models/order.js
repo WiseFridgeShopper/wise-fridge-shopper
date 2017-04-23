@@ -57,12 +57,12 @@ module.exports = db => db.define('order', {
     type: JSON,
   },
   subtotal: {
-    type: FLOAT,
-    defaultValue: 0.00
+    type: INTEGER,
+    defaultValue: 0
   },
   tax: {
-    type: FLOAT,
-    defaultValue: 0.00
+    type: INTEGER,
+    defaultValue: 0
   },
   address: {
     type: STRING,

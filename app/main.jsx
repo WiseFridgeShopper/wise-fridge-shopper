@@ -18,9 +18,9 @@ import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import Home from './components/Home'
-import AllMagnets from './components/AllMagnets'
-import AllSpeakers from './components/AllSpeakers'
-import SingleMagnetContainer from './components/SingleMagnetContainer'
+import MagnetThumbnail from './components/MagnetThumbnail'
+import SpeakerThumbnail from './components/SpeakerThumbnail'
+import SingleMagnetContainer from './components/SingleMagnet'
 import SingleSpeaker from './components/SingleSpeaker'
 // import Account from './components/Account'
 import Checkout from './components/Checkout'
@@ -39,8 +39,8 @@ render(
         <Route path="/" component={Root}>
           <IndexRedirect to="/home" />
           <Route path="/home" component={Home} />
-          <Route path="/allMagnets" component={AllMagnets} />
-          <Route path="/allSpeakers" component={AllSpeakers} />
+          <Route path="/allMagnets" component={MagnetThumbnail} />
+          <Route path="/allSpeakers" component={SpeakerThumbnail} />
           <Route path="/magnets/:id" component={SingleMagnetContainer} />
           <Route path="/speakers/:id" component={SingleSpeaker} />
           <Route path="/checkout" component={Checkout} />
