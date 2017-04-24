@@ -36,13 +36,11 @@ import Forbidden from './components/Forbidden'
 
 // Action Creators
 import {setView} from './reducers/selectView'
-import {getAllSpeakersFromServer} from './reducers/speaker'
-import {getAllMagnetsFromServer} from './reducers/magnet'
+import {getAllSpeakersFromServer, selectSpeaker} from './reducers/speaker'
+import {getAllMagnetsFromServer, selectMagnet} from './reducers/magnet'
 // get all magnets
 // get all speakers
 // get user if logged in
-import {selectSpeaker} from './reducers/speaker'
-import {selectMagnet} from './reducers/magnet'
 
 const getHomeData = nextRouterState => {
   store.dispatch(setView('speakers'))
@@ -52,13 +50,16 @@ const getHomeData = nextRouterState => {
 }
 
 const onSpeakerEnter = nextRouterState => {
-  const speakerId = nextRouterState.params.id
+  const speakerId = Number(nextRouterState.params.id)
 
-  return axios.get(`/api/speakers/${speakerId}`)
-  .then((speaker) => {
-    store.dispatch(selectSpeaker(speaker.data))
-  })
-  .catch(console.error)
+  console.log('state', store.getState())
+  const [speaker] = store.getState().speaker.allSpeakers.filter(speaker => speaker.id === speakerId)
+  // return axios.get(`/api/speakers/${speakerId}`)
+  // .then((speaker) => {
+  console.log('speaker', speaker)
+  store.dispatch(selectSpeaker(speaker))
+  // })
+  // .catch(console.error)
 }
 
 const onMagnetEnter = nextRouterState => {
