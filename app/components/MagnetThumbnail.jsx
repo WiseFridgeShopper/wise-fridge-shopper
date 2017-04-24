@@ -11,7 +11,7 @@ const style = {
 const MagnetThumbnail = props => (
     <Link key={props.id} to={`/magnets/${props.id}`}>
       <GridTile key={props.id} style={style} actionIcon={<IconButton children={<i className="material-icons md-light">add shopping cart</i>}></IconButton>}>
-        <img src={`http://${props.image}`}/>
+        <img src={`${props.image}`}/>
       </GridTile></Link>
     )
 
