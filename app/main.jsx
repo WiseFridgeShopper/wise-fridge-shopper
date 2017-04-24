@@ -18,12 +18,15 @@ import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import Home from './components/Home'
-
 // import AllMagnets from './components/AllMagnets'
 // import AllSpeakers from './components/AllSpeakers'
 import SingleMagnet from './components/SingleMagnet'
 import SingleSpeakerContainer from './components/SingleSpeakerContainer'
+import SingleMagnetContainer from './components/SingleMagnetContainer'
 import Account from './components/Account'
+import AllMagnets from './components/AllMagnets'
+import AllSpeakers from './components/AllSpeakers'
+// import Account from './components/Account'
 import Checkout from './components/Checkout'
 import History from './components/History'
 import Cart from './components/Cart'
@@ -40,8 +43,10 @@ render(
         <Route path="/" component={Root}>
           <IndexRedirect to="/home" />
           <Route path="/home" component={Home} />
-          <Route path="/magnets/:id" component={SingleMagnet} />
-          <Route path="/speakers/:id" component={SingleSpeakerContainer} />
+          <Route path="/allMagnets" component={AllMagnets} />
+          <Route path="/allSpeakers" component={AllSpeakers} />
+          <Route path="/speakers/:id" component={SingleSpeakerContainer} />\
+          <Route path="/magnets/:id" component={SingleMagnetContainer} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/history" component={History} />
           <Route path="/cart" component={Cart} />
@@ -49,6 +54,7 @@ render(
           <Route path="/error" component={ErrorPage} />
           <Route path="/forbidden" component={Forbidden} />
           <Route path="/profile" component={Profile} />
+
         </Route>
         <Route path='*' component={NotFound} />
       </Router>

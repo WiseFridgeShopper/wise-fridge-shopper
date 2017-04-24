@@ -8,7 +8,7 @@ const request = require('supertest')
 
 const postBody = {
   quote: 'An amazing quote',
-  price: 4.95,
+  price: 495,
   image: 'cdn.shopify.com/s/files/1/0273/4903/products/ralph-waldo-emerson-fridge-magnet-1_large.jpg?v=1380467104',
   title: 'More Koans about Testing',
   description: 'Mediocre magnet',
@@ -19,10 +19,10 @@ const postBody = {
 
 describe('/api/magnets', () => {
   before('Await database sync', () => db.didSync)
-  beforeEach(() => {
-    Magnet.create({
+  beforeEach((done) => Magnet.create(
+    {
       quote: 'Many a test has failed',
-      price: 3.95,
+      price: 395,
       image: 'cdn.shopify.com/s/files/1/0273/4903/products/ralph-waldo-emerson-fridge-magnet-1_large.jpg?v=1380467104',
       title: 'Koans about Testing',
       description: 'Amazing magnet with Koans from testing',
@@ -30,8 +30,11 @@ describe('/api/magnets', () => {
       size: [2, 4],
       mood: ['zany', 'moody']
     })
-  })
-  afterEach('Clear the tables', () => db.truncate({ cascade: true }))
+    .then(done())
+    .catch(console.error))
+  afterEach('Clear the tables', () => db.truncate({ cascade: true })
+    .then(() => Magnet.destroy({ truncate: true, restartIdentity: true, cascade: true })))
+    // ^ Destroys model to restart primary key count. If not, tests must increment ids.
 
   describe('GET /', () => {
     describe('gets all magnets', () =>
@@ -69,9 +72,10 @@ describe('/api/magnets', () => {
         .expect(204)
         .then(res => {
           expect(res.body).to.be.empty
-        }).then(() => request(app)
-          .get('/api/magnets')
-          .expect(200)
+        })
+        .then(() => request(app)
+          .get('/api/magnets/1')
+          .expect(404)
           .then(res => {
             expect(res.body).to.be.empty
           })
@@ -115,11 +119,11 @@ describe('/api/magnets', () => {
         .send(postBody)
         .expect(201)
         .then(res => {
-          // scrubs timing-specific data and speaker association from response so we can compare response to our post easily
+          // scrubs timing-specific data and speaker association from response so we can easily compare response to our POST
           res.body.updated_at = null
           res.body.speaker_id = null
           res.body.created_at = null
-          const comparisonBody = Object.assign(postBody, { // Temp object to make comparison easier
+          const comparisonBody = Object.assign(postBody, { // Temp object to make comparison easier, declared above
             id: 2,
             quote: 'An amazing quote',
             description: 'Mediocre magnet',
