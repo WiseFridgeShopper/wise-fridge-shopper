@@ -28,7 +28,7 @@ import History from './components/History'
 import Cart from './components/Cart'
 import Root from './components/Root'
 import Profile from './components/Profile'
-import Signup from './components/Signup'
+import SignupContainer from './components/SignupContainer'
 
 import ErrorPage from './components/ErrorPage'
 import Forbidden from './components/Forbidden'
@@ -60,7 +60,7 @@ render(
           <Route path="/error" component={ErrorPage} />
           <Route path="/forbidden" component={Forbidden} />
           <Route path="/profile" component={Profile} />
-          <Route path="/signup" component={Signup} />
+          <Route path="/signup" component={SignupContainer} />
 
         </Route>
         <Route path='*' component={NotFound} />

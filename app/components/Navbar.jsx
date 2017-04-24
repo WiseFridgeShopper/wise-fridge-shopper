@@ -27,7 +27,7 @@ class Navbar extends React.Component {
               <li className="active"><Link to="/speakers" activeClassName="active">Speakers</Link></li>
               <li className="active"><Link to="/magnets" activeClassName="active">Magnets</Link></li>
               <li className="active">{ <CartContainer/>}</li>
-              <li className="active"><Link to="/profile" activeClassName="active">User Profile</Link></li>
+              { this.props.loggedIn ? <li className="active"><Link to="/profile" activeClassName="active">User Profile</Link></li> : <li/> }
             </ul>
             <ul className="nav navbar-nav navbar-right">
              { !this.props.user ? <li><Link to="signup" className="signup" activeClassName="active">Signup</Link></li> : <li/> }
@@ -46,9 +46,11 @@ class Navbar extends React.Component {
 
 import {login} from 'APP/app/reducers/auth'
 
-const mapProps = null
+const mapState = (state) => ({
+  loggedIn: state.auth ? true : false
+})
 const mapDispatch = dispatch => {
   return {}
   }
 
-export default connect(mapProps, {login})(Navbar)
+export default connect(mapState, {login})(Navbar)
