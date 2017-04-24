@@ -36,15 +36,19 @@ import Forbidden from './components/Forbidden'
 
 // Action Creators
 import {setView} from './reducers/selectView'
+import {getAllSpeakersFromServer} from './reducers/speaker'
+import {getAllMagnetsFromServer} from './reducers/magnet'
 // get all magnets
 // get all speakers
 // get user if logged in
 import {selectSpeaker} from './reducers/speaker'
 import {selectMagnet} from './reducers/magnet'
 
-const setDefaultView = nextRouterState => {
+const getHomeData = nextRouterState => {
   store.dispatch(setView('speakers'))
-  // store.dispatch()
+  store.dispatch(getAllSpeakersFromServer())
+  store.dispatch(getAllMagnetsFromServer())
+  // magnets
 }
 
 const onSpeakerEnter = nextRouterState => {
@@ -73,9 +77,11 @@ render(
       <Router history={browserHistory}>
         <Route path="/" component={Root}>
           <IndexRedirect to="/home" />
-          <Route path="/home" component={HomeContainer} onEnter={setDefaultView}/>
+          <Route path="/home" component={HomeContainer} onEnter={getHomeData}/>
+          {/* <Route path="/magnets" component={AllMagnets} />
+          <Route path="/speakers" component={AllSpeakers} /> */}
           <Route path="/speakers/:id" component={SingleSpeakerContainer} onEnter={onSpeakerEnter} />
-          <Route path="/magnets/:id" component={SingleMagnetContainer} onEnter={onMagnetEnter} />
+          <Route path="/magnets/:id" component={SingleMagnetContainer} onEnter={onMagnetEnter}/>
           <Route path="/checkout" component={Checkout} />
           <Route path="/history" component={History} />
           <Route path="/cart" component={Cart} />
