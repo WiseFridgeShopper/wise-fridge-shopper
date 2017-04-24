@@ -61,7 +61,7 @@ const SingleSpeaker = props => {
         actAsExpander={true}
         showExpandableButton={true}></CardHeader>
         <GridList style={styles.gridList} cols={2.2}>
-          {props.allMagnets.filter(magnet => magnet.speaker_id === props.selectedSpeaker.id).map((magnet) => (
+          {props.allMagnets && props.allMagnets.filter(magnet => magnet.speaker_id === props.selectedSpeaker.id).map((magnet) => (
             <GridTile
               key={magnet.id}
               title={magnet.title}
@@ -81,8 +81,8 @@ const SingleSpeaker = props => {
 
 function mapStateToProps(storeState) {
   return {
-    selectedSpeaker: storeState.selectedSpeaker,
-    allMagnets: storeState.allMagnets,
+    selectedSpeaker: storeState.speaker.selectedSpeaker,
+    allMagnets: storeState.speaker.allMagnets,
   }
 }
 

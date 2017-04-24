@@ -11,6 +11,7 @@ import {Router, Route, IndexRedirect, browserHistory} from 'react-router'
 import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import axios from 'axios'
 
 import store from './store'
 import Jokes from './components/Jokes'
@@ -38,10 +39,22 @@ import {setView} from './reducers/selectView'
 // get all magnets
 // get all speakers
 // get user if logged in
+import {selectSpeaker} from './reducers/speaker'
 
 const setDefaultView = nextRouterState => {
   store.dispatch(setView('speakers'))
   // store.dispatch()
+}
+
+const onSpeakerEnter = nextRouterState => {
+  const speakerId = nextRouterState.params.id
+
+  return axios.get(`/api/speakers/${speakerId}`)
+  .then((speaker) => {
+    console.log('speak', speaker)
+    store.dispatch(selectSpeaker(speaker))
+  })
+  .catch(console.error)
 }
 
 render(
@@ -51,7 +64,7 @@ render(
         <Route path="/" component={Root}>
           <IndexRedirect to="/home" />
           <Route path="/home" component={HomeContainer} onEnter={setDefaultView}/>
-          <Route path="/speakers/:id" component={SingleSpeakerContainer} />
+          <Route path="/speakers/:id" component={SingleSpeakerContainer} onEnter={onSpeakerEnter}/>
           <Route path="/magnets/:id" component={SingleMagnetContainer} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/history" component={History} />
