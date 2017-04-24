@@ -86,7 +86,7 @@ module.exports = db => db.define('order', {
       return this.subtotal + this.tax
     },
     fullAddress: function() {
-      return `${this.address}\n${this.city} ${this.state}\n${this.zip})`
+      return `${this.address}\n${this.city} ${this.state}\n${this.zip}`
     }
   }
 })
