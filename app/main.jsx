@@ -38,6 +38,7 @@ import Forbidden from './components/Forbidden'
 import {setView} from './reducers/selectView'
 import {getAllSpeakersFromServer, selectSpeaker} from './reducers/speaker'
 import {getAllMagnetsFromServer, selectMagnet} from './reducers/magnet'
+import {getReviewsByMagnet} from './reducers/review'
 // get all magnets
 // get all speakers
 // get user if logged in
@@ -59,6 +60,7 @@ const onMagnetEnter = nextRouterState => {
   const magnetId = Number(nextRouterState.params.id)
   const [magnet] = store.getState().magnet.allMagnets.filter(magnet => magnet.id === magnetId)
   store.dispatch(selectMagnet(magnet))
+  return getReviewsByMagnet(magnetId)
 }
 
 render(
