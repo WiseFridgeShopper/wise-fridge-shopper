@@ -18,8 +18,6 @@ import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import HomeContainer from './components/HomeContainer'
-// import AllMagnets from './components/AllMagnets'
-// import AllSpeakers from './components/AllSpeakers'
 import SingleSpeakerContainer from './components/SingleSpeakerContainer'
 import SingleMagnetContainer from './components/SingleMagnetContainer'
 // import Account from './components/Account'
@@ -55,8 +53,6 @@ render(
         <Route path="/" component={Root}>
           <IndexRedirect to="/home" />
           <Route path="/home" component={HomeContainer} onEnter={getHomeData}/>
-          {/* <Route path="/magnets" component={AllMagnets} />
-          <Route path="/speakers" component={AllSpeakers} /> */}
           <Route path="/speakers/:id" component={SingleSpeakerContainer} />\
           <Route path="/magnets/:id" component={SingleMagnetContainer} />
           <Route path="/checkout" component={Checkout} />
