@@ -54,6 +54,7 @@ const styles = {
 }
 
 const SingleSpeaker = props => {
+  console.log('props', props)
   return (
     <Card>
       <CardHeader

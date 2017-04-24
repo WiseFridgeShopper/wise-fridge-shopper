@@ -51,8 +51,7 @@ const onSpeakerEnter = nextRouterState => {
 
   return axios.get(`/api/speakers/${speakerId}`)
   .then((speaker) => {
-    console.log('speak', speaker)
-    store.dispatch(selectSpeaker(speaker))
+    store.dispatch(selectSpeaker(speaker.data))
   })
   .catch(console.error)
 }
