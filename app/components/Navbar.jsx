@@ -35,6 +35,8 @@ class Navbar extends React.Component {
             <ul className="nav navbar-nav navbar-right">
              { !this.props.user ? <li><Link to="signup" className="signup" activeClassName="active">Signup</Link></li> : <li/> }
               <li className="active">
+                <a href='/api/auth/login/google'><button type="button">Google</button></a>
+                <a href='/api/auth/login/facebook'><button type="button">Facebook</button></a>
                 {this.props.user ? <WhoAmI/> : <Login user={this.props.user}/>}
               </li>
             </ul>
@@ -56,7 +58,6 @@ const renderSpeakers = () => {
 }
 
 import {login} from 'APP/app/reducers/auth'
-
 
 const mapStateToProps = (state) => ({
   loggedIn: state.auth ? true : false
