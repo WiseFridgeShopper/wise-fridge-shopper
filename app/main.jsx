@@ -55,8 +55,8 @@ const onSpeakerEnter = nextRouterState => {
 const onMagnetEnter = nextRouterState => {
   const magnetId = Number(nextRouterState.params.id)
   const [magnet] = store.getState().magnet.allMagnets.filter(magnet => magnet.id === magnetId)
+  store.dispatch(getReviewsByMagnet(magnetId))
   store.dispatch(selectMagnet(magnet))
-  return getReviewsByMagnet(magnetId)
 }
 
 render(

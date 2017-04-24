@@ -5,8 +5,9 @@ import Paper from 'material-ui/Paper'
 import {Card, CardMedia, CardHeader, CardText} from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 import {GridList, GridTile} from 'material-ui/GridList'
-
+import AppBar from 'material-ui/AppBar'
 import Review from './Review'
+import MagnetThumbnail from './MagnetThumbnail'
 
 const magnet = {
   title: 'Henry David Thoreau Fridge Magnet #1',
@@ -67,15 +68,12 @@ const SingleMagnet = props => {
 
   // when we implement a controlled component for this dumb component, below line show be uncommented
   // const magnet = props.selectedMagnet
+
   return (
     <div className={'row'}>
       <div className={'col-md-6'}>
         <Card>
-          <CardHeader
-            title={props.selectedMagnet.title}
-            actAsExpander={true}
-            >
-          </CardHeader>
+          <AppBar title={props.selectedMagnet.title} style={{backgroundColor: 'black'}} showMenuIconButton={false}/>
           <CardMedia >
             <img src={props.selectedMagnet.image} className={'img-responsive'}/>
           </CardMedia>
@@ -88,32 +86,23 @@ const SingleMagnet = props => {
               <ListItem primaryText={`Mood: ${props.selectedMagnet.mood}`} />
             </List>
           </CardText>
-          <CardText expandable={true}>
-            <List>
-              <ListItem> 5.0 This is awesome!</ListItem>
-              <ListItem> 0.5 This is shit!</ListItem>
-            </List>
-          </CardText>
         </Card>
       </div>
       <div className='col-md-6'>
+        <AppBar title={'Reviews'} style={{backgroundColor: 'black'}} showMenuIconButton={false}/>
+        {props.reviews && props.reviews.map(review => {
+          return <Review name={review.user.name} rating={review.rating} text={review.comment} />
+        })}
+        <hr />
         <Card>
-          <CardHeader
-            title="Buy other awesome Quotes by me!"
-            actAsExpander={true}></CardHeader>
+          <AppBar title={'More From This Author'} style={{backgroundColor: 'black'}} showMenuIconButton={false}/>
             <GridList style={styles.gridList} cols={2.2}>
               {getRelatedMagnets(props.allMagnets).map((magnet) => (
-                <GridTile
-                  key={magnet.image}
-                  title={magnet.title}
-                  titleStyle={styles.titleStyle}
-                  titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
-                >
-                  <img src={magnet.image} />
-                </GridTile>
+                <MagnetThumbnail id={magnet.id} image={magnet.image} />
               ))}
             </GridList>
         </Card>
+
       </div>
     </div>
   )
@@ -122,7 +111,8 @@ const SingleMagnet = props => {
 function mapStateToProps(storeState) {
   return {
     selectedMagnet: storeState.magnet.selectedMagnet,
-    allMagnets: storeState.magnet.allMagnets
+    allMagnets: storeState.magnet.allMagnets,
+    reviews: storeState.review.reviews
   }
 }
 

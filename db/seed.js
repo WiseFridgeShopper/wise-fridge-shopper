@@ -1,8 +1,16 @@
 'use strict'
 
-const db = require('APP/db')
-    , {User, Magnet, Speaker, Promise} = db
-    , {mapValues} = require('lodash')
+const db = require('APP/db'),
+  {
+    User,
+    Magnet,
+    Speaker,
+    Review,
+    Promise
+  } = db,
+  {
+    mapValues
+  } = require('lodash')
 
 function seedEverything() {
   const seeded = {
@@ -10,7 +18,7 @@ function seedEverything() {
     speakers: speakers(),
     magnets: magnets()
   }
-
+  seeded.reviews = reviews(seeded)
   // seeded.favorites = favorites(seeded)
 
   return Promise.props(seeded)
@@ -259,7 +267,28 @@ const magnets = seed(Magnet, {
   }
 })
 
-
+const reviews = seed(Review, ({users, magnets}) => {
+  return {
+    rev1: {
+      rating: 3.0,
+      comment: 'This was an OK magnet',
+      user_id: users.god.id,
+      magnet_id: magnets.mag1.id
+    },
+    rev2: {
+      rating: 5.0,
+      comment: 'This was a Great magnet',
+      user_id: users.barack.id,
+      magnet_id: magnets.mag1.id
+    },
+    rev3: {
+      rating: 1.0,
+      comment: 'This was a Bad magnet',
+      user_id: users.god.id,
+      magnet_id: magnets.mag2.id
+    }
+  }
+})
 // const things = seed(Thing, {
 //   surfing: {name: 'surfing'},
 //   smiting: {name: 'smiting'},
@@ -301,7 +330,9 @@ const magnets = seed(Magnet, {
 
 if (module === require.main) {
   db.didSync
-    .then(() => db.sync({force: true}))
+    .then(() => db.sync({
+      force: true
+    }))
     .then(seedEverything)
     .finally(() => process.exit(0))
 }
@@ -330,34 +361,36 @@ class BadRow extends Error {
 // The function form can be used to initialize rows that reference
 // other models.
 function seed(Model, rows) {
-  return (others={}) => {
+  return (others = {}) => {
     if (typeof rows === 'function') {
       rows = Promise.props(
         mapValues(others,
           other =>
-            // Is other a function? If so, call it. Otherwise, leave it alone.
-            typeof other === 'function' ? other() : other)
+          // Is other a function? If so, call it. Otherwise, leave it alone.
+          typeof other === 'function' ? other() : other)
       ).then(rows)
     }
 
     return Promise.resolve(rows)
       .then(rows => Promise.props(
         Object.keys(rows)
-          .map(key => {
-            const row = rows[key]
-            return {
-              key,
-              value: Promise.props(row)
-                .then(row => Model.create(row)
-                  .catch(error => { throw new BadRow(key, row, error) })
-                )
-            }
-          }).reduce(
-            (all, one) => Object.assign({}, all, {[one.key]: one.value}),
-            {}
-          )
+        .map(key => {
+          const row = rows[key]
+          return {
+            key,
+            value: Promise.props(row)
+              .then(row => Model.create(row)
+                .catch(error => {
+                  throw new BadRow(key, row, error)
+                })
+              )
+          }
+        }).reduce(
+          (all, one) => Object.assign({}, all, {
+            [one.key]: one.value
+          }), {}
         )
-      )
+      ))
       .then(seeded => {
         console.log(`Seeded ${Object.keys(seeded).length} ${Model.name} OK`)
         return seeded
@@ -367,4 +400,9 @@ function seed(Model, rows) {
   }
 }
 
-module.exports = Object.assign(seed, {users, speakers, magnets})
+module.exports = Object.assign(seed, {
+  users,
+  speakers,
+  magnets,
+  reviews
+})
