@@ -65,7 +65,7 @@ const magnets = seed(Magnet, {
     image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/marcus-aurelius-quote-fridge-magnet-1_large.jpg?v=1380466387',
     itemNumber: 1,
     description: 'High-quality button style magnet with full magnetic back.',
-    price: 3.95,
+    price: 395,
     size: [2, 3],
     mood: ['happy'],
     speaker_id: 1
@@ -76,7 +76,7 @@ const magnets = seed(Magnet, {
     image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/marcus-aurelius-quote-fridge-magnet-2_large.jpg?v=1380466539',
     itemNumber: 2,
     description: 'High-quality button style magnet with full magnetic back.',
-    price: 3.95,
+    price: 395,
     size: [2, 3],
     mood: ['happy'],
     speaker_id: 1
@@ -87,7 +87,7 @@ const magnets = seed(Magnet, {
     image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/marcus-aurelius-quote-fridge-magnet-3_large.jpg?v=1380466642',
     itemNumber: 3,
     description: 'High-quality button style magnet with full magnetic back.',
-    price: 3.95,
+    price: 395,
     size: [2, 3],
     mood: ['happy'],
     speaker_id: 1
@@ -98,7 +98,7 @@ const magnets = seed(Magnet, {
     image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/virginia-woolf-quote-fridge-magnet-1_large.jpg?v=1380467337',
     itemNumber: 4,
     description: 'High-quality button style magnet with full magnetic back.',
-    price: 3.95,
+    price: 395,
     size: [2, 3],
     mood: ['happy'],
     speaker_id: 3
@@ -109,7 +109,7 @@ const magnets = seed(Magnet, {
     image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/virginia-woolf-quote-fridge-magnet-2_large.jpg?v=1380467420',
     itemNumber: 5,
     description: 'High-quality button style magnet with full magnetic back.',
-    price: 3.95,
+    price: 395,
     size: [2, 3],
     mood: ['happy'],
     speaker_id: 3
@@ -120,7 +120,7 @@ const magnets = seed(Magnet, {
     image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/virginia-woolf-quote-fridge-magnet-3_large.jpg?v=1380467486',
     itemNumber: 6,
     description: 'High-quality button style magnet with full magnetic back.',
-    price: 3.95,
+    price: 395,
     size: [2, 3],
     mood: ['happy'],
     speaker_id: 3
@@ -131,7 +131,7 @@ const magnets = seed(Magnet, {
     image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/ralph-waldo-emerson-fridge-magnet-1_large.jpg?v=1380467104',
     itemNumber: 7,
     description: 'High-quality button style magnet with full magnetic back.',
-    price: 3.95,
+    price: 395,
     size: [2, 3],
     mood: ['happy'],
     speaker_id: 2
@@ -142,7 +142,7 @@ const magnets = seed(Magnet, {
     image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/ralph-waldo-emerson-fridge-magnet-2_large.jpg?v=1380467192',
     itemNumber: 8,
     description: 'High-quality button style magnet with full magnetic back.',
-    price: 3.95,
+    price: 395,
     size: [2, 3],
     mood: ['happy'],
     speaker_id: 2
@@ -153,7 +153,7 @@ const magnets = seed(Magnet, {
     image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/ralph-waldo-emerson-fridge-magnet-3_large.jpg?v=1380467256',
     itemNumber: 9,
     description: 'High-quality button style magnet with full magnetic back.',
-    price: 3.95,
+    price: 395,
     size: [2, 3],
     mood: ['happy'],
     speaker_id: 2
@@ -164,7 +164,7 @@ const magnets = seed(Magnet, {
     image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/henry-david-thoreau-quote-fridge-magnet-1_large.jpg?v=1380465723',
     itemNumber: 10,
     description: 'High-quality button style magnet with full magnetic back.',
-    price: 3.95,
+    price: 395,
     size: [2, 3],
     mood: ['happy'],
     speaker_id: 4
@@ -175,7 +175,7 @@ const magnets = seed(Magnet, {
     image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/henry-david-thoreau-quote-fridge-magnet-2_large.jpg?v=1380465732',
     itemNumber: 11,
     description: 'High-quality button style magnet with full magnetic back.',
-    price: 3.95,
+    price: 395,
     size: [2, 3],
     mood: ['happy'],
     speaker_id: 4
@@ -186,7 +186,7 @@ const magnets = seed(Magnet, {
     image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/henry-david-thoreau-quote-fridge-magnet-3_large.jpg?v=1380465704',
     itemNumber: 12,
     description: 'High-quality button style magnet with full magnetic back.',
-    price: 3.95,
+    price: 395,
     size: [2, 3],
     mood: ['happy'],
     speaker_id: 4
@@ -197,7 +197,7 @@ const magnets = seed(Magnet, {
     image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/oscar-wilde-quote-fridge-magnet-1_large.jpg?v=1380466791',
     itemNumber: 13,
     description: 'High-quality button style magnet with full magnetic back.',
-    price: 3.95,
+    price: 395,
     size: [2, 3],
     mood: ['happy'],
     speaker_id: 5
@@ -208,7 +208,7 @@ const magnets = seed(Magnet, {
     image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/oscar-wilde-quote-fridge-magnet-2_large.jpg?v=1380466908',
     itemNumber: 14,
     description: 'High-quality button style magnet with full magnetic back.',
-    price: 3.95,
+    price: 395,
     size: [2, 3],
     mood: ['happy'],
     speaker_id: 5
@@ -219,7 +219,7 @@ const magnets = seed(Magnet, {
     image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/oscar-wilde-quote-fridge-magnet-3_large.jpg?v=1380466974',
     itemNumber: 15,
     description: 'High-quality button style magnet with full magnetic back.',
-    price: 3.95,
+    price: 395,
     size: [2, 3],
     mood: ['happy'],
     speaker_id: 5
@@ -230,7 +230,7 @@ const magnets = seed(Magnet, {
     image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/george-bernard-shaw-quote-fridge-magnet-1_fbeae1d0-84dc-4a9b-810d-ea2e38d2efb2_large.jpeg?v=1380465901',
     itemNumber: 16,
     description: 'High-quality button style magnet with full magnetic back.',
-    price: 3.95,
+    price: 395,
     size: [2, 3],
     mood: ['happy'],
     speaker_id: 6
@@ -241,7 +241,7 @@ const magnets = seed(Magnet, {
     image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/george-bernard-shaw-quote-fridge-magnet-2_large.jpg?v=1380465983',
     itemNumber: 17,
     description: 'High-quality button style magnet with full magnetic back.',
-    price: 3.95,
+    price: 395,
     size: [2, 3],
     mood: ['happy'],
     speaker_id: 6
@@ -252,7 +252,7 @@ const magnets = seed(Magnet, {
     image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/george-bernard-shaw-quote-fridge-magnet-3_large.jpeg?v=1380465747',
     itemNumber: 18,
     description: 'High-quality button style magnet with full magnetic back.',
-    price: 3.95,
+    price: 395,
     size: [2, 3],
     mood: ['happy'],
     speaker_id: 6

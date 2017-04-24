@@ -11,6 +11,7 @@ import {Router, Route, IndexRedirect, browserHistory} from 'react-router'
 import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import axios from 'axios'
 
 import store from './store'
 import Jokes from './components/Jokes'
@@ -33,10 +34,9 @@ import Forbidden from './components/Forbidden'
 
 // Action Creators
 import {setView} from './reducers/selectView'
-import {getAllSpeakersFromServer} from './reducers/speaker'
-import {getAllMagnetsFromServer} from './reducers/magnet'
-// get all magnets
-// get all speakers
+import {getAllSpeakersFromServer, selectSpeaker} from './reducers/speaker'
+import {getAllMagnetsFromServer, selectMagnet} from './reducers/magnet'
+import {getReviewsByMagnet} from './reducers/review'
 // get user if logged in
 
 const getHomeData = nextRouterState => {
@@ -46,6 +46,19 @@ const getHomeData = nextRouterState => {
   // magnets
 }
 
+const onSpeakerEnter = nextRouterState => {
+  const speakerId = Number(nextRouterState.params.id)
+  const [speaker] = store.getState().speaker.allSpeakers.filter(speaker => speaker.id === speakerId)
+  store.dispatch(selectSpeaker(speaker))
+}
+
+const onMagnetEnter = nextRouterState => {
+  const magnetId = Number(nextRouterState.params.id)
+  const [magnet] = store.getState().magnet.allMagnets.filter(magnet => magnet.id === magnetId)
+  store.dispatch(selectMagnet(magnet))
+  return getReviewsByMagnet(magnetId)
+}
+
 render(
   <Provider store={store}>
     <MuiThemeProvider>
@@ -53,8 +66,9 @@ render(
         <Route path="/" component={Root}>
           <IndexRedirect to="/home" />
           <Route path="/home" component={HomeContainer} onEnter={getHomeData}/>
-          <Route path="/speakers/:id" component={SingleSpeakerContainer} />\
-          <Route path="/magnets/:id" component={SingleMagnetContainer} />
+          <Route path="/speakers/:id" component={SingleSpeakerContainer} onEnter={onSpeakerEnter} />
+          <Route path="/magnets/:id" component={SingleMagnetContainer} onEnter={onMagnetEnter}/>
+
           <Route path="/checkout" component={Checkout} />
           <Route path="/history" component={History} />
           <Route path="/cart" component={Cart} />
