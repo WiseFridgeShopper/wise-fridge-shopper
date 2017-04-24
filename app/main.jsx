@@ -26,8 +26,9 @@ import Checkout from './components/Checkout'
 import History from './components/History'
 import Cart from './components/Cart'
 import Root from './components/Root'
+
 import ProfileContainer from './components/ProfileContainer'
-import Signup from './components/Signup'
+import SignupContainer from './components/SignupContainer'
 
 import ErrorPage from './components/ErrorPage'
 import Forbidden from './components/Forbidden'
@@ -68,15 +69,13 @@ render(
           <Route path="/home" component={HomeContainer} onEnter={getHomeData}/>
           <Route path="/speakers/:id" component={SingleSpeakerContainer} onEnter={onSpeakerEnter} />
           <Route path="/magnets/:id" component={SingleMagnetContainer} onEnter={onMagnetEnter}/>
-
           <Route path="/checkout" component={Checkout} />
           <Route path="/history" component={History} />
           <Route path="/cart" component={Cart} />
           <Route path="/error" component={ErrorPage} />
           <Route path="/forbidden" component={Forbidden} />
           <Route path="/profile" component={ProfileContainer} />
-          <Route path="/signup" component={Signup} />
-
+          <Route path="/signup" component={SignupContainer} />
         </Route>
         <Route path='*' component={NotFound} />
       </Router>
