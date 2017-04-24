@@ -27,7 +27,7 @@ import Checkout from './components/Checkout'
 import History from './components/History'
 import Cart from './components/Cart'
 import Root from './components/Root'
-import Profile from './components/Profile'
+import ProfileContainer from './components/ProfileContainer'
 import Signup from './components/Signup'
 
 import ErrorPage from './components/ErrorPage'
@@ -64,7 +64,7 @@ render(
           <Route path="/cart" component={Cart} />
           <Route path="/error" component={ErrorPage} />
           <Route path="/forbidden" component={Forbidden} />
-          <Route path="/profile" component={Profile} />
+          <Route path="/profile" component={ProfileContainer} />
           <Route path="/signup" component={Signup} />
 
         </Route>
