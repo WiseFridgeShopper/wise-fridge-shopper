@@ -26,8 +26,8 @@ class Navbar extends React.Component {
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
 
-              <li className="active"><Link onClick={this.props.renderSpeakers}>Speakers</Link></li>
-              <li className="active"><Link onClick={this.props.renderMagnets}>Magnets</Link></li>
+              <li className="active"><Link to='/speakers' onClick={this.props.renderSpeakers}>Speakers</Link></li>
+              <li className="active"><Link to='/magnets' onClick={this.props.renderMagnets}>Magnets</Link></li>
               <li className="active">{ <CartContainer/> }</li>
               { this.props.loggedIn ? <li className="active"><Link to="/profile" activeClassName="active">User Profile</Link></li> : <li/> }
 
@@ -69,4 +69,3 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
-
