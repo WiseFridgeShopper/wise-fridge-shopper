@@ -32,7 +32,7 @@ const receiveNewReview = review => ({
 
 export const getReviewsByMagnet = magnetId => {
   return dispatch => {
-    axios.get(`/api/magnets/${magnetId}/reviews`)
+    return axios.get(`/api/magnets/${magnetId}/reviews`)
     .then(response => {
       dispatch(receiveReviews(response.data))
     })
@@ -41,7 +41,7 @@ export const getReviewsByMagnet = magnetId => {
 
 export const getReviewsByUser = userId => {
   return dispatch => {
-    axios.get(`/api/users/${userId}/reviews`)
+    return axios.get(`/api/users/${userId}/reviews`)
     .then(response => {
       dispatch(receiveReviews(response.data))
     })
@@ -50,7 +50,7 @@ export const getReviewsByUser = userId => {
 
 export const addNewReview = (newReviewData, magnetId) => {
   return dispatch => {
-    axios.post(`/api/magnets/${magnetId}/reviews`, newReviewData)
+    return axios.post(`/api/magnets/${magnetId}/reviews`, newReviewData)
     .then(response => {
       dispatch(receiveNewReview(response.data))
     })
