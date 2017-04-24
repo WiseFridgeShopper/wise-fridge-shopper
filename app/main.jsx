@@ -1,6 +1,6 @@
 'use strict'
 
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import injectTapEventPlugin from 'react-tap-event-plugin'
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -17,15 +17,11 @@ import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
-import Home from './components/Home'
+import HomeContainer from './components/HomeContainer'
 // import AllMagnets from './components/AllMagnets'
 // import AllSpeakers from './components/AllSpeakers'
-import SingleMagnet from './components/SingleMagnet'
 import SingleSpeakerContainer from './components/SingleSpeakerContainer'
 import SingleMagnetContainer from './components/SingleMagnetContainer'
-import Account from './components/Account'
-import AllMagnets from './components/AllMagnets'
-import AllSpeakers from './components/AllSpeakers'
 // import Account from './components/Account'
 import Checkout from './components/Checkout'
 import History from './components/History'
@@ -36,16 +32,34 @@ import Profile from './components/Profile'
 import ErrorPage from './components/ErrorPage'
 import Forbidden from './components/Forbidden'
 
+// Action Creators
+import {setView} from './reducers/selectView'
+// get all magnets
+// get all speakers
+// get user if logged in
+
+const setDefaultView = nextRouterState => {
+  store.dispatch(setView('speakers'))
+  // store.dispatch()
+}
+
 render(
   <Provider store={store}>
     <MuiThemeProvider>
       <Router history={browserHistory}>
         <Route path="/" component={Root}>
           <IndexRedirect to="/home" />
+<<<<<<< HEAD
           <Route path="/home" component={Home} />
           <Route path="/allMagnets" component={AllMagnets} />
           <Route path="/allSpeakers" component={AllSpeakers} />
           <Route path="/speakers/:id" component={SingleSpeakerContainer} />
+=======
+          <Route path="/home" component={HomeContainer} onEnter={setDefaultView}/>
+          {/* <Route path="/magnets" component={AllMagnets} />
+          <Route path="/speakers" component={AllSpeakers} /> */}
+          <Route path="/speakers/:id" component={SingleSpeakerContainer} />\
+>>>>>>> e740bb1baee275bb60381a9d5aecdd16f8e65a9c
           <Route path="/magnets/:id" component={SingleMagnetContainer} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/history" component={History} />
