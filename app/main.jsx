@@ -40,6 +40,7 @@ import {setView} from './reducers/selectView'
 // get all speakers
 // get user if logged in
 import {selectSpeaker} from './reducers/speaker'
+import {selectMagnet} from './reducers/magnet'
 
 const setDefaultView = nextRouterState => {
   store.dispatch(setView('speakers'))
@@ -56,6 +57,16 @@ const onSpeakerEnter = nextRouterState => {
   .catch(console.error)
 }
 
+const onMagnetEnter = nextRouterState => {
+  const magnetId = nextRouterState.params.id
+
+  return axios.get(`/api/magnets/${magnetId}`)
+  .then((magnet) => {
+    store.dispatch(selectMagnet(magnet.data))
+  })
+  .catch(console.error)
+}
+
 render(
   <Provider store={store}>
     <MuiThemeProvider>
@@ -63,8 +74,8 @@ render(
         <Route path="/" component={Root}>
           <IndexRedirect to="/home" />
           <Route path="/home" component={HomeContainer} onEnter={setDefaultView}/>
-          <Route path="/speakers/:id" component={SingleSpeakerContainer} onEnter={onSpeakerEnter}/>
-          <Route path="/magnets/:id" component={SingleMagnetContainer} />
+          <Route path="/speakers/:id" component={SingleSpeakerContainer} onEnter={onSpeakerEnter} />
+          <Route path="/magnets/:id" component={SingleMagnetContainer} onEnter={onMagnetEnter} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/history" component={History} />
           <Route path="/cart" component={Cart} />
