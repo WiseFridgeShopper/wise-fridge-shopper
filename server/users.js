@@ -2,6 +2,7 @@
 
 const db = require('APP/db')
 const User = db.model('users')
+const reviews = require('APP/server/reviews')
 
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
@@ -56,7 +57,8 @@ module.exports = require('express').Router()
       })
       .then(deletedUser => res.send('user deleted'))
       .catch(next))
-
-// put created to update user
-// delete created to destroy user
-
+  .use('/:id/reviews', (req, res, next) => {
+    req.queryIdString = 'user'
+    req.queryId = req.params.id
+    next()
+  }, reviews)
