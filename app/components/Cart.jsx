@@ -43,6 +43,7 @@ class Cart extends React.Component {
               </div>
             ))}
           <RaisedButton
+          style= {{float: 'right', marginRight: '10px'}}
           label="Checkout"
           onTouchTap={this.handleToggle}
         />

@@ -67,6 +67,8 @@ render(
         <Route path="/" component={Root}>
           <IndexRedirect to="/home" />
           <Route path="/home" component={HomeContainer} onEnter={getHomeData}/>
+          <Route path="/speakers" component={HomeContainer} />
+          <Route path="/magnets" component={HomeContainer} />
           <Route path="/speakers/:id" component={SingleSpeakerContainer} onEnter={onSpeakerEnter} />
           <Route path="/magnets/:id" component={SingleMagnetContainer} onEnter={onMagnetEnter}/>
           <Route path="/checkout" component={Checkout} />
