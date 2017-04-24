@@ -117,19 +117,20 @@ class Home extends React.Component {
 
   renderFilteredMagnets() {
     if (this.state.query) {
-      return testMagnets.filter(item => this.filterByQuote(item) || this.filterByTitle(item))
+      return this.props.magnets && this.props.magnets.filter(item => this.filterByQuote(item) || this.filterByTitle(item))
         .map(item => <MagnetThumbnail key={item.id} id={item.id} image={item.image} />)
     } else {
-      return testMagnets.map(item => <MagnetThumbnail key={item.id} id={item.id} image={item.image} />)
+      return this.props.magnets && this.props.magnets.map(item => <MagnetThumbnail key={item.id} id={item.id} image={item.image} />)
     }
   }
 
   renderFilteredSpeakers() {
     if (this.state.query) {
-      return testSpeakers.filter(item => this.filterBySpeakerName(item))
+
+      return this.props.speakers && this.props.speakers.filter(item => this.filterBySpeakerName(item))
         .map(item => <SpeakerThumbnail key={item.id} id={item.id} name={item.name} bio={item.bio} />)
     } else {
-      return testSpeakers.map(item => <SpeakerThumbnail key={item.id} id={item.id} name={item.name} bio={item.bio} />)
+      return this.props.speakers && this.props.speakers.map(item => <SpeakerThumbnail key={item.id} id={item.id} name={item.name} bio={item.bio} />)
     }
   }
 
@@ -157,7 +158,9 @@ class Home extends React.Component {
 
 const mapStateToProps = (storeState, ownProps) => {
   return {
-    selectedTab: storeState.selectedTab
+    selectedTab: storeState.selectedTab,
+    speakers: storeState.speaker.allSpeakers,
+    magnets: storeState.magnet.allMagnets
   }
 }
 

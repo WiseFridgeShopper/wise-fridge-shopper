@@ -23,8 +23,11 @@ describe('/api/users', () => {
         request(app)
           .post('/api/users')
           .send({
+            name: 'Beth Secret',
             email: 'beth@secrets.org',
-            password: '12345'
+            password: '12345',
+            address: [],
+            isAdmin: false
           })
           .expect(201))
 
@@ -32,8 +35,11 @@ describe('/api/users', () => {
         request(app)
           .post('/api/users')
           .send({
+            name: 'Eve Interloper',
             email: 'eve@interloper.com',
             password: '23456',
+            address: ['Happy Town, New York 12345'],
+            isAdmin: false
           })
           .redirects(1)
           .then(res => expect(res.body).to.contain({

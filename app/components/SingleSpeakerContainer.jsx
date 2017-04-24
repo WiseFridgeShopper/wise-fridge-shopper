@@ -81,8 +81,8 @@ const SingleSpeaker = props => {
 
 function mapStateToProps(storeState) {
   return {
-    selectedSpeaker: storeState.selectedSpeaker,
-    allMagnets: storeState.allMagnets,
+    selectedSpeaker: storeState.speaker.selectedSpeaker,
+    allMagnets: storeState.magnet.allMagnets,
   }
 }
 

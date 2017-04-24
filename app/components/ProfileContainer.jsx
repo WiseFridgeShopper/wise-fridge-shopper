@@ -5,7 +5,11 @@ import Receipt from 'material-ui/svg-icons/action/reorder'
 import Visibility from 'material-ui/svg-icons/action/visibility'
 import Stars from 'material-ui/svg-icons/action/stars'
 import Create from 'material-ui/svg-icons/content/create'
+import RaisedButton from 'material-ui/RaisedButton'
+import CartMenuItem from './CartMenuItem'
+import AppBar from 'material-ui/AppBar'
 import OrderHistory from './OrderHistory'
+import {connect} from 'react-redux'
 
 class Profile extends React.Component {
   constructor(props) {
@@ -66,11 +70,41 @@ class Profile extends React.Component {
           </Menu>
         </div>
         <div className="col-md-8">
-          {this.state.current ? <h2>Current</h2> : this.state.history ? <OrderHistory userOrders={this.props} /> : this.state.edit ? <h2>Edit</h2> : this.state.review ? <h2>Review</h2> : <div/>}
+          {this.state.current ? <CurrentCart allMagnets={this.props.allMagnets} cart={this.props.cart} /> : this.state.history ? <OrderHistory userOrders={this.props} /> : this.state.edit ? <h2>Edit</h2> : this.state.review ? <h2>Review</h2> : <div/>}
+
         </div>
       </div>
     )
   }
 }
 
-export default Profile
+// RaisedButton should link us to checkout page
+const CurrentCart = props => {
+  const currentOrderProducts = props.cart.order ? props.cart.order : {}
+  const magnetsIncludedInOrder = props.allMagnets ? props.allMagnets.filter(magnet => currentOrderProducts[magnet.id]) : []
+  return (<div>
+    <AppBar title="Shopping Cart" style={{ backgroundColor: 'black' }} />
+    <h2>Magnets</h2>
+    {magnetsIncludedInOrder.length && magnetsIncludedInOrder.map(magnet => {
+      return (
+        <div key={magnet.itemNumber}>
+          <CartMenuItem magnet={magnet}/>
+          <hr/>
+        </div>
+      )
+    })}
+    <RaisedButton
+      label="Checkout"
+    />
+  </div>)
+}
+
+const mapStateToProps = (storeState, ownProps) => ({
+  cart: storeState.cart,
+  allMagnets: storeState.magnet.allMagnets
+})
+
+const mapDispatchToProps = (dispatch) => ({
+
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)
