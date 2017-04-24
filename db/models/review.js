@@ -11,12 +11,6 @@ module.exports = db => db.define('reviews', {
     type: TEXT,
     allowNull: true
   }
-}, {
-  getterMethods: {
-    raterName: function() {
-      this.getUser().then((user) => user.name)
-    }
-  }
 })
 
 module.exports.associations = (Review, {Magnet, User}) => {
