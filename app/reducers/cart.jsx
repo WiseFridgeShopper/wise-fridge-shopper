@@ -4,7 +4,6 @@ import initialState from '../initialState'
 
 const reducer = (state = initialState.cart, action) => {
   const newState = Object.assign({}, state)
-
   switch (action.type) {
   case ADD_TO_CART:
     newState.order = Object.assign({}, newState.order, action.magnetWithQuant)
@@ -64,4 +63,3 @@ export const updateQuant = (orderId, magnetId, quant) => dispatch =>
       .then((/*what will be returned here?*/) => dispatch(ChangeItemQuantity({magnetid: quant})))
 
 export default reducer
-

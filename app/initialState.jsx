@@ -4,7 +4,13 @@ const initialState = {
   selectedSpeaker: {},
   selectedMagnet: {},
   selectedView: 'speaker',
-  cart: {},
+  cart: {
+    order: {
+      1: 2,
+      3: 4,
+      13: 7
+    }
+  },
   user: {},
   reviews: {}
 }
