@@ -72,3 +72,49 @@ input {
   font-style: arial;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.google {
+  background-color: #D90116;
+  border-color: #D90116;
+  color: whitesmoke;
+  font-size: 14px;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding-left: 5px;
+  margin-left: 5px;
+  font-style: arial;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.facebook {
+  background-color: #3D69A2;
+  border-color: #3D69A2;
+  color: whitesmoke;
+  font-size: 14px;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding-left: 5px;
+  margin-left: 5px;
+  font-style: arial;
+  font-family: Arial, Helvetica, sans-serif;
+}
