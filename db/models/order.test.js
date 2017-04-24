@@ -6,10 +6,55 @@ const db = require('APP/db')
 
 /* global describe it before afterEach  beforeEach */
 
+const order1 = {
+  products: {1: 3, 4: 3},
+  subtotal: 23.70,
+  tax: 2.04,
+  address: '199 Myhouse ln',
+  city: 'New York',
+  state: 'NY',
+  zip: '11211',
+  shippingMethod: 'Express',
+  completedPurchase: true,
+  purchaseDate: Date.now(),
+  // user_id: 1
+}
+const order2 = {
+  products: {1: 4, 4: 3},
+  address: '500 Somewhere St',
+  city: 'Los Angeles',
+  state: 'CA',
+  zip: '90541',
+  shippingMethod: 'Standard',
+  completedPurchase: false,
+  // user_id: 1
+}
+const order3 = {
+  products: {6: 80},
+  subtotal: 316.00,
+  tax: 27.26,
+  address: '5 Beehive Dr',
+  city: 'Chicago',
+  zip: '36485',
+  shippingMethod: 'Express',
+  completedPurchase: true,
+  purchaseDate: Date.now(),
+  // user_id: 2
+}
+const order4 = {
+  products: {7: 30, 14: 1},
+  subtotal: 122.45,
+  tax: 10.56,
+  zip: 88906,
+  shippingMethod: 'Express',
+  completedPurchase: false,
+  // user_id: 3
+}
+
 describe('Order', () => {
   before('Await database sync', () => db.didSync)
-  beforeEach(function() {
-    const order1 = {
+  beforeEach((done) => Promise.all([
+    Order.create({
       products: {1: 3, 4: 3},
       subtotal: 23.70,
       tax: 2.04,
@@ -21,121 +66,64 @@ describe('Order', () => {
       completedPurchase: true,
       purchaseDate: Date.now(),
       // user_id: 1
-    }
-    const order2 = {
-      products: {},
+    }),
+    Order.create({
+      products: {1: 4, 4: 3},
       address: '500 Somewhere St',
       city: 'Los Angeles',
       state: 'CA',
       zip: '90541',
       shippingMethod: 'Standard',
       completedPurchase: false,
-      // user_id: 1
-    }
-    const order3 = {
-      products: {6: 80},
-      subtotal: 316.00,
-      tax: 27.26,
-      address: '5 Beehive Dr',
-      city: 'Chicago',
-      zip: '36485',
-      shippingMethod: 'Express',
-      completedPurchase: true,
-      purchaseDate: Date.now(),
-      // user_id: 2
-    }
-    const order4 = {
-      products: {7: 30, 14: 1},
-      subtotal: 122.45,
-      tax: 10.56,
-      zip: 88906,
-      shippingMethod: 'Express',
-      completedPurchase: false,
-      // user_id: 3
-    }
-    // Order.create({
-    //   products: {1: 3, 4: 3},
-    //   subtotal: 23.70,
-    //   tax: 2.04,
-    //   address: '199 Myhouse ln',
-    //   city: 'New York',
-    //   state: 'NY',
-    //   zip: '11211',
-    //   shippingMethod: 'Express',
-    //   completedPurchase: true,
-    //   purchaseDate: Date.now(),
-    //   // user_id: 1
-    // },
-    //   {
-    //     products: {},
-    //     address: '500 Somewhere St',
-    //     city: 'Los Angeles',
-    //     state: 'CA',
-    //     zip: '90541',
-    //     shippingMethod: 'Standard',
-    //     completedPurchase: false,
-    //     // user_id: 1
-    //   },
-    //   {
-    //     products: {6: 80},
-    //     subtotal: 316.00,
-    //     tax: 27.26,
-    //     address: '5 Beehive Dr',
-    //     city: 'Chicago',
-    //     zip: '36485',
-    //     shippingMethod: 'Express',
-    //     completedPurchase: true,
-    //     purchaseDate: Date.now(),
-    //     // user_id: 2
-    //   },
-    //   {
-    //     products: {7: 30, 14: 1},
-    //     subtotal: 122.45,
-    //     tax: 10.56,
-    //     zip: 88906,
-    //     shippingMethod: 'Express',
-    //     completedPurchase: false,
-    //     // user_id: 3
-    //   }
-    // )
+    })]
+  )
+  .then(done())
+  .catch(err => {
+    console.error('Error when creating test model')
+    console.error(err)
   })
+)
 
   afterEach('Clear the tables', () => db.truncate({ cascade: true }))
 
-  describe('Make sure Order model works', () => {
-    it('checks if all properties are there when all values are input', () =>
+  describe('Server returns order properly', () => {
+    it('returns order with all properties', () =>
       Order.findOne({where: {zip: '11211'}})
-        .then(myOrder => expect(myOrder).to.equal({
-          products: {1: 3, 4: 3},
-          subtotal: 23.70,
-          tax: 2.04,
-          address: '199 Myhouse ln',
-          city: 'New York',
-          state: 'NY',
-          zip: '11211',
-          shippingMethod: 'Express',
-          completedPurchase: true,
-          purchaseDate: Date.now(), // How do I check this correctly?
-          // user_id: 1
-        }
-        )))
-
-    // it('checks if all properties are there when only some values are input', () =>
-    //   Order.findOne({where: {zip: '90541'}})
-    //     .then(myOrder => expect(myOrder).to.equal({
-    //       products: {},
-    //       subtotal: 0.00,
-    //       tax: 0.00,
-    //       address: '500 Somewhere St',
-    //       city: 'Los Angeles',
-    //       state: 'CA',
-    //       zip: '90541',
-    //       shippingMethod: null,
-    //       completedPurchase: false,
-    //       purchaseDate: null,
-    //       // user_id: 1
-    //     })
-    //   ))
+        .then(myOrder => {
+          expect(myOrder.id).to.equal(2)
+          expect(myOrder.products).to.deep.equal({1: 3, 4: 3})
+          expect(myOrder.subtotal).to.equal(23.70)
+          expect(myOrder.tax).to.equal(2.04)
+          expect(myOrder.zip).to.equal('11211')
+          expect(myOrder.completedPurchase).to.equal(true)
+        })
+      )
+    it('returns order with default properties when not specified at model creation', () =>
+      Order.findOne({where: {zip: '90541'}})
+        .then(myOrder => {
+          expect(myOrder.products).to.deep.equal({1: 4, 4: 3})
+          expect(myOrder.subtotal).to.equal(0)
+          expect(myOrder.tax).to.equal(0)
+          expect(myOrder.completedPurchase).to.equal(false)
+        })
+      )
+  })
+  describe('getterMethods', () => {
+    it('calculates cost before shipping', () => {
+      Order.findOne({where: {zip: '11211'}})
+      .then(myOrder => {
+        expect(myOrder.costBeforeShipping).to.equal(25.74)
+      })
+    })
+    it('prints formatted full address', () => {
+      Order.findOne({where: {zip: '11211'}})
+      // This test occasionally fails because myOrder is undefined. Must be tied to async because it's unpredictable. Failed to fix. Warrants further investigation. -Z
+      .then(myOrder => {
+        expect(myOrder.fullAddress).to.equal('199 Myhouse ln\nNew York NY\n11211')
+      })
+    })
+  })
+})
 
     // it('checks to see if the property values are there', () =>
     //   Order.findOne({where: {zip: '11211'}})
@@ -191,5 +179,3 @@ describe('Order', () => {
     //     Order.findOne({where: {zip: '88906'}})
     //       .then(order => expect(order.costBeforeShipping()).to.equal(133.01)))
     // })
-  })
-})

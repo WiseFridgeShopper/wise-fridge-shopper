@@ -90,8 +90,6 @@ const testSpeakers = [
 ]
 
 class Home extends React.Component {
-  // THIS COMPONENT IS AWAITING REDUX STATE! We need to toggle this.props.selectedTab from our redux store
-  // so that we can render either speakers or magnets from this view.
   constructor(props) {
     super(props)
     this.state = {
@@ -119,19 +117,20 @@ class Home extends React.Component {
 
   renderFilteredMagnets() {
     if (this.state.query) {
-      return this.props.allMagnets.filter(item => this.filterByQuote(item) || this.filterByTitle(item))
+      return this.props.magnets && this.props.magnets.filter(item => this.filterByQuote(item) || this.filterByTitle(item))
         .map(item => <MagnetThumbnail key={item.id} id={item.id} image={item.image} />)
     } else {
-      return this.props.allMagnets.map(item => <MagnetThumbnail key={item.id} id={item.id} image={item.image} />)
+      return this.props.magnets && this.props.magnets.map(item => <MagnetThumbnail key={item.id} id={item.id} image={item.image} />)
     }
   }
 
   renderFilteredSpeakers() {
     if (this.state.query) {
-      return this.props.allSpeakers.filter(item => this.filterBySpeakerName(item))
+
+      return this.props.speakers && this.props.speakers.filter(item => this.filterBySpeakerName(item))
         .map(item => <SpeakerThumbnail key={item.id} id={item.id} name={item.name} bio={item.bio} />)
     } else {
-      return this.props.allSpeakers.map(item => <SpeakerThumbnail key={item.id} id={item.id} name={item.name} bio={item.bio} />)
+      return this.props.speakers && this.props.speakers.map(item => <SpeakerThumbnail key={item.id} id={item.id} name={item.name} bio={item.bio} />)
     }
   }
 
@@ -157,14 +156,16 @@ class Home extends React.Component {
   }
 }
 
-const mapStateToProps = (storeState) => {
+const mapStateToProps = (storeState, ownProps) => {
   return {
-    selectedView: storeState.selectedView,
-    allMagnets: storeState.allMagnets,
-    allSpeakers: storeState.allSpeakers
+    selectedTab: storeState.selectedTab,
+    speakers: storeState.speaker.allSpeakers,
+    magnets: storeState.magnet.allMagnets
   }
 }
 
-const HomeContainer = connect(mapStateToProps)(Home)
+const mapDispatchToProps = dispatch => {
+  return {}
+}
 
-export default HomeContainer
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

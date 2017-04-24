@@ -4,11 +4,12 @@ import { Link, hashHistory } from 'react-router'
 import Login from './Login'
 import WhoAmI from './WhoAmI'
 import CartContainer from './Cart'
+import {setView} from '../reducers/selectView'
+import store from '../store'
 
 /* -----------------    COMPONENT     ------------------ */
 
 class Navbar extends React.Component {
-
   render() {
     return (
       <nav className="navbar navbar-inverse bg-inverse">
@@ -24,14 +25,15 @@ class Navbar extends React.Component {
           </div>
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
-              <li className="active"><Link to="/allSpeakers" activeClassName="active">Speakers</Link></li>
-              <li className="active"><Link to="/allMagnets" activeClassName="active">Magnets</Link></li>
+              <li className="active"><Link onClick={this.props.renderSpeakers}>Speakers</Link></li>
+              <li className="active"><Link onClick={this.props.renderMagnets}>Magnets</Link></li>
               <li className="active">{ <CartContainer/> }</li>
+              <li className="active"><Link to="/profile" activeClassName="active">User Profile</Link></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
-              <li><Link to="signup" classname="signup" activeClassName="active">Signup</Link></li>
+             { !this.props.user ? <li><Link to="signup" className="signup" activeClassName="active">Signup</Link></li> : <li/> }
               <li className="active">
-                {this.props.user ? <WhoAmI/> : <Login/>}
+                {this.props.user ? <WhoAmI/> : <Login user={this.props.user}/>}
               </li>
             </ul>
           </div>
@@ -43,11 +45,21 @@ class Navbar extends React.Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
+const renderMagnets = () => {
+  store.dispatch(setView('magnets'))
+}
+
+const renderSpeakers = () => {
+  store.dispatch(setView('speakers'))
+}
+
 import {login} from 'APP/app/reducers/auth'
 
-const mapProps = null
-const mapDispatch = dispatch => {
-  return {}
-        }
+const mapStateToProps = null
+const mapDispatchToProps = dispatch => ({
+  renderSpeakers: renderSpeakers,
+  renderMagnets: renderMagnets,
+  login
+})
 
-export default connect(mapProps, {login})(Navbar)
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

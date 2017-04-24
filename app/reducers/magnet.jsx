@@ -1,7 +1,7 @@
 import axios from 'axios'
 import initialState from '../initialState'
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState.allMagnets, action) => {
   const newState = Object.assign({}, state)
 
   switch (action.type) {
@@ -10,6 +10,9 @@ const reducer = (state = initialState, action) => {
     break
   case RESET_MAGNET:
     newState.selectedMagnet = action.emptyMagnet
+    break
+  case GET_ALL_MAGNETS:
+    newState.allMagnets = action.allMagnets
     break
   default:
     return state
@@ -21,6 +24,7 @@ const ADD_MAGNET = 'SELECT_MAGNET'
 const DELETE_MAGNET = 'SELECT_MAGNET'
 const SELECT_MAGNET = 'SELECT_MAGNET'
 const RESET_MAGNET = 'RESET_MAGNET'
+const GET_ALL_MAGNETS = 'GET_ALL_MAGNETS'
 
 // export const addMagnet = Magnet => ({
 //   type: SELECT_Magnet, Magnet
@@ -29,6 +33,16 @@ const RESET_MAGNET = 'RESET_MAGNET'
 // export const deleteMagnet = MagnetId => ({
 //   type: SELECT_Magnet, MagnetId
 // })
+
+export const getAllMagnetsFromServer = () => dispatch => {
+  return axios.get('/api/magnets')
+  .then(magnets => dispatch(getAllMagnets(magnets.data)))
+}
+
+const getAllMagnets = magnets => ({
+  type: GET_ALL_MAGNETS,
+  allMagnets: magnets
+})
 
 export const selectMagnet = magnet => ({
   type: SELECT_MAGNET, magnet

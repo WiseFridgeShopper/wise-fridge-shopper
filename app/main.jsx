@@ -1,6 +1,6 @@
 'use strict'
 
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import injectTapEventPlugin from 'react-tap-event-plugin'
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -20,18 +20,31 @@ import NotFound from './components/NotFound'
 import HomeContainer from './components/HomeContainer'
 import SingleSpeakerContainer from './components/SingleSpeakerContainer'
 import SingleMagnetContainer from './components/SingleMagnetContainer'
-import Account from './components/Account'
-import AllMagnets from './components/AllMagnets'
-import AllSpeakers from './components/AllSpeakers'
 // import Account from './components/Account'
 import Checkout from './components/Checkout'
 import History from './components/History'
 import Cart from './components/Cart'
 import Root from './components/Root'
-import Profile from './components/Profile'
+import ProfileContainer from './components/ProfileContainer'
+import Signup from './components/Signup'
 
 import ErrorPage from './components/ErrorPage'
 import Forbidden from './components/Forbidden'
+
+// Action Creators
+import {setView} from './reducers/selectView'
+import {getAllSpeakersFromServer} from './reducers/speaker'
+import {getAllMagnetsFromServer} from './reducers/magnet'
+// get all magnets
+// get all speakers
+// get user if logged in
+
+const getHomeData = nextRouterState => {
+  store.dispatch(setView('speakers'))
+  store.dispatch(getAllSpeakersFromServer())
+  store.dispatch(getAllMagnetsFromServer())
+  // magnets
+}
 
 render(
   <Provider store={store}>
@@ -39,18 +52,16 @@ render(
       <Router history={browserHistory}>
         <Route path="/" component={Root}>
           <IndexRedirect to="/home" />
-          <Route path="/home" component={HomeContainer} />
-          <Route path="/allMagnets" component={AllMagnets} />
-          <Route path="/allSpeakers" component={AllSpeakers} />
+          <Route path="/home" component={HomeContainer} onEnter={getHomeData}/>
           <Route path="/speakers/:id" component={SingleSpeakerContainer} />\
           <Route path="/magnets/:id" component={SingleMagnetContainer} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/history" component={History} />
           <Route path="/cart" component={Cart} />
-
           <Route path="/error" component={ErrorPage} />
           <Route path="/forbidden" component={Forbidden} />
-          <Route path="/profile" component={Profile} />
+          <Route path="/profile" component={ProfileContainer} />
+          <Route path="/signup" component={Signup} />
 
         </Route>
         <Route path='*' component={NotFound} />
@@ -59,7 +70,3 @@ render(
   </Provider>,
   document.getElementById('main')
 )
-
-          // <Route path="/allMagnets" component={AllMagnets} />
-          // <Route path="/allSpeakers" component={AllSpeakers} />
-          // <Route path="/account" component={Account} />

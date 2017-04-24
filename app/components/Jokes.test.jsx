@@ -7,6 +7,7 @@ import {shallow} from 'enzyme'
 import Jokes from './Jokes'
 
 /* global describe it beforeEach */
+
 describe('<Jokes />', () => {
   const joke = {
     q: 'Why did the skeleton write tests?',
