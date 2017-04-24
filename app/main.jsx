@@ -51,25 +51,14 @@ const getHomeData = nextRouterState => {
 
 const onSpeakerEnter = nextRouterState => {
   const speakerId = Number(nextRouterState.params.id)
-
-  console.log('state', store.getState())
   const [speaker] = store.getState().speaker.allSpeakers.filter(speaker => speaker.id === speakerId)
-  // return axios.get(`/api/speakers/${speakerId}`)
-  // .then((speaker) => {
-  console.log('speaker', speaker)
   store.dispatch(selectSpeaker(speaker))
-  // })
-  // .catch(console.error)
 }
 
 const onMagnetEnter = nextRouterState => {
-  const magnetId = nextRouterState.params.id
-
-  return axios.get(`/api/magnets/${magnetId}`)
-  .then((magnet) => {
-    store.dispatch(selectMagnet(magnet.data))
-  })
-  .catch(console.error)
+  const magnetId = Number(nextRouterState.params.id)
+  const [magnet] = store.getState().magnet.allMagnets.filter(magnet => magnet.id === magnetId)
+  store.dispatch(selectMagnet(magnet))
 }
 
 render(
