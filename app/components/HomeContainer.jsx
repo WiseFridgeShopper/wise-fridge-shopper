@@ -126,6 +126,7 @@ class Home extends React.Component {
 
   renderFilteredSpeakers() {
     if (this.state.query) {
+
       return this.props.speakers && this.props.speakers.filter(item => this.filterBySpeakerName(item))
         .map(item => <SpeakerThumbnail key={item.id} id={item.id} name={item.name} bio={item.bio} />)
     } else {

@@ -10,7 +10,6 @@ import store from '../store'
 /* -----------------    COMPONENT     ------------------ */
 
 class Navbar extends React.Component {
-
   render() {
     return (
       <nav className="navbar navbar-inverse bg-inverse">
