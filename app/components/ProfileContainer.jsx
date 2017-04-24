@@ -83,7 +83,7 @@ const CurrentCart = props => {
   const currentOrderProducts = props.cart.order ? props.cart.order : {}
   const magnetsIncludedInOrder = props.allMagnets ? props.allMagnets.filter(magnet => currentOrderProducts[magnet.id]) : []
   return (<div>
-    <AppBar title="Shopping Cart" style={{ backgroundColor: 'black' }} />
+    <AppBar title="Shopping Cart" showMenuIconButton={false} style={{ backgroundColor: 'black' }} />
     <h2>Magnets</h2>
     {magnetsIncludedInOrder.length && magnetsIncludedInOrder.map(magnet => {
       return (
