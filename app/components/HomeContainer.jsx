@@ -148,8 +148,8 @@ class Home extends React.Component {
         </div>
         <div className='row'>
           <div className='col-md-12'>
-            <GridList cols={3} title='My Grid'>
-              { this.props.selectedView === 'speakers' ? this.renderFilteredSpeakers() : this.renderFilteredMagnets() }
+            <GridList padding={50} cols={4} title='Products' >
+              { this.props.selectedTab === 'speakers' ? this.renderFilteredSpeakers() : this.renderFilteredMagnets() }
             </GridList>
           </div>
         </div>

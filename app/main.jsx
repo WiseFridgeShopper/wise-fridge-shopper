@@ -18,12 +18,12 @@ import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import HomeContainer from './components/HomeContainer'
-
+import SingleSpeakerContainer from './components/SingleSpeakerContainer'
+import SingleMagnetContainer from './components/SingleMagnetContainer'
+import Account from './components/Account'
 import AllMagnets from './components/AllMagnets'
 import AllSpeakers from './components/AllSpeakers'
-import SingleMagnet from './components/SingleMagnet'
-import SingleSpeaker from './components/SingleSpeaker'
-import Account from './components/Account'
+// import Account from './components/Account'
 import Checkout from './components/Checkout'
 import History from './components/History'
 import Cart from './components/Cart'
@@ -42,15 +42,16 @@ render(
           <Route path="/home" component={HomeContainer} />
           <Route path="/allMagnets" component={AllMagnets} />
           <Route path="/allSpeakers" component={AllSpeakers} />
-          <Route path="/magnets/:id" component={SingleMagnet} />
-          <Route path="/speakers/:id" component={SingleSpeaker} />
+          <Route path="/speakers/:id" component={SingleSpeakerContainer} />\
+          <Route path="/magnets/:id" component={SingleMagnetContainer} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/history" component={History} />
           <Route path="/cart" component={Cart} />
-          <Route path="/account" component={Account} />
+
           <Route path="/error" component={ErrorPage} />
           <Route path="/forbidden" component={Forbidden} />
           <Route path="/profile" component={Profile} />
+
         </Route>
         <Route path='*' component={NotFound} />
       </Router>
@@ -58,3 +59,7 @@ render(
   </Provider>,
   document.getElementById('main')
 )
+
+          // <Route path="/allMagnets" component={AllMagnets} />
+          // <Route path="/allSpeakers" component={AllSpeakers} />
+          // <Route path="/account" component={Account} />
