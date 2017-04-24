@@ -4,6 +4,8 @@ import { Link, hashHistory } from 'react-router'
 import Login from './Login'
 import WhoAmI from './WhoAmI'
 import CartContainer from './Cart'
+import {setView} from '../reducers/selectView'
+import store from '../store'
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -24,9 +26,9 @@ class Navbar extends React.Component {
           </div>
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
-              <li className="active"><Link to="/speakers" activeClassName="active">Speakers</Link></li>
-              <li className="active"><Link to="/magnets" activeClassName="active">Magnets</Link></li>
-              <li className="active">{ <CartContainer/>}</li>
+              <li className="active"><Link onClick={this.props.renderSpeakers}>Speakers</Link></li>
+              <li className="active"><Link onClick={this.props.renderMagnets}>Magnets</Link></li>
+              <li className="active">{ <CartContainer/> }</li>
               <li className="active"><Link to="/profile" activeClassName="active">User Profile</Link></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
@@ -44,11 +46,21 @@ class Navbar extends React.Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
+const renderMagnets = () => {
+  store.dispatch(setView('magnets'))
+}
+
+const renderSpeakers = () => {
+  store.dispatch(setView('speakers'))
+}
+
 import {login} from 'APP/app/reducers/auth'
 
-const mapProps = null
-const mapDispatch = dispatch => {
-  return {}
-  }
+const mapStateToProps = null
+const mapDispatchToProps = dispatch => ({
+  renderSpeakers: renderSpeakers,
+  renderMagnets: renderMagnets,
+  login
+})
 
-export default connect(mapProps, {login})(Navbar)
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
