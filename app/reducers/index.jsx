@@ -5,7 +5,7 @@ const rootReducer = combineReducers({
   cart: require('./cart').default,
   speaker: require('./speaker').default,
   review: require('./review').default,
-  selectedTab: require('./selectView').default
+  selectedTab: require('./selectView').default,
 })
 
 export default rootReducer

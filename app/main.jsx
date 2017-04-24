@@ -34,13 +34,16 @@ import Forbidden from './components/Forbidden'
 
 // Action Creators
 import {setView} from './reducers/selectView'
+import {getAllSpeakersFromServer} from './reducers/speaker'
+import {getAllMagnetsFromServer} from './reducers/magnet'
 // get all magnets
 // get all speakers
 // get user if logged in
 
-const setDefaultView = nextRouterState => {
+const getHomeData = nextRouterState => {
   store.dispatch(setView('speakers'))
-  // store.dispatch()
+  store.dispatch(getAllSpeakersFromServer())
+  // magnets
 }
 
 render(
@@ -49,7 +52,7 @@ render(
       <Router history={browserHistory}>
         <Route path="/" component={Root}>
           <IndexRedirect to="/home" />
-          <Route path="/home" component={HomeContainer} onEnter={setDefaultView}/>
+          <Route path="/home" component={HomeContainer} onEnter={getHomeData}/>
           {/* <Route path="/magnets" component={AllMagnets} />
           <Route path="/speakers" component={AllSpeakers} /> */}
           <Route path="/speakers/:id" component={SingleSpeakerContainer} />\
