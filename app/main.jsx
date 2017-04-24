@@ -45,7 +45,7 @@ render(
           <Route path="/home" component={Home} />
           <Route path="/allMagnets" component={AllMagnets} />
           <Route path="/allSpeakers" component={AllSpeakers} />
-          <Route path="/speakers/:id" component={SingleSpeakerContainer} />\
+          <Route path="/speakers/:id" component={SingleSpeakerContainer} />
           <Route path="/magnets/:id" component={SingleMagnetContainer} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/history" component={History} />
