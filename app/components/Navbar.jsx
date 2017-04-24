@@ -4,7 +4,7 @@ import { Link, hashHistory } from 'react-router'
 import Login from './Login'
 import WhoAmI from './WhoAmI'
 import CartContainer from './Cart'
-import {setView} from '../reducers/selectView'
+import { setView } from '../reducers/selectView'
 import store from '../store'
 
 /* -----------------    COMPONENT     ------------------ */
@@ -25,19 +25,17 @@ class Navbar extends React.Component {
           </div>
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
-
               <li className="active"><Link to='/speakers' onClick={this.props.renderSpeakers}>Speakers</Link></li>
               <li className="active"><Link to='/magnets' onClick={this.props.renderMagnets}>Magnets</Link></li>
               <li className="active">{ <CartContainer/> }</li>
               { this.props.loggedIn ? <li className="active"><Link to="/profile" activeClassName="active">User Profile</Link></li> : <li/> }
-
             </ul>
             <ul className="nav navbar-nav navbar-right">
-             { !this.props.user ? <li><Link to="signup" className="signup" activeClassName="active">Signup</Link></li> : <li/> }
+              {!this.props.user ? <li><Link to="signup" className="signup" activeClassName="active">Signup</Link></li> : <li />}
+              {!this.props.user ? <li><a href='/api/auth/login/google'><button className="google" type="button">Google</button></a></li> : <li />}
+              {!this.props.user ? <li><a href='/api/auth/login/facebook'><button className="facebook" type="button">Facebook</button></a></li> : <li />}
               <li className="active">
-                <a href='/api/auth/login/google'><button type="button">Google</button></a>
-                <a href='/api/auth/login/facebook'><button type="button">Facebook</button></a>
-                {this.props.user ? <WhoAmI/> : <Login user={this.props.user}/>}
+                {this.props.user ? <WhoAmI /> : <Login user={this.props.user} />}
               </li>
             </ul>
           </div>
@@ -57,7 +55,7 @@ const renderSpeakers = () => {
   store.dispatch(setView('speakers'))
 }
 
-import {login} from 'APP/app/reducers/auth'
+import { login } from 'APP/app/reducers/auth'
 
 const mapStateToProps = (state) => ({
   loggedIn: state.auth ? true : false
