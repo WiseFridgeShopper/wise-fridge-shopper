@@ -44,6 +44,7 @@ import {getAllMagnetsFromServer} from './reducers/magnet'
 const getHomeData = nextRouterState => {
   store.dispatch(setView('speakers'))
   store.dispatch(getAllSpeakersFromServer())
+  store.dispatch(getAllMagnetsFromServer())
   // magnets
 }
 

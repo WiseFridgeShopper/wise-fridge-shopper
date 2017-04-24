@@ -159,7 +159,7 @@ const mapStateToProps = (storeState, ownProps) => {
   return {
     selectedTab: storeState.selectedTab,
     speakers: storeState.speaker.allSpeakers,
-    magnets: storeState.magnets.allMagnets
+    magnets: storeState.magnet.allMagnets
   }
 }
 
