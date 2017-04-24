@@ -1,7 +1,6 @@
 const app = require('APP'), {env} = app
 const debug = require('debug')(`${app.name}:auth`)
 const passport = require('passport')
-
 const {User, OAuth} = require('APP/db')
 const auth = require('express').Router()
 
@@ -50,9 +49,9 @@ OAuth.setupStrategy({
   provider: 'google',
   strategy: require('passport-google-oauth').OAuth2Strategy,
   config: {
-    clientID: env.GOOGLE_CLIENT_ID,
-    clientSecret: env.GOOGLE_CLIENT_SECRET,
-    callbackURL: `${app.baseUrl}/api/auth/login/google`,
+    clientID: '630118201570-e95b3r63894t6vom5osr58103jvg36jn.apps.googleusercontent.com', // env.GOOGLE_CLIENT_ID,
+    clientSecret: 'C5aBT2oSWnJKHuRvWw3FRqht', // env.GOOGLE_CLIENT_SECRET,
+    callbackURL: `http://localhost:1337/api/auth/login/google`, //`${app.baseUrl}/api/auth/login/google`,
   },
   passport
 })
