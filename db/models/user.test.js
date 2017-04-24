@@ -22,7 +22,6 @@ describe('User', () => {
   })
   afterEach('Clear the tables', () => db.truncate({ cascade: true }))
 
-
   describe('authenticate(plaintext: String) ~> Boolean', () => {
     it('resolves true if the password matches', () =>
       user => user.authenticate('ok')
