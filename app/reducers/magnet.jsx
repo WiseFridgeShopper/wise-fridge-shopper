@@ -1,7 +1,7 @@
 import axios from 'axios'
 import initialState from '../initialState'
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState.allMagnets, action) => {
   const newState = Object.assign({}, state)
 
   switch (action.type) {

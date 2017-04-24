@@ -1,6 +1,4 @@
 import React from 'react'
-// import RaisedButton from 'material-ui/RaisedButton'
-// import TextField from 'material-ui/TextField'
 
 export const Login = ({ login }) => (
   <div className='container-fluid'>
@@ -11,10 +9,8 @@ export const Login = ({ login }) => (
     } }>
       <div style={{ paddingTop: 12 }}>
         <input name="email" type="text" placeholder="Enter Email Address"/>
-
-        <input name="password" type="password" placeholder="Enter Password" />
-
-        <button label="login" type="submit" value="Login" >Login</button>
+        <input style={{ paddingRight: 5 }} name="password" type="password" placeholder="Enter Password"/>
+        <button className="login" label="login" type="submit" value="Login" >Login</button>
       </div>
     </form>
   </div>
