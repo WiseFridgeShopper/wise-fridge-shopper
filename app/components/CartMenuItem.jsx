@@ -28,4 +28,3 @@ export default class CartMenuItem extends React.Component {
     )
   }
 }
-
