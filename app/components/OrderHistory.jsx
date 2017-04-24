@@ -2,44 +2,6 @@ import React from 'react'
 import store from '../store'
 
 const localState = store.getState()
-const orders = [
-  {
-    'costBeforeShipping': 0,
-    'fullAddress': 'null\nnull null\nnull)',
-    'id': 3,
-    'products': { 1: 3, 4: 2 },
-    'subtotal': 0,
-    'tax': 0,
-    'address': null,
-    'city': null,
-    'state': null,
-    'zip': null,
-    'shippingMethod': null,
-    'completedPurchase': true,
-    'purchaseDate': null,
-    'created_at': '2017-04-18T20:09:43.707Z',
-    'updated_at': '2017-04-18T20:09:43.707Z',
-    'user_id': 1
-  },
-  {
-    'costBeforeShipping': 0,
-    'fullAddress': 'null\nnull null\nnull)',
-    'id': 4,
-    'products': {6: 34, 5: 21},
-    'subtotal': 0,
-    'tax': 0,
-    'address': null,
-    'city': null,
-    'state': null,
-    'zip': null,
-    'shippingMethod': null,
-    'completedPurchase': true,
-    'purchaseDate': null,
-    'created_at': '2017-04-18T20:42:19.940Z',
-    'updated_at': '2017-04-18T20:42:19.940Z',
-    'user_id': 1
-  }]
-
 
 const OrderHistory = props => {
   return (
@@ -47,7 +9,7 @@ const OrderHistory = props => {
       <h2 style={{ fontStyle: 'arial' }}>Order History</h2>
       <ul style={{ listStyle: 'none' }}>
         {
-          orders && orders.map(order => {
+          props.orders && props.orders.map(order => {
             return (
               <div className="orderHistory">
               <li>
