@@ -8,9 +8,6 @@ module.exports = db => db.define('users', {
   name: {
     type: STRING,
     allowNull: false,
-    // validate: {
-    //   isAlphanumeric: true,
-    // }
   },
   email: {
     type: STRING,

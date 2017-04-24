@@ -121,8 +121,8 @@ const SingleMagnet = props => {
 
 function mapStateToProps(storeState) {
   return {
-    selectedMagnet: storeState.selectedMagnet,
-    allMagnets: storeState.allMagnets
+    selectedMagnet: storeState.magnet.selectedMagnet,
+    allMagnets: storeState.magnet.allMagnets
   }
 }
 
