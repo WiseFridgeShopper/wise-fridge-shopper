@@ -22,10 +22,11 @@ module.exports = require('express').Router()
         .then(users => res.send(users))
         .catch(next))
   .post('/',
-    (req, res, next) =>
+    (req, res, next) => {
       User.create(req.body)
       .then(user => res.status(201).send(user))
-      .catch(next))
+      .catch(next)
+    })
   .get('/:id',
     // mustBeLoggedIn,
     (req, res, next) =>
