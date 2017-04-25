@@ -5,6 +5,7 @@ import CartMenuItem from './CartMenuItem'
 import RaisedButton from 'material-ui/RaisedButton'
 import MenuItem from 'material-ui/MenuItem'
 import AppBar from 'material-ui/AppBar'
+import Paper from 'material-ui/Paper'
 
 import {stringToJson} from '../reducers/cart'
 import { connect } from 'react-redux'
@@ -24,7 +25,15 @@ class Cart extends React.Component {
   handleClose = () => this.setState({ open: false });
 
   render() {
-    const currentOrderProducts = this.props.cart.products ? stringToJson(this.props.cart.products) : {}
+    const style = {
+      height: 100,
+      width: 100,
+      margin: 20,
+      textAlign: 'center',
+      display: 'inline-block',
+    }
+    const products = this.props.cart.products
+    const currentOrderProducts = products ? stringToJson(products) : {}
     const magnetsIncludedInOrder = this.props.allMagnets ? this.props.allMagnets.filter(magnet => currentOrderProducts[magnet.id]) : []
     return (
       <div>
@@ -45,13 +54,23 @@ class Cart extends React.Component {
               <hr />
             </div>
           ))}
-          <Link to="/checkout">
-            <RaisedButton
-              style={{ float: 'right', marginRight: '10px' }}
-              label="Checkout"
-              onTouchTap={this.handleToggle}
-            />
-          </Link>
+          {
+            Object.keys(products).forEach(magnet => {
+              this.state.totalPrice += 3.95 * products[magnet]
+            })
+          }
+          <div>
+            <MenuItem style={{ marginRight: '30px' }}>{`Subtotal: ${this.state.totalPrice}`}</MenuItem>
+          </div>
+          <div style={{display: 'block'}}>
+            <Link to="/checkout">
+              <RaisedButton
+                style={{ float: 'right', marginRight: '30px' }}
+                label="Checkout"
+                onTouchTap={this.handleToggle}
+              />
+            </Link>
+          </div>
         </Drawer>
       </div>
     )
