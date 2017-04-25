@@ -5,6 +5,8 @@ import CartMenuItem from './CartMenuItem'
 import RaisedButton from 'material-ui/RaisedButton'
 import MenuItem from 'material-ui/MenuItem'
 import AppBar from 'material-ui/AppBar'
+
+import {stringToJson} from '../reducers/cart'
 import { connect } from 'react-redux'
 import { Link, browserHistory } from 'react-router'
 
@@ -22,35 +24,35 @@ class Cart extends React.Component {
   handleClose = () => this.setState({ open: false });
 
   render() {
-    const currentOrderProducts = this.props.cart.order ? this.props.cart.order : {}
+    const currentOrderProducts = this.props.cart.products ? stringToJson(this.props.cart.products) : {}
     const magnetsIncludedInOrder = this.props.allMagnets ? this.props.allMagnets.filter(magnet => currentOrderProducts[magnet.id]) : []
     return (
       <div>
-        <Link to="/checkout">
-          <RaisedButton onTouchTap={this.handleToggle} style={{ paddingTop: 12 }}
-          ><i className="material-icons">shopping_cart</i></RaisedButton>
-          <Drawer
-            docked={false}
-            width={700}
-            openSecondary={true}
-            open={this.state.open}
-            onRequestChange={(open) => this.setState({ open })}
-          >
-            <AppBar title="Shopping Cart" showMenuIconButton={false} style={{ backgroundColor: 'black' }} />
-            <MenuItem>Magnets</MenuItem>
-            {magnetsIncludedInOrder.length && magnetsIncludedInOrder.map(magnet => (
-              <div key={magnet.id}>
-                <CartMenuItem magnet={magnet} />
-                <hr />
-              </div>
-            ))}
+        <RaisedButton onTouchTap={this.handleToggle} style={{ paddingTop: 12 }}
+        ><i className="material-icons">shopping_cart</i></RaisedButton>
+        <Drawer
+          docked={false}
+          width={700}
+          openSecondary={true}
+          open={this.state.open}
+          onRequestChange={(open) => this.setState({ open })}
+        >
+          <AppBar title="Shopping Cart" showMenuIconButton={false} style={{ backgroundColor: 'black' }} />
+          <MenuItem>Magnets</MenuItem>
+          {magnetsIncludedInOrder.length && magnetsIncludedInOrder.map(magnet => (
+            <div key={magnet.id}>
+              <CartMenuItem magnet={magnet} />
+              <hr />
+            </div>
+          ))}
+          <Link to="/checkout">
             <RaisedButton
               style={{ float: 'right', marginRight: '10px' }}
               label="Checkout"
               onTouchTap={this.handleToggle}
             />
-          </Drawer>
-        </Link>
+          </Link>
+        </Drawer>
       </div>
     )
   }

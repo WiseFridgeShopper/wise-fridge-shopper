@@ -14,7 +14,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import axios from 'axios'
 
 import store from './store'
-import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
@@ -22,7 +21,7 @@ import HomeContainer from './components/HomeContainer'
 import SingleSpeakerContainer from './components/SingleSpeakerContainer'
 import SingleMagnetContainer from './components/SingleMagnetContainer'
 // import Account from './components/Account'
-import Checkout from './components/Checkout'
+import CheckoutContainer from './components/CheckoutContainer'
 import History from './components/History'
 import Cart from './components/Cart'
 import Root from './components/Root'
@@ -65,14 +64,14 @@ render(
   <Provider store={store}>
     <MuiThemeProvider>
       <Router history={browserHistory}>
-        <Route path="/" component={Root}>
+        <Route path="/" component={Root} onEnter={getHomeData} >
           <IndexRedirect to="/home" />
-          <Route path="/home" component={HomeContainer} onEnter={getHomeData}/>
+          <Route path="/home" component={HomeContainer} />
           <Route path="/speakers" component={HomeContainer} />
           <Route path="/magnets" component={HomeContainer} />
           <Route path="/speakers/:id" component={SingleSpeakerContainer} onEnter={onSpeakerEnter} />
           <Route path="/magnets/:id" component={SingleMagnetContainer} onEnter={onMagnetEnter}/>
-          <Route path="/checkout" component={Checkout} />
+          <Route path="/checkout" component={CheckoutContainer} />
           <Route path="/history" component={History} />
           <Route path="/cart" component={Cart} />
           <Route path="/error" component={ErrorPage} />

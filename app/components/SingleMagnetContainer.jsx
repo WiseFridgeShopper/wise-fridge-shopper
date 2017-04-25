@@ -8,8 +8,9 @@ import {GridList, GridTile} from 'material-ui/GridList'
 import AppBar from 'material-ui/AppBar'
 import Review from './Review'
 import MagnetThumbnail from './MagnetThumbnail'
-import store from '../store'
 import {notify} from 'react-notify-toast'
+import {addToOrder} from '../reducers/cart'
+import store from '../store'
 
 const styles = {
   description: {
@@ -34,6 +35,10 @@ const addToCart = (evt) => {
 
 const SingleMagnet = props => {
   const getRelatedMagnets = allMagnets => props.allMagnets.filter(magnet => magnet.speaker_id === props.selectedMagnet.speaker_id)
+
+  const placeInCart = (evt) => {
+    store.dispatch(addToOrder(props.cart.id, props.selectedMagnet.id))
+  }
 
   return (
     <div className={'row'}>
@@ -78,7 +83,8 @@ function mapStateToProps(storeState) {
   return {
     selectedMagnet: storeState.magnet.selectedMagnet,
     allMagnets: storeState.magnet.allMagnets,
-    reviews: storeState.review.reviews
+    reviews: storeState.review.reviews,
+    cart: storeState.cart
   }
 }
 

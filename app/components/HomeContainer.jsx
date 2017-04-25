@@ -128,9 +128,9 @@ class Home extends React.Component {
     if (this.state.query) {
 
       return this.props.speakers && this.props.speakers.filter(item => this.filterBySpeakerName(item))
-        .map(item => <SpeakerThumbnail key={item.id} id={item.id} name={item.name} bio={item.bio} />)
+        .map(item => <SpeakerThumbnail key={item.id} id={item.id} name={item.name} bio={item.bio} image={item.image} />)
     } else {
-      return this.props.speakers && this.props.speakers.map(item => <SpeakerThumbnail key={item.id} id={item.id} name={item.name} bio={item.bio} />)
+      return this.props.speakers && this.props.speakers.map(item => <SpeakerThumbnail key={item.id} id={item.id} name={item.name} bio={item.bio} image={item.image} />)
     }
   }
 
