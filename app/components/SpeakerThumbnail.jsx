@@ -5,7 +5,7 @@ import IconButton from 'material-ui/IconButton' // used for purchase button
 
 const SpeakerThumbnail = props => (
     <Link key={props.id} to={`/speakers/${props.id}`}>
-      <GridTile key={props.id} title={props.name} actionIcon={<IconButton children={<i className="material-icons md-light">add shopping cart</i>}></IconButton>}>
+      <GridTile key={props.id} title={props.name}>
         {<img src={props.image}/>}
       </GridTile></Link>
     )

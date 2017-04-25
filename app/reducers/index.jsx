@@ -6,7 +6,7 @@ const rootReducer = combineReducers({
   speaker: require('./speaker').default,
   magnet: require('./magnet').default,
   review: require('./review').default,
-  selectedTab: require('./selectView').default,
+  selectedTab: require('./selectView').default
 })
 
 export default rootReducer

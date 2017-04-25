@@ -16,7 +16,6 @@ class SignupContainer extends React.Component {
   }
 
   render() {
-    console.log('signup container props', this.props)
     return (
       <div>
         {this.props.loggedIn ? <SignedUp /> : <Signup onSignupSubmit={this.onSignupSubmit} message={this.props.message} />}
