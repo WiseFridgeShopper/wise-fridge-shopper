@@ -6,7 +6,7 @@ import {notify} from 'react-notify-toast'
 
 const style = {
   // minHeight: '220px',
-  
+  maxWidth: '500px',
   maxHeight: '320px',
   height: 'auto',
   width: '100%'

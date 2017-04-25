@@ -26,12 +26,14 @@ const SingleSpeaker = props => {
   return (
     <div className={'row'}>
       <div className={'col-md-6'}>
+        <GridList style={styles.gridList} cellHeight={350} cols={1.1}>
         <SpeakerThumbnail
           key={props.selectedSpeaker.id}
           id={props.selectedSpeaker.id}
           name={props.selectedSpeaker.name}
           bio={props.selectedSpeaker.bio}
           image={props.selectedSpeaker.image} />
+        </GridList>
           <Card>
             <CardText>
               {props.selectedSpeaker.bio}
