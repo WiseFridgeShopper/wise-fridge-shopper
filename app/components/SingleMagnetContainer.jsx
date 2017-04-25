@@ -4,6 +4,7 @@ import {List, ListItem} from 'material-ui/List'
 import Paper from 'material-ui/Paper'
 import {Card, CardMedia, CardHeader, CardText} from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
+import RaisedButton from 'material-ui/RaisedButton'
 import {GridList, GridTile} from 'material-ui/GridList'
 import AppBar from 'material-ui/AppBar'
 import Review from './Review'
@@ -43,12 +44,15 @@ const SingleMagnet = props => {
           <AppBar title={props.selectedMagnet.title} style={{backgroundColor: 'black'}} showMenuIconButton={false}/>
           <CardMedia >
             <img src={props.selectedMagnet.image} className={'img-responsive'}/>
+            <div className={'col-md-4 col-md-offset-6'}>
+              <RaisedButton onClick={addToCart} label='Add to Cart' style={{textAlign: 'center', fontSize: '20px'}} labelStyle={{fontSize: '150%'}} primary={true} />
+            </div>
           </CardMedia>
           <CardText >
             <List>
-              <ListItem primaryText={`Price: $${props.selectedMagnet.price}`}><FlatButton onClick={addToCart} label='Add to Cart' primary={true}></FlatButton></ListItem>
+              <ListItem primaryText={`Price: $${props.selectedMagnet.price / 100}`} />
               <ListItem primaryText={props.selectedMagnet.title} />
-              <ListItem primaryText={`Size: ${props.selectedMagnet.size}`} />
+              <ListItem primaryText={`Size: ${props.selectedMagnet.size[0]}'' x ${props.selectedMagnet.size[1]}''`} />
               <ListItem primaryText={`Item #: ${props.selectedMagnet.itemNumber}`} />
               <ListItem primaryText={`Mood: ${props.selectedMagnet.mood}`} />
             </List>
