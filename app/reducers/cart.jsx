@@ -70,6 +70,9 @@ export const addToOrder = (orderId, magnetId) => dispatch => {
   tempCart = stringToJson(tempCart)
   tempCart[magnetId] = 1
   axios.put(`/api/orders/${orderId}`, {products: tempCart})
+  .then((cart) => {
+    console.log('Updated Cart ', cart.data)
+  })
   dispatch(addToCart(tempCart))
 }
 
