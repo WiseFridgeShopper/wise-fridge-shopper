@@ -71,10 +71,7 @@ const SingleMagnet = props => {
   // when we implement a controlled component for this dumb component, below line show be uncommented
   // const magnet = props.selectedMagnet
   const placeInCart = (evt) => {
-    console.log('props', props)
-    // console.log('magnetId', props.selectedMagnet.id)
-    // console.log('orderId', props.order.order.id)
-    store.dispatch(addToOrder(1, props.selectedMagnet.id))
+    store.dispatch(addToOrder(props.cart.id, props.selectedMagnet.id))
   }
 
   return (
@@ -121,7 +118,7 @@ function mapStateToProps(storeState) {
     selectedMagnet: storeState.magnet.selectedMagnet,
     allMagnets: storeState.magnet.allMagnets,
     reviews: storeState.review.reviews,
-    order: storeState.cart
+    cart: storeState.cart
   }
 }
 

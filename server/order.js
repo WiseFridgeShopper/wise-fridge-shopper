@@ -51,19 +51,16 @@ module.exports = require('express').Router()
   })
   // update an order
   .put('/:orderId', (req, res, next) => {
+    console.log('HIT PUT ROUTE')
     // **THIS IS QUESTIONABLE** if you reach a bug here... beware
     Order.findById(req.params.orderId)
     .then((order) => {
-      const updatedOrder = Object.assign(order, req.body)
-      Order.update(updatedOrder, {
-        where: {
-          id: req.params.orderId
-        },
-        returning: true,
-        plain: true
-      })
-      .then(updatedOrder => {
-        updatedOrder ? res.send(updatedOrder) : res.sendStatus(404)
+      // const updatedOrder = Object.assign(order, req.body)
+      // console.log("THE body", req.body)
+      return order.update(req.body)
+      .then(newOrder => {
+        // console.log('server ', newOrder)
+        newOrder ? res.send(newOrder) : res.sendStatus(404)
       })
     })
   })
