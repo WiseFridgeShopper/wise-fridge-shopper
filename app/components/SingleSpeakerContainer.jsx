@@ -32,12 +32,15 @@ const SingleSpeaker = props => {
           name={props.selectedSpeaker.name}
           bio={props.selectedSpeaker.bio}
           image={props.selectedSpeaker.image} />
-          <CardText>
-            {props.selectedSpeaker.bio}
-          </CardText>
+          <Card>
+            <CardText>
+              {props.selectedSpeaker.bio}
+            </CardText>
+          </Card>
       </div>
       <div className={'col-md-6'}>
         <Card>
+
           <AppBar title={`Magnets by ${props.selectedSpeaker.name}`}
             style={{backgroundColor: 'black'}}
             showMenuIconButton={false}/>
