@@ -36,13 +36,13 @@ export default class CartMenuItem extends React.Component {
             <span style={{padding: '0 20px', width: '150px', height: '75px'}}>{`ID: ${this.props.magnet.id}`}</span>
           </div>
           <div style={{display: 'inLine'}}>
-            <span style={{padding: '0 20px', width: '200px'}} >{`${this.props.magnet.price} x`}</span>
+            <span style={{padding: '0 20px', width: '200px'}} >{`$${this.props.magnet.price / 100} x`}</span>
           </div>
           <div style={{display: 'inLine'}}>
             <input style={{padding: '0 20px'}} onChange={this.handleQuantChange} style={{width: '25px', height: '25px', fontSize: 14}} type='number' defaultValue={1} />
           </div>
           <div style={{display: 'inLine'}}>
-            <span style={{padding: '0 20px', width: '200px'}} >{`= ${this.props.magnet.price * this.state.numItems}`}</span>
+            <span style={{padding: '0 20px', width: '200px'}} >{`= $${(this.props.magnet.price / 100) * this.state.numItems}`}</span>
           </div>
           <div style={{display: 'inLine'}}>
             <RaisedButton onClick={this.removeFromCart} label="Remove" />
