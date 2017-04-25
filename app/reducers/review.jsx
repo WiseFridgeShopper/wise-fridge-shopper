@@ -30,6 +30,7 @@ const receiveNewReview = review => ({
   review
 })
 
+// JM-RT - catch all the things
 export const getReviewsByMagnet = magnetId => {
   return dispatch => {
     return axios.get(`/api/magnets/${magnetId}/reviews`)

@@ -36,6 +36,7 @@ class Cart extends React.Component {
             open={this.state.open}
             onRequestChange={(open) => this.setState({ open })}
           >
+          {/*JM/RT - refactor out inline styles, investiagte atomic CSS*/}
             <AppBar title="Shopping Cart" showMenuIconButton={false} style={{ backgroundColor: 'black' }} />
             <MenuItem>Magnets</MenuItem>
             {magnetsIncludedInOrder.length && magnetsIncludedInOrder.map(magnet => (

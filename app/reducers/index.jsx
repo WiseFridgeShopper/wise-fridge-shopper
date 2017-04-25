@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 
+// JM-RT - not a big deal, but maybe use import instead
 const rootReducer = combineReducers({
   auth: require('./auth').default,
   cart: require('./cart').default,

@@ -5,6 +5,7 @@ const initialState = {
   selectedTab: 'speakers'
 }
 
+// JM/RT - consider using route params to find out whether magents or speakers is shown
 const selectViewReducer = (state=initialState, action) => {
   const newState = Object.assign({}, state)
   switch (action.type) {

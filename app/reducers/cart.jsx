@@ -2,6 +2,8 @@ import axios from 'axios'
 import store from '../store'
 import initialState from '../initialState'
 
+// JM/RT - as long as you've thought about modularization, that's cool
+
 const reducer = (state = initialState.cart, action) => {
   const newState = Object.assign({}, state)
   switch (action.type) {
@@ -9,6 +11,9 @@ const reducer = (state = initialState.cart, action) => {
     newState.order = action.cart
     break
   case ADD_TO_CART:
+    // JM/RT - could be refactored... but working code is good
+    // JM/RT if you have time take a look at this: https://github.com/reactjs/redux/blob/master/examples/shopping-cart/src/reducers/cart.js
+    // JM/RT - have little cart element subscribe to cart.length so it re-renders with the number of items in cart
     newState.order = Object.assign({}, newState.order, action.magnetWithQuant)
     break
   case REMOVE_FROM_CART:
@@ -43,6 +48,8 @@ export const ChangeItemQuantity = magnetWithQuant => ({
   type: CHANGE_ITEM_QUANTITY, magnetWithQuant
 })
 
+// RT blowing some minds with json stringify json parse:
+// Or pull it out to a utils file
 const stringToJson = (jString) => {
   const keyVals = jString.slice(1, jString.length-1)
   const kvArr = keyVals.split(', ')

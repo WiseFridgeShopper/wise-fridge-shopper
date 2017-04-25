@@ -8,6 +8,7 @@ const reducer = (state = initialState.allMagnets, action) => {
   case SELECT_MAGNET:
     newState.selectedMagnet = action.magnet
     break
+    // JM/RT - consider if actions need parameters/action properties
   case RESET_MAGNET:
     newState.selectedMagnet = action.emptyMagnet
     break
@@ -37,6 +38,9 @@ const GET_ALL_MAGNETS = 'GET_ALL_MAGNETS'
 export const getAllMagnetsFromServer = () => dispatch => {
   return axios.get('/api/magnets')
   .then(magnets => dispatch(getAllMagnets(magnets.data)))
+  // JM/RT - CATCH!
+  // toastr maybe? could use material UI toast components
+  
 }
 
 const getAllMagnets = magnets => ({

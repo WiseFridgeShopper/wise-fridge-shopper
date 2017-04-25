@@ -2,6 +2,8 @@
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
+// JM/RT - consider using commitizen for git commits
+
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin()
@@ -13,6 +15,7 @@ import {connect, Provider} from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import axios from 'axios'
 
+// JM/RT - get rid of old bones stuff (e.g. jokes)
 import store from './store'
 import Jokes from './components/Jokes'
 import Login from './components/Login'

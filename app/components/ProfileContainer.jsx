@@ -70,6 +70,7 @@ class Profile extends React.Component {
           </Menu>
         </div>
         <div className="col-md-8">
+          {/* JM/RT - pleeease refactor this into subroutes */}
           {this.state.current ? <CurrentCart allMagnets={this.props.allMagnets} cart={this.props.cart} />
           : this.state.history ? <OrderHistory userOrders={this.props} />
           : this.state.edit ? <AppBar title="Edit Profile" showMenuIconButton={false} style={{ backgroundColor: 'black' }} />
