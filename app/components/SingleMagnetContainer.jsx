@@ -29,15 +29,11 @@ const styles = {
   }
 }
 
-
-
 const SingleMagnet = props => {
   const getRelatedMagnets = allMagnets => props.allMagnets.filter(magnet => magnet.speaker_id === props.selectedMagnet.speaker_id)
   const addToCart = (evt) => {
     notify.show('Added to cart!', 'success')
     store.dispatch(addToOrder(props.cart.id, props.selectedMagnet.id))
-  }
-  const placeInCart = (evt) => {
   }
 
   return (

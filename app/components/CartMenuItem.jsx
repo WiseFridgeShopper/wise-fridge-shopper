@@ -18,7 +18,7 @@ export default class CartMenuItem extends React.Component {
   };
 
   removeFromCart = (evt) => {
-    notify.show('Removed from cart', 'warn')
+    notify.show('Removed from cart', 'warning')
     store.dispatch(removeFromOrder(this.props.cart.id, this.props.magnet.id))
   }
 
