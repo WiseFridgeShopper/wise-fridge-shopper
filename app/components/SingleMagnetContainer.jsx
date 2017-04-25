@@ -8,6 +8,8 @@ import {GridList, GridTile} from 'material-ui/GridList'
 import AppBar from 'material-ui/AppBar'
 import Review from './Review'
 import MagnetThumbnail from './MagnetThumbnail'
+import {addToOrder} from '../reducers/cart'
+import store from '../store'
 
 const magnet = {
   title: 'Henry David Thoreau Fridge Magnet #1',
@@ -68,6 +70,12 @@ const SingleMagnet = props => {
 
   // when we implement a controlled component for this dumb component, below line show be uncommented
   // const magnet = props.selectedMagnet
+  const placeInCart = (evt) => {
+    console.log('props', props)
+    // console.log('magnetId', props.selectedMagnet.id)
+    // console.log('orderId', props.order.order.id)
+    store.dispatch(addToOrder(1, props.selectedMagnet.id))
+  }
 
   return (
     <div className={'row'}>
@@ -79,7 +87,7 @@ const SingleMagnet = props => {
           </CardMedia>
           <CardText >
             <List>
-              <ListItem primaryText={`Price: $${props.selectedMagnet.price}`}><FlatButton label='buy me' primary={true}></FlatButton></ListItem>
+              <ListItem primaryText={`Price: $${props.selectedMagnet.price}`}><FlatButton onClick={placeInCart} label='buy me' primary={true}></FlatButton></ListItem>
               <ListItem primaryText={props.selectedMagnet.title} />
               <ListItem primaryText={`Size: ${props.selectedMagnet.size}`} />
               <ListItem primaryText={`Item #: ${props.selectedMagnet.itemNumber}`} />
@@ -112,7 +120,8 @@ function mapStateToProps(storeState) {
   return {
     selectedMagnet: storeState.magnet.selectedMagnet,
     allMagnets: storeState.magnet.allMagnets,
-    reviews: storeState.review.reviews
+    reviews: storeState.review.reviews,
+    order: storeState.cart
   }
 }
 

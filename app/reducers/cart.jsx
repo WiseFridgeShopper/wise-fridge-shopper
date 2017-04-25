@@ -3,19 +3,19 @@ import store from '../store'
 import initialState from '../initialState'
 
 const reducer = (state = initialState.cart, action) => {
-  const newState = Object.assign({}, state)
+  let newState = Object.assign({}, state)
   switch (action.type) {
   case LOAD_ORDER:
-    newState.order = action.cart
+    newState = action.cart
     break
   case ADD_TO_CART:
-    newState.order = Object.assign({}, newState.order, action.magnetWithQuant)
+    newState.products = action.newCart // Object.assign({}, newState.products, action.magnetWithQuant)
     break
   case REMOVE_FROM_CART:
-    delete newState.order[action.magnetid]
+    delete newState.products[action.magnetid]
     break
   case CHANGE_ITEM_QUANTITY:
-    newState.order[action.magnetWithQuant.id] = action.magnetWithQuant.quant
+    newState.products[action.magnetWithQuant.id] = action.magnetWithQuant.quant
     break
   default:
     return state
@@ -31,8 +31,8 @@ export const loadCart = cart => ({
   type: LOAD_ORDER, cart
 })
 
-export const addToCart = magnetWithQuant => ({
-  type: ADD_TO_CART, magnetWithQuant
+export const addToCart = newCart => ({
+  type: ADD_TO_CART, newCart
 })
 
 export const RemoveFromCart = magnetId => ({
@@ -43,7 +43,9 @@ export const ChangeItemQuantity = magnetWithQuant => ({
   type: CHANGE_ITEM_QUANTITY, magnetWithQuant
 })
 
-const stringToJson = (jString) => {
+export const stringToJson = (jString) => {
+  if (!jString) return
+  if (typeof jString === 'object') return jString
   const keyVals = jString.slice(1, jString.length-1)
   const kvArr = keyVals.split(', ')
   const order = {}
@@ -58,20 +60,17 @@ const stringToJson = (jString) => {
 export const loadCartOrder = (userId) => dispatch => {
   axios.get(`api/orders/cart/${userId}`)
   .then(cart => {
-    console.log('my shopping cart', cart.data)
-    console.log('JSON', stringToJson(cart.data.products))
-    const cartOrder = stringToJson(cart.data.products)
+    const cartOrder = cart.data
     dispatch(loadCart(cartOrder))
   })
 }
 
 export const addToOrder = (orderId, magnetId) => dispatch => {
-  const tempCart = Object.assign({}, store.state.cart)
+  let tempCart = store.getState().cart.products
+  tempCart = stringToJson(tempCart)
   tempCart[magnetId] = 1
-  axios.put(`/api/orders/${orderId}`, {product: tempCart})
-  const newMagnet = store.state.allMagnets.filter(magnet => magnet.id === magnetId)
-  const newMagnetId = newMagnet.id
-  dispatch(addToCart({newMagnetId: 1}))
+  axios.put(`/api/orders/${orderId}`, {products: tempCart})
+  dispatch(addToCart(tempCart))
 }
 
 export const removeFromOrder = (orderId, magnetId) => dispatch => {
