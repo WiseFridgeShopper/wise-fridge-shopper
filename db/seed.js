@@ -43,32 +43,32 @@ const speakers = seed(Speaker, {
   marcus: {
     name: 'Marcus Aurelius',
     bio: `If ever there was an exemplification of Plato's 'Philosopher King', it would be Marcus Aurelius. Born in 121, he became a Roman Emperor in 161, and his reign lasted until his death in 180. An ardent Stoic, he is best remembered today as the author of the Meditations, a collection of 'spiritual exercises' that were written for himself between 170 and 180. Fortunately for us, this work was preserved for posterity, and it can be read profitably today by anyone looking for a source of spiritual guidance.`,
-    image: 'https://www.google.com/search?q=marcus+aurelius&safe=off&espv=2&source=lnms&tbm=isch&sa=X&ved=0ahUKEwifwPntrr7TAhXB7iYKHfxYBxwQ_AUIBygC&biw=1399&bih=696#imgrc=sDYFW252VNyOxM'
+    image: 'http://thinkmongr.com/wp-content/uploads/2013/03/marcus-aurelius-4-640x320.png'
   },
   virginia: {
     name: 'Virginia Woolf',
     bio: ` Born in 1882 in London, Virginia Woolf was an author and essayist today regarded as one of the twentieth century's literary greats. Her most well known works include the novels Mrs Dalloway, To the Lighthouse, Orlando, and the book-length essay A Room of One's Own.`,
-    image: 'https://www.google.com/search?q=virginia+woolf&safe=off&espv=2&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiouquNsL7TAhXKRiYKHdJDA9EQ_AUIBigB&biw=1399&bih=696#imgrc=xvVV0W8AeCqFDM'
+    image: 'https://rohrbachlibrary.files.wordpress.com/2011/01/virginia-woolf.jpg'
   },
   ralph: {
     name: 'Ralph Waldo Emerson',
     bio: `Born in 1803 in Boston, Massachusetts, Ralph Waldo Emerson was arguably the most influential writer of 19th-century America. Regarded by many as the American version of Michel de Montaigne, Emerson wrote voluminously on a wide range of subjects. Some of his most important essays include Nature, Self-Reliance, and Experience.`,
-    image: 'https://www.google.com/search?q=ralph+waldo+emerson&safe=off&espv=2&tbm=isch&tbo=u&source=univ&sa=X&ved=0ahUKEwiF1eyerr7TAhUE4iYKHR_wAqsQiR4IhwE&biw=1399&bih=696&dpr=1#imgrc=gEU-Gk7zaFaZ-M'
+    image: 'https://i.ytimg.com/vi/EOkdFMw0pmk/maxresdefault.jpg'
   },
   henry: {
     name: 'Henry David Thoreau',
     bio: `Henry David Thoreau, born in 1817 in Concord, Massachusetts, was a man who wore man hats. A poet, philosopher, abolitionist, tax resister, and naturalist, Thoreau is one of America's most celebrated and famous authors. In addition to his classic book Walden, which recounts his two-year experience living a simple existence amongst nature, Thoreau is also perhaps known for his essay Civil Disobedience, which has inspired protest movements around the world and influenced everyone from Mohandas Gandhi to Leo Tolstoy and Martin Luther King, Jr.`,
-    image: 'https://www.google.com/search?q=henry+david+thoreau&safe=off&espv=2&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiZ-5Hir77TAhVEKyYKHcU2BIgQ_AUIBigB&biw=1399&bih=696#imgrc=C30TdId1BBaaaM'
+    image: 'http://www.famousauthors.org/famous-authors/henry-david-thoreau.jpg'
   },
   oscar: {
     name: 'Oscar Wilde',
     bio: `The Irish writer and poet Oscar Wilde was born in 1854 and died in 1900. A celebrated playwright known for his wit and flamboyant dress, his best known play was The Importance of Being Earnest, which poked fun at the customs of Victorian England, while his only novel, The Picture of Dorian Gray, was controversial for its judgments on hedonism and morality.`,
-    image: 'https://www.google.com/search?q=oscar+wilde&safe=off&espv=2&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjfrbOisL7TAhWJSiYKHcYpCjMQ_AUIBigB&biw=1399&bih=696#imgrc=7ECXoKV32-cEcM'
+    image: 'http://cdn.playbuzz.com/cdn/96206c62-5f47-441f-8fd5-cf8b57e941c1/8ca54eeb-3116-481f-90e1-bc5fa70b0579.jpg'
   },
   george: {
     name: 'George Bernard Shaw',
     bio: `George Bernard Shaw was born in Dublin, Ireland, in 1856, and died in England in 1950. An esteemed playwright, essayist and novelist, Shaw's works highlighted the social problems of his day, particularly what he regarded as the exploitation of the working class. As a fervent socialist, Shaw wrote many tracts promoting this ideology, but it was his literary prowess that saw him reach the heights of professional recognition, receiving both a Nobel Prize and an Oscar, the only person in history to have received both awards.`,
-    image: 'https://www.google.com/search?q=george+bernard+shaw&safe=off&espv=2&source=lnms&tbm=isch&sa=X&ved=0ahUKEwi3yPCzsL7TAhWIMyYKHUQ0AH4Q_AUIBygC&biw=1399&bih=696#imgrc=g2pBB20J46FNxM'
+    image: 'http://www.newstatesman.com/sites/default/files/styles/nodeimage/public/blogs_2015/06/akg895105.jpg?itok=vC2ENSCq'
   },
 })
 
