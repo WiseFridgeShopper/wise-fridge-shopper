@@ -64,7 +64,7 @@ class Home extends React.Component {
         </div>
         <div className='row'>
           <div className='col-md-12'>
-            <GridList padding={50} cols={3} title='Products' >
+            <GridList padding={10} cols={3} cellHeight={320} title='Products' >
               { this.props.selectedTab === 'speakers' ? this.renderFilteredSpeakers() : this.renderFilteredMagnets() }
             </GridList>
           </div>
