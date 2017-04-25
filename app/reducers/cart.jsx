@@ -65,10 +65,10 @@ export const loadCartOrder = (userId) => dispatch => {
   })
 }
 
-export const addToOrder = (orderId, magnetId) => dispatch => {
+export const addToOrder = (orderId, magnetId, quant = 1) => dispatch => {
   let tempCart = store.getState().cart.products
   tempCart = stringToJson(tempCart)
-  tempCart[magnetId] = 1
+  tempCart[magnetId] = quant
   axios.put(`/api/orders/${orderId}`, {products: tempCart})
   .then((cart) => {
     console.log('Updated Cart ', cart.data)
