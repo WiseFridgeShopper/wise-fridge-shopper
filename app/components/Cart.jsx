@@ -24,6 +24,14 @@ class Cart extends React.Component {
 
   handleClose = () => this.setState({ open: false });
 
+  calculateTotal = () => {
+    const products = this.props.cart.products
+    let totalPrice = 0
+    for (let item in products){
+      totalPrice += 3.95 * products[item]
+    }
+    return totalPrice.toFixed(2)
+  }
   render() {
     const style = {
       height: 100,
@@ -54,14 +62,6 @@ class Cart extends React.Component {
               <hr />
             </div>
           ))}
-          {
-            Object.keys(products).forEach(magnet => {
-              this.state.totalPrice += 3.95 * products[magnet]
-            })
-          }
-          <div>
-            <MenuItem style={{ marginRight: '30px' }}>{`Subtotal: ${this.state.totalPrice}`}</MenuItem>
-          </div>
           <div style={{display: 'block'}}>
             <Link to="/checkout">
               <RaisedButton
@@ -70,6 +70,9 @@ class Cart extends React.Component {
                 onTouchTap={this.handleToggle}
               />
             </Link>
+          </div>
+          <div>
+            <MenuItem style={{ float: 'right', marginRight: '30px' }}>{`Subtotal: $${this.calculateTotal()}`}</MenuItem>
           </div>
         </Drawer>
       </div>
