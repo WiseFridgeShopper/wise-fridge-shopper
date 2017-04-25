@@ -7,7 +7,8 @@ const SpeakerThumbnail = props => (
     <Link key={props.id} to={`/speakers/${props.id}`}>
       <GridTile key={props.id} title={props.name}>
         {<img src={props.image}/>}
-      </GridTile></Link>
+      </GridTile>
+    </Link>
     )
 
 export default SpeakerThumbnail
