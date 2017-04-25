@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link, hashHistory } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 import Login from './Login'
 import WhoAmI from './WhoAmI'
 import CartContainer from './Cart'
