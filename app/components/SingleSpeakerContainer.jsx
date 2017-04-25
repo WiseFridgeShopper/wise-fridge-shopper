@@ -53,11 +53,6 @@ const styles = {
   },
   titleStyle: {
     color: 'rgb(0, 188, 212)',
-  },
-  speakerTile: {
-    width: '50%',
-    height: '50%',
-    maxHeight: '50px'
   }
 }
 
