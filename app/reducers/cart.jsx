@@ -6,7 +6,7 @@ const reducer = (state = initialState.cart, action) => {
   const newState = Object.assign({}, state)
   switch (action.type) {
   case LOAD_ORDER:
-    newState.order = action.order
+    newState.order = action.cart
     break
   case ADD_TO_CART:
     newState.order = Object.assign({}, newState.order, action.magnetWithQuant)
@@ -43,11 +43,25 @@ export const ChangeItemQuantity = magnetWithQuant => ({
   type: CHANGE_ITEM_QUANTITY, magnetWithQuant
 })
 
+const stringToJson = (jString) => {
+  const keyVals = jString.slice(1, jString.length-1)
+  const kvArr = keyVals.split(', ')
+  const order = {}
+  kvArr.forEach(item => {
+    const itemArr = item.split(':')
+    const numKey = Number(itemArr[0])
+    order[numKey] = Number(itemArr[1])
+  })
+  return order
+}
 
 export const loadCartOrder = (userId) => dispatch => {
   axios.get(`api/orders/cart/${userId}`)
   .then(cart => {
-    dispatch(loadCart(cart))
+    console.log('my shopping cart', cart.data)
+    console.log('JSON', stringToJson(cart.data.products))
+    const cartOrder = stringToJson(cart.data.products)
+    dispatch(loadCart(cartOrder))
   })
 }
 

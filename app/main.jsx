@@ -45,7 +45,7 @@ const getHomeData = nextRouterState => {
   store.dispatch(setView('speakers'))
   store.dispatch(getAllSpeakersFromServer())
   store.dispatch(getAllMagnetsFromServer())
-  // store.dispatch(loadCartOrder(1))
+  store.dispatch(loadCartOrder(1))
 }
 
 const onSpeakerEnter = nextRouterState => {
