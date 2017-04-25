@@ -55,11 +55,8 @@ module.exports = require('express').Router()
     // **THIS IS QUESTIONABLE** if you reach a bug here... beware
     Order.findById(req.params.orderId)
     .then((order) => {
-      // const updatedOrder = Object.assign(order, req.body)
-      // console.log("THE body", req.body)
       return order.update(req.body)
       .then(newOrder => {
-        // console.log('server ', newOrder)
         newOrder ? res.send(newOrder) : res.sendStatus(404)
       })
     })
