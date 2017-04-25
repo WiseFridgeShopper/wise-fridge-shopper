@@ -58,8 +58,6 @@ const stringToJson = (jString) => {
 export const loadCartOrder = (userId) => dispatch => {
   axios.get(`api/orders/cart/${userId}`)
   .then(cart => {
-    console.log('my shopping cart', cart.data)
-    console.log('JSON', stringToJson(cart.data.products))
     const cartOrder = stringToJson(cart.data.products)
     dispatch(loadCart(cartOrder))
   })
