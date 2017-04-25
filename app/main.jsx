@@ -38,13 +38,14 @@ import {setView} from './reducers/selectView'
 import {getAllSpeakersFromServer, selectSpeaker} from './reducers/speaker'
 import {getAllMagnetsFromServer, selectMagnet} from './reducers/magnet'
 import {getReviewsByMagnet} from './reducers/review'
+import {loadCartOrder} from './reducers/cart'
 // get user if logged in
 
 const getHomeData = nextRouterState => {
   store.dispatch(setView('speakers'))
   store.dispatch(getAllSpeakersFromServer())
   store.dispatch(getAllMagnetsFromServer())
-  // magnets
+  store.dispatch(loadCartOrder(1))
 }
 
 const onSpeakerEnter = nextRouterState => {

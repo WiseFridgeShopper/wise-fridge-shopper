@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Card, CardHeader, CardText} from 'material-ui/Card'
 import {GridList, GridTile} from 'material-ui/GridList'
+import MagnetThumbnail from './MagnetThumbnail'
 
 const tilesData = [
   {
@@ -62,14 +63,7 @@ const SingleSpeaker = props => {
         showExpandableButton={true}></CardHeader>
         <GridList style={styles.gridList} cols={2.2}>
           {props.allMagnets.filter(magnet => magnet.speaker_id === props.selectedSpeaker.id).map((magnet) => (
-            <GridTile
-              key={magnet.id}
-              title={magnet.title}
-              titleStyle={styles.titleStyle}
-              titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
-            >
-              <img src={magnet.image} />
-            </GridTile>
+            <MagnetThumbnail id={magnet.id} image={magnet.image} />
           ))}
         </GridList>
       <CardText expandable={true}>

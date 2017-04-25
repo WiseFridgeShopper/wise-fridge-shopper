@@ -5,6 +5,9 @@ import initialState from '../initialState'
 const reducer = (state = initialState.cart, action) => {
   const newState = Object.assign({}, state)
   switch (action.type) {
+  case LOAD_ORDER:
+    newState.order = action.cart
+    break
   case ADD_TO_CART:
     newState.order = Object.assign({}, newState.order, action.magnetWithQuant)
     break
@@ -19,10 +22,14 @@ const reducer = (state = initialState.cart, action) => {
   }
   return newState
 }
-
+const LOAD_ORDER = 'LOAD_ORDER'
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const CHANGE_ITEM_QUANTITY = 'CHANGE_ITEM_QUANTITY'
+
+export const loadCart = cart => ({
+  type: LOAD_ORDER, cart
+})
 
 export const addToCart = magnetWithQuant => ({
   type: ADD_TO_CART, magnetWithQuant
@@ -35,6 +42,28 @@ export const RemoveFromCart = magnetId => ({
 export const ChangeItemQuantity = magnetWithQuant => ({
   type: CHANGE_ITEM_QUANTITY, magnetWithQuant
 })
+
+const stringToJson = (jString) => {
+  const keyVals = jString.slice(1, jString.length-1)
+  const kvArr = keyVals.split(', ')
+  const order = {}
+  kvArr.forEach(item => {
+    const itemArr = item.split(':')
+    const numKey = Number(itemArr[0])
+    order[numKey] = Number(itemArr[1])
+  })
+  return order
+}
+
+export const loadCartOrder = (userId) => dispatch => {
+  axios.get(`api/orders/cart/${userId}`)
+  .then(cart => {
+    console.log('my shopping cart', cart.data)
+    console.log('JSON', stringToJson(cart.data.products))
+    const cartOrder = stringToJson(cart.data.products)
+    dispatch(loadCart(cartOrder))
+  })
+}
 
 export const addToOrder = (orderId, magnetId) => dispatch => {
   const tempCart = Object.assign({}, store.state.cart)
