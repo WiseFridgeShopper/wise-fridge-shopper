@@ -2,8 +2,10 @@ import React from 'react'
 import RaisedButton from 'material-ui/RaisedButton'
 import MenuItem from 'material-ui/MenuItem'
 import store from '../store'
-import {removeFromOrder} from '../reducers/cart'
+
+import {removeFromOrder, addToOrder} from '../reducers/cart'
 import {notify} from 'react-notify-toast'
+
 
 export default class CartMenuItem extends React.Component {
   constructor(props) {
@@ -14,7 +16,13 @@ export default class CartMenuItem extends React.Component {
   }
 
   handleQuantChange = (evt) => {
-    evt.target.value < 0 ? this.setState({numItems: 0}) : this.setState({numItems: evt.target.value})
+    if (evt.target.value < 0) {
+      store.dispatch(addToOrder(this.props.cart.id, this.props.magnet.id, 0))
+      this.setState({numItems: 0})
+    } else {
+      store.dispatch(addToOrder(this.props.cart.id, this.props.magnet.id, evt.target.value))
+      this.setState({numItems: evt.target.value})
+    }
   };
 
   removeFromCart = (evt) => {
@@ -39,10 +47,10 @@ export default class CartMenuItem extends React.Component {
             <span style={{padding: '0 20px', width: '200px'}} >{`$${this.props.magnet.price / 100} x`}</span>
           </div>
           <div style={{display: 'inLine'}}>
-            <input style={{padding: '0 20px'}} onChange={this.handleQuantChange} style={{width: '25px', height: '25px', fontSize: 14}} type='number' defaultValue={1} />
+            <input style={{padding: '0 20px'}} onChange={this.handleQuantChange} style={{width: '35px', height: '25px', fontSize: 14}} type='number' defaultValue={1} />
           </div>
           <div style={{display: 'inLine'}}>
-            <span style={{padding: '0 20px', width: '200px'}} >{`= $${(this.props.magnet.price / 100) * this.state.numItems}`}</span>
+            <span style={{padding: '0 20px', width: '200px'}} >{`= $${((this.props.magnet.price) / 100 * this.state.numItems).toFixed(2)}`}</span>
           </div>
           <div style={{display: 'inLine'}}>
             <RaisedButton onClick={this.removeFromCart} label="Remove" />

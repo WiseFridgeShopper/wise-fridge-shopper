@@ -6,7 +6,6 @@ import RaisedButton from 'material-ui/RaisedButton'
 import MenuItem from 'material-ui/MenuItem'
 import AppBar from 'material-ui/AppBar'
 import Badge from 'material-ui/Badge'
-
 import {stringToJson} from '../reducers/cart'
 import { connect } from 'react-redux'
 import { Link, browserHistory } from 'react-router'
@@ -24,8 +23,24 @@ class Cart extends React.Component {
 
   handleClose = () => this.setState({ open: false });
 
+  calculateTotal = () => {
+    const products = this.props.cart.products
+    let totalPrice = 0
+    for (let item in products){
+      totalPrice += 3.95 * products[item]
+    }
+    return totalPrice.toFixed(2)
+  }
   render() {
-    const currentOrderProducts = this.props.cart.products ? stringToJson(this.props.cart.products) : {}
+    const style = {
+      height: 100,
+      width: 100,
+      margin: 20,
+      textAlign: 'center',
+      display: 'inline-block',
+    }
+    const products = this.props.cart.products
+    const currentOrderProducts = products ? stringToJson(products) : {}
     const magnetsIncludedInOrder = this.props.allMagnets ? this.props.allMagnets.filter(magnet => currentOrderProducts[magnet.id]) : []
     const cartSize = magnetsIncludedInOrder.length
     return (
@@ -47,13 +62,18 @@ class Cart extends React.Component {
               <hr />
             </div>
           ))}
-          <Link to="/checkout">
-            <RaisedButton
-              style={{ float: 'right', marginRight: '10px' }}
-              label="Checkout"
-              onTouchTap={this.handleToggle}
-            />
-          </Link>
+          <div style={{display: 'block'}}>
+            <Link to="/checkout">
+              <RaisedButton
+                style={{ float: 'right', marginRight: '30px' }}
+                label="Checkout"
+                onTouchTap={this.handleToggle}
+              />
+            </Link>
+          </div>
+          <div>
+            <MenuItem style={{ float: 'right', marginRight: '30px' }}>{`Subtotal: $${this.calculateTotal()}`}</MenuItem>
+          </div>
         </Drawer>
       </div>
     )
