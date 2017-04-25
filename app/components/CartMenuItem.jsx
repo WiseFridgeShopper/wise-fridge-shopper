@@ -18,8 +18,6 @@ export default class CartMenuItem extends React.Component {
   };
 
   removeFromCart = (evt) => {
-    console.log('Clicked to remove!')
-    console.log('Props ', this.props)
     notify.show('Removed from cart', 'warn')
     store.dispatch(removeFromOrder(this.props.cart.id, this.props.magnet.id))
   }
