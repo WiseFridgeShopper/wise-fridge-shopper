@@ -67,9 +67,7 @@ export const loadCartOrder = (userId) => dispatch => {
 
 export const addToOrder = (orderId, magnetId) => dispatch => {
   let tempCart = store.getState().cart.products
-  console.log('TC before transform', tempCart)
   tempCart = stringToJson(tempCart)
-  console.log('TC', tempCart)
   tempCart[magnetId] = 1
   axios.put(`/api/orders/${orderId}`, {products: tempCart})
   .then((cart) => {
