@@ -1,12 +1,13 @@
 import React from 'react'
 import store from '../store'
+import AppBar from 'material-ui/AppBar'
 
 const localState = store.getState()
 
 const OrderHistory = props => {
   return (
     <div>
-      <h2 style={{ fontStyle: 'arial' }}>Order History</h2>
+      <AppBar title="Order History" showMenuIconButton={false} style={{ backgroundColor: 'black' }} />
       <ul style={{ listStyle: 'none' }}>
         {
           props.orders && props.orders.map(order => {
