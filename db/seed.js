@@ -16,13 +16,12 @@ const db = require('APP/db'),
 function seedEverything() {
   const seeded = {
     users: users(),
-    speakers: speakers(),
-    order: orders()
+    speakers: speakers()
+    // order: orders()
   }
   seeded.magnets = magnets(seeded)
   seeded.reviews = reviews(seeded)
   seeded.order = orders(seeded)
-
   return Promise.props(seeded)
 }
 
@@ -41,15 +40,15 @@ const users = seed(User, {
   },
 })
 
-const orders = seed(Order, {
+const orders = seed(Order, ({users}) => ({
   o1: {
     products: {
       2: 3,
       3: 2
     },
-    user_id: 1
+    user_id: users.god.id
   }
-})
+}))
 
 const speakers = seed(Speaker, {
   marcus: {
