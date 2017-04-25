@@ -25,6 +25,9 @@ export default class CartMenuItem extends React.Component {
             <img style={{padding: '0 20px', width: '150px', height: '75px'}} src={`${this.props.magnet.image}`} alt="Magnet pic" />
           </div>
           <div style={{display: 'inLine'}}>
+            <span style={{padding: '0 20px', width: '150px', height: '75px'}}>{this.props.magnet.id}</span>
+          </div>
+          <div style={{display: 'inLine'}}>
             <span style={{padding: '0 20px', width: '200px'}} >{`${this.props.magnet.price} x`}</span>
           </div>
           <div style={{display: 'inLine'}}>

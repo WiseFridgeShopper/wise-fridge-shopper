@@ -5,6 +5,8 @@ import CartMenuItem from './CartMenuItem'
 import RaisedButton from 'material-ui/RaisedButton'
 import MenuItem from 'material-ui/MenuItem'
 import AppBar from 'material-ui/AppBar'
+
+import {stringToJson} from '../reducers/cart'
 import { connect } from 'react-redux'
 import { Link, browserHistory } from 'react-router'
 
@@ -22,7 +24,7 @@ class Cart extends React.Component {
   handleClose = () => this.setState({ open: false });
 
   render() {
-    const currentOrderProducts = this.props.cart.order ? this.props.cart.order : {}
+    const currentOrderProducts = this.props.cart.products ? stringToJson(this.props.cart.products) : {}
     const magnetsIncludedInOrder = this.props.allMagnets ? this.props.allMagnets.filter(magnet => currentOrderProducts[magnet.id]) : []
     return (
       <div>
