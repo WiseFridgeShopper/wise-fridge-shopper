@@ -1,13 +1,7 @@
 import React from 'react'
 import Navbar from './Navbar'
 import { connect } from 'react-redux'
-
-// const Root = ({ children }) => (
-//   <div id="main" className="container-fluid">
-//     <Navbar />
-//     { children }
-//   </div>
-// )
+import Notifications from 'react-notify-toast'
 
 const Root = connect(
   ({ auth }) => ({ user: auth })
@@ -15,6 +9,7 @@ const Root = connect(
   ({ user, children }) =>
     <div id = "main" className="container-fluid">
       <Navbar user={user}/>
+      <Notifications />
       {children}
     </div>
 )

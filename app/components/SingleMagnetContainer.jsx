@@ -8,43 +8,8 @@ import {GridList, GridTile} from 'material-ui/GridList'
 import AppBar from 'material-ui/AppBar'
 import Review from './Review'
 import MagnetThumbnail from './MagnetThumbnail'
-
-const magnet = {
-  title: 'Henry David Thoreau Fridge Magnet #1',
-  quote: "What you get by achieving your goals is not as important as what you become by achieving your goals.",
-  image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/henry-david-thoreau-quote-fridge-magnet-1_large.jpg?v=1380465723',
-  itemNumber: 10,
-  description: 'High-quality button style magnet with full magnetic back.',
-  price: 3.95,
-  size: [2, 3],
-  mood: ['happy'],
-  speaker_id: 4
-}
-
-const relatedMagnets = [
-  {
-    title: 'Henry David Thoreau Fridge Magnet #2',
-    quote: "Our life is frittered away by detail. Simplify, simplify.",
-    image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/henry-david-thoreau-quote-fridge-magnet-2_large.jpg?v=1380465732',
-    itemNumber: 11,
-    description: 'High-quality button style magnet with full magnetic back.',
-    price: 3.95,
-    size: [2, 3],
-    mood: ['happy'],
-    speaker_id: 4
-  },
-  {
-    title: 'Henry David Thoreau Fridge Magnet #3',
-    quote: "We must walk consciously only part way toward our goal and then leap in the dark to our success.",
-    image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/henry-david-thoreau-quote-fridge-magnet-3_large.jpg?v=1380465704',
-    itemNumber: 12,
-    description: 'High-quality button style magnet with full magnetic back.',
-    price: 3.95,
-    size: [2, 3],
-    mood: ['happy'],
-    speaker_id: 4
-  }
-]
+import store from '../store'
+import {notify} from 'react-notify-toast'
 
 const styles = {
   description: {
@@ -63,11 +28,12 @@ const styles = {
   }
 }
 
+const addToCart = (evt) => {
+  notify.show('Added to cart!', 'success')
+}
+
 const SingleMagnet = props => {
   const getRelatedMagnets = allMagnets => props.allMagnets.filter(magnet => magnet.speaker_id === props.selectedMagnet.speaker_id)
-
-  // when we implement a controlled component for this dumb component, below line show be uncommented
-  // const magnet = props.selectedMagnet
 
   return (
     <div className={'row'}>
@@ -79,7 +45,7 @@ const SingleMagnet = props => {
           </CardMedia>
           <CardText >
             <List>
-              <ListItem primaryText={`Price: $${props.selectedMagnet.price}`}><FlatButton label='buy me' primary={true}></FlatButton></ListItem>
+              <ListItem primaryText={`Price: $${props.selectedMagnet.price}`}><FlatButton onClick={addToCart} label='Add to Cart' primary={true}></FlatButton></ListItem>
               <ListItem primaryText={props.selectedMagnet.title} />
               <ListItem primaryText={`Size: ${props.selectedMagnet.size}`} />
               <ListItem primaryText={`Item #: ${props.selectedMagnet.itemNumber}`} />
