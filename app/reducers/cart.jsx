@@ -31,7 +31,7 @@ export const loadCart = cart => ({
   type: LOAD_ORDER, cart
 })
 
-export const addToCart = newCart => ({
+export const updateCart = newCart => ({
   type: ADD_TO_CART, newCart
 })
 
@@ -73,19 +73,19 @@ export const addToOrder = (orderId, magnetId) => dispatch => {
   .then((cart) => {
     console.log('Updated Cart ', cart.data)
   })
-  dispatch(addToCart(tempCart))
+  dispatch(updateCart(tempCart))
 }
 
 export const removeFromOrder = (orderId, magnetId) => dispatch => {
-  // updating an order will create a new Order.product object (corresponding to the row)
-  const tempCart = Object.assign({}, store.state.cart)
-  // Loop searches for the product key we are removing and deletes it
+  let tempCart = store.getState().cart.products
+  tempCart = stringToJson(tempCart)
   for (let magnet in tempCart) {
-    if (magnet === magnetId) { delete tempCart[magnet] }
+    if (+magnet === magnetId) { delete tempCart[magnet] }
   }
-  // Axios request sends new product object (with removed key)
-  axios.put(`/api/orders/${orderId}`, {product: tempCart})
-  .then((order) => dispatch(RemoveFromCart(order)))
+  axios.put(`/api/orders/${orderId}`, {products: tempCart})
+  .then((cart) => {
+    dispatch(updateCart(tempCart))
+  })
   .catch(err => console.log(err))
 }
 

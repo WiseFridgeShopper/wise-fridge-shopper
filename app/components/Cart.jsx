@@ -41,7 +41,7 @@ class Cart extends React.Component {
           <MenuItem>Magnets</MenuItem>
           {magnetsIncludedInOrder.length && magnetsIncludedInOrder.map(magnet => (
             <div key={magnet.id}>
-              <CartMenuItem magnet={magnet} />
+              <CartMenuItem cart={this.props.cart} magnet={magnet} />
               <hr />
             </div>
           ))}
