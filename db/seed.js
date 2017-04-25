@@ -15,9 +15,10 @@ const db = require('APP/db'),
 function seedEverything() {
   const seeded = {
     users: users(),
-    speakers: speakers(),
-    magnets: magnets()
+    speakers: speakers()
+    // magnets: magnets()
   }
+  seeded.magnets = magnets(seeded)
   seeded.reviews = reviews(seeded)
   // seeded.favorites = favorites(seeded)
 
@@ -43,30 +44,36 @@ const speakers = seed(Speaker, {
   marcus: {
     name: 'Marcus Aurelius',
     bio: `If ever there was an exemplification of Plato's 'Philosopher King', it would be Marcus Aurelius. Born in 121, he became a Roman Emperor in 161, and his reign lasted until his death in 180. An ardent Stoic, he is best remembered today as the author of the Meditations, a collection of 'spiritual exercises' that were written for himself between 170 and 180. Fortunately for us, this work was preserved for posterity, and it can be read profitably today by anyone looking for a source of spiritual guidance.`,
+    image: 'http://thinkmongr.com/wp-content/uploads/2013/03/marcus-aurelius-4-640x320.png'
   },
   virginia: {
     name: 'Virginia Woolf',
     bio: ` Born in 1882 in London, Virginia Woolf was an author and essayist today regarded as one of the twentieth century's literary greats. Her most well known works include the novels Mrs Dalloway, To the Lighthouse, Orlando, and the book-length essay A Room of One's Own.`,
+    image: 'http://www.peabodylibrary.org/freeforall/wp-content/uploads/2016/01/woolf1-e1402796124116-650x413.jpg'
   },
   ralph: {
     name: 'Ralph Waldo Emerson',
     bio: `Born in 1803 in Boston, Massachusetts, Ralph Waldo Emerson was arguably the most influential writer of 19th-century America. Regarded by many as the American version of Michel de Montaigne, Emerson wrote voluminously on a wide range of subjects. Some of his most important essays include Nature, Self-Reliance, and Experience.`,
+    image: 'http://s3.amazonaws.com/armstrongeconomics-wp/2015/04/Emerson-Ralph-Waldo.jpg'
   },
   henry: {
     name: 'Henry David Thoreau',
     bio: `Henry David Thoreau, born in 1817 in Concord, Massachusetts, was a man who wore man hats. A poet, philosopher, abolitionist, tax resister, and naturalist, Thoreau is one of America's most celebrated and famous authors. In addition to his classic book Walden, which recounts his two-year experience living a simple existence amongst nature, Thoreau is also perhaps known for his essay Civil Disobedience, which has inspired protest movements around the world and influenced everyone from Mohandas Gandhi to Leo Tolstoy and Martin Luther King, Jr.`,
+    image: 'http://www.famousauthors.org/famous-authors/henry-david-thoreau.jpg'
   },
   oscar: {
     name: 'Oscar Wilde',
     bio: `The Irish writer and poet Oscar Wilde was born in 1854 and died in 1900. A celebrated playwright known for his wit and flamboyant dress, his best known play was The Importance of Being Earnest, which poked fun at the customs of Victorian England, while his only novel, The Picture of Dorian Gray, was controversial for its judgments on hedonism and morality.`,
+    image: 'https://pbs.twimg.com/profile_images/44488162/oscar-small-sq_400x400.jpg'
   },
   george: {
     name: 'George Bernard Shaw',
     bio: `George Bernard Shaw was born in Dublin, Ireland, in 1856, and died in England in 1950. An esteemed playwright, essayist and novelist, Shaw's works highlighted the social problems of his day, particularly what he regarded as the exploitation of the working class. As a fervent socialist, Shaw wrote many tracts promoting this ideology, but it was his literary prowess that saw him reach the heights of professional recognition, receiving both a Nobel Prize and an Oscar, the only person in history to have received both awards.`,
+    image: 'http://www.famousauthors.org/famous-authors/george-bernard-shaw.jpg'
   },
 })
 
-const magnets = seed(Magnet, {
+const magnets = seed(Magnet, ({speakers}) => ({
   mag1: {
     title: 'Marcus Aurelius Fridge Magnet #1',
     quote: 'Though no one can go back and make a brand new start, anyone can start from now and make a brand new ending.',
@@ -76,7 +83,7 @@ const magnets = seed(Magnet, {
     price: 395,
     size: [2, 3],
     mood: ['happy'],
-    speaker_id: 1
+    speaker_id: speakers.marcus.id
   },
   mag2: {
     title: 'Marcus Aurelius Fridge Magnet #2',
@@ -87,7 +94,7 @@ const magnets = seed(Magnet, {
     price: 395,
     size: [2, 3],
     mood: ['happy'],
-    speaker_id: 1
+    speaker_id: speakers.marcus.id
   },
   mag3: {
     title: 'Marcus Aurelius Fridge Magnet #3',
@@ -98,7 +105,7 @@ const magnets = seed(Magnet, {
     price: 395,
     size: [2, 3],
     mood: ['happy'],
-    speaker_id: 1
+    speaker_id: speakers.marcus.id
   },
   mag4: {
     title: 'Virginia Woolf Fridge Magnet #1',
@@ -109,7 +116,7 @@ const magnets = seed(Magnet, {
     price: 395,
     size: [2, 3],
     mood: ['happy'],
-    speaker_id: 3
+    speaker_id: speakers.virginia.id
   },
   mag5: {
     title: 'Virginia Woolf Fridge Magnet #2',
@@ -120,7 +127,7 @@ const magnets = seed(Magnet, {
     price: 395,
     size: [2, 3],
     mood: ['happy'],
-    speaker_id: 3
+    speaker_id: speakers.virginia.id
   },
   mag6: {
     title: 'Virginia Woolf Fridge Magnet #3',
@@ -131,7 +138,7 @@ const magnets = seed(Magnet, {
     price: 395,
     size: [2, 3],
     mood: ['happy'],
-    speaker_id: 3
+    speaker_id: speakers.virginia.id
   },
   mag7: {
     title: 'Ralph Waldo Emerson Fridge Magnet #1',
@@ -142,7 +149,7 @@ const magnets = seed(Magnet, {
     price: 395,
     size: [2, 3],
     mood: ['happy'],
-    speaker_id: 2
+    speaker_id: speakers.ralph.id
   },
   mag8: {
     title: 'Ralph Waldo Emerson Fridge Magnet #2',
@@ -153,7 +160,7 @@ const magnets = seed(Magnet, {
     price: 395,
     size: [2, 3],
     mood: ['happy'],
-    speaker_id: 2
+    speaker_id: speakers.ralph.id
   },
   mag9: {
     title: 'Ralph Waldo Emerson Fridge Magnet #3',
@@ -164,7 +171,7 @@ const magnets = seed(Magnet, {
     price: 395,
     size: [2, 3],
     mood: ['happy'],
-    speaker_id: 2
+    speaker_id: speakers.ralph.id
   },
   mag10: {
     title: 'Henry David Thoreau Fridge Magnet #1',
@@ -175,7 +182,7 @@ const magnets = seed(Magnet, {
     price: 395,
     size: [2, 3],
     mood: ['happy'],
-    speaker_id: 4
+    speaker_id: speakers.henry.id
   },
   mag11: {
     title: 'Henry David Thoreau Fridge Magnet #2',
@@ -186,7 +193,7 @@ const magnets = seed(Magnet, {
     price: 395,
     size: [2, 3],
     mood: ['happy'],
-    speaker_id: 4
+    speaker_id: speakers.henry.id
   },
   mag12: {
     title: 'Henry David Thoreau Fridge Magnet #3',
@@ -197,7 +204,7 @@ const magnets = seed(Magnet, {
     price: 395,
     size: [2, 3],
     mood: ['happy'],
-    speaker_id: 4
+    speaker_id: speakers.henry.id
   },
   mag13: {
     title: 'Oscar Wilde Shaw Fridge Magnet #1',
@@ -208,7 +215,7 @@ const magnets = seed(Magnet, {
     price: 395,
     size: [2, 3],
     mood: ['happy'],
-    speaker_id: 5
+    speaker_id: speakers.oscar.id
   },
   mag14: {
     title: 'Oscar Wilde Shaw Fridge Magnet #2',
@@ -219,7 +226,7 @@ const magnets = seed(Magnet, {
     price: 395,
     size: [2, 3],
     mood: ['happy'],
-    speaker_id: 5
+    speaker_id: speakers.oscar.id
   },
   mag15: {
     title: 'Oscar Wilde Shaw Fridge Magnet #3',
@@ -230,7 +237,7 @@ const magnets = seed(Magnet, {
     price: 395,
     size: [2, 3],
     mood: ['happy'],
-    speaker_id: 5
+    speaker_id: speakers.oscar.id
   },
   mag16: {
     title: 'George Bernard Shaw Fridge Magnet #1',
@@ -241,7 +248,7 @@ const magnets = seed(Magnet, {
     price: 395,
     size: [2, 3],
     mood: ['happy'],
-    speaker_id: 6
+    speaker_id: speakers.george.id
   },
   mag17: {
     title: 'George Bernard Shaw Fridge Magnet #2',
@@ -252,7 +259,7 @@ const magnets = seed(Magnet, {
     price: 395,
     size: [2, 3],
     mood: ['happy'],
-    speaker_id: 6
+    speaker_id: speakers.george.id
   },
   mag18: {
     title: 'George Bernard Shaw Fridge Magnet #3',
@@ -263,9 +270,9 @@ const magnets = seed(Magnet, {
     price: 395,
     size: [2, 3],
     mood: ['happy'],
-    speaker_id: 6
+    speaker_id: speakers.george.id
   }
-})
+}))
 
 const reviews = seed(Review, ({users, magnets}) => {
   return {

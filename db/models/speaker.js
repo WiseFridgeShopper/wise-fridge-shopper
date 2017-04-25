@@ -10,6 +10,13 @@ module.exports = db => db.define('speakers', {
   bio: {
     type: TEXT,
     allowNull: true
+  },
+  image: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      isUrl: true
+    }
   }
 })
 
