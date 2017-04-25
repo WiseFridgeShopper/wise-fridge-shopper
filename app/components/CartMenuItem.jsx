@@ -1,6 +1,8 @@
 import React from 'react'
 import RaisedButton from 'material-ui/RaisedButton'
 import MenuItem from 'material-ui/MenuItem'
+import store from '../store'
+import {removeFromOrder} from '../reducers/cart'
 
 export default class CartMenuItem extends React.Component {
   constructor(props) {
@@ -13,6 +15,12 @@ export default class CartMenuItem extends React.Component {
   handleQuantChange = (evt) => {
     evt.target.value < 0 ? this.setState({numItems: 0}) : this.setState({numItems: evt.target.value})
   };
+
+  removeFromCart = (evt) => {
+    console.log('Clicked to remove!')
+    console.log('Props ', this.props)
+    store.dispatch(removeFromOrder(this.props.cart.id, this.props.magnet.id))
+  }
 
   render() {
     const style = {margin: 12}
@@ -37,7 +45,7 @@ export default class CartMenuItem extends React.Component {
             <span style={{padding: '0 20px', width: '200px'}} >{`= ${this.props.magnet.price * this.state.numItems}`}</span>
           </div>
           <div style={{display: 'inLine'}}>
-            <RaisedButton label="Remove" />
+            <RaisedButton onClick={this.removeFromCart} label="Remove" />
           </div>
         </MenuItem>
     )
