@@ -32,6 +32,8 @@ import SignupContainer from './components/SignupContainer'
 import ErrorPage from './components/ErrorPage'
 import Forbidden from './components/Forbidden'
 
+// REMEMBER to DELETE BELOW!!!!!!!!!!
+import NewReview from './components/NewReview'
 // Action Creators
 import {setView} from './reducers/selectView'
 import {getAllSpeakersFromServer, selectSpeaker} from './reducers/speaker'
@@ -78,6 +80,7 @@ render(
           <Route path="/forbidden" component={Forbidden} />
           <Route path="/profile" component={ProfileContainer} />
           <Route path="/signup" component={SignupContainer} />
+          <Route path="/newReview" component={NewReview} />
         </Route>
         <Route path='*' component={NotFound} />
       </Router>
