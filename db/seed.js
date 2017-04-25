@@ -6,6 +6,7 @@ const db = require('APP/db'),
     Magnet,
     Speaker,
     Review,
+    Order,
     Promise
   } = db,
   {
@@ -16,12 +17,11 @@ function seedEverything() {
   const seeded = {
     users: users(),
     speakers: speakers()
-    // magnets: magnets()
+    // order: orders()
   }
   seeded.magnets = magnets(seeded)
   seeded.reviews = reviews(seeded)
-  // seeded.favorites = favorites(seeded)
-
+  seeded.order = orders(seeded)
   return Promise.props(seeded)
 }
 
@@ -39,6 +39,16 @@ const users = seed(User, {
     isAdmin: true
   },
 })
+
+const orders = seed(Order, ({users}) => ({
+  o1: {
+    products: {
+      2: 3,
+      3: 2
+    },
+    user_id: users.god.id
+  }
+}))
 
 const speakers = seed(Speaker, {
   marcus: {
@@ -296,44 +306,6 @@ const reviews = seed(Review, ({users, magnets}) => {
     }
   }
 })
-// const things = seed(Thing, {
-//   surfing: {name: 'surfing'},
-//   smiting: {name: 'smiting'},
-//   puppies: {name: 'puppies'},
-// })
-
-// const favorites = seed(Favorite,
-//   // We're specifying a function here, rather than just a rows object.
-//   // Using a function lets us receive the previously-seeded rows (the seed
-//   // function does this wiring for us).
-//   //
-//   // This lets us reference previously-created rows in order to create the join
-//   // rows. We can reference them by the names we used above (which is why we used
-//   // Objects above, rather than just arrays).
-//   ({users, things}) => ({
-//     // The easiest way to seed associations seems to be to just create rows
-//     // in the join table.
-//     'obama loves surfing': {
-//       user_id: users.barack.id,    // users.barack is an instance of the User model
-//                                    // that we created in the user seed above.
-//                                    // The seed function wires the promises so that it'll
-//                                    // have been created already.
-//       thing_id: things.surfing.id  // Same thing for things.
-//     },
-//     'god is into smiting': {
-//       user_id: users.god.id,
-//       thing_id: things.smiting.id
-//     },
-//     'obama loves puppies': {
-//       user_id: users.barack.id,
-//       thing_id: things.puppies.id
-//     },
-//     'god loves puppies': {
-//       user_id: users.god.id,
-//       thing_id: things.puppies.id
-//     },
-//   })
-// )
 
 if (module === require.main) {
   db.didSync

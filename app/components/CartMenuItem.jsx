@@ -2,7 +2,10 @@ import React from 'react'
 import RaisedButton from 'material-ui/RaisedButton'
 import MenuItem from 'material-ui/MenuItem'
 import store from '../store'
+
 import {removeFromOrder, addToOrder} from '../reducers/cart'
+import {notify} from 'react-notify-toast'
+
 
 export default class CartMenuItem extends React.Component {
   constructor(props) {
@@ -23,8 +26,7 @@ export default class CartMenuItem extends React.Component {
   };
 
   removeFromCart = (evt) => {
-    console.log('Clicked to remove!')
-    console.log('Props ', this.props)
+    notify.show('Removed from cart', 'warning')
     store.dispatch(removeFromOrder(this.props.cart.id, this.props.magnet.id))
   }
 
