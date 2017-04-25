@@ -31,7 +31,7 @@ class Cart extends React.Component {
     return (
       <div>
         <RaisedButton onTouchTap={this.handleToggle} style={{ paddingTop: 12 }}
-        ><Badge badgeContent={cartSize} primary={true} /><i className="material-icons">shopping_cart</i></RaisedButton>
+        ><Badge badgeContent={cartSize} badgeStyle={{top: 10}}style={{top: '-20px', left: '20px', position: 'absolute'}} primary={true} ><i className="material-icons">shopping_cart</i></Badge></RaisedButton>
         <Drawer
           docked={false}
           width={700}
