@@ -70,8 +70,11 @@ class Profile extends React.Component {
           </Menu>
         </div>
         <div className="col-md-8">
-          {this.state.current ? <CurrentCart allMagnets={this.props.allMagnets} cart={this.props.cart} /> : this.state.history ? <OrderHistory userOrders={this.props} /> : this.state.edit ? <h2>Edit</h2> : this.state.review ? <h2>Review</h2> : <div/>}
-
+          {this.state.current ? <CurrentCart allMagnets={this.props.allMagnets} cart={this.props.cart} />
+          : this.state.history ? <OrderHistory userOrders={this.props} />
+          : this.state.edit ? <AppBar title="Edit Profile" showMenuIconButton={false} style={{ backgroundColor: 'black' }} />
+          : this.state.review ? <AppBar title="Reviews" showMenuIconButton={false} style={{ backgroundColor: 'black' }} />
+          : <div/>}
         </div>
       </div>
     )
