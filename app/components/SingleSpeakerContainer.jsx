@@ -2,7 +2,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Card, CardHeader, CardText} from 'material-ui/Card'
 import {GridList, GridTile} from 'material-ui/GridList'
+import AppBar from 'material-ui/AppBar'
 import MagnetThumbnail from './MagnetThumbnail'
+import SpeakerThumbnail from './SpeakerThumbnail'
 
 const tilesData = [
   {
@@ -52,24 +54,41 @@ const styles = {
   titleStyle: {
     color: 'rgb(0, 188, 212)',
   },
+  speakerTile: {
+    width: '50%',
+    height: '50%',
+    maxHeight: '50px'
+  }
 }
 
 const SingleSpeaker = props => {
   return (
-    <Card>
-      <CardHeader
-        title={props.selectedSpeaker.name}
-        actAsExpander={true}
-        showExpandableButton={true}></CardHeader>
-        <GridList style={styles.gridList} cols={2.2}>
-          {props.allMagnets.filter(magnet => magnet.speaker_id === props.selectedSpeaker.id).map((magnet) => (
-            <MagnetThumbnail id={magnet.id} image={magnet.image} />
-          ))}
-        </GridList>
-      <CardText expandable={true}>
-        {props.selectedSpeaker.bio}
-      </CardText>
-    </Card>
+    <div className={'row'}>
+      <div className={'col-md-6'}>
+        <SpeakerThumbnail
+          key={props.selectedSpeaker.id}
+          id={props.selectedSpeaker.id}
+          name={props.selectedSpeaker.name}
+          bio={props.selectedSpeaker.bio}
+          image={props.selectedSpeaker.image} />
+      </div>
+      <div className={'col-md-6'}>
+        <Card>
+          <AppBar title={props.selectedSpeaker.name}
+            style={{backgroundColor: 'black'}}
+            showMenuIconButton={false}/>
+
+            <GridList style={styles.gridList} cols={2.2}>
+              {props.allMagnets.filter(magnet => magnet.speaker_id === props.selectedSpeaker.id).map((magnet) => (
+                <MagnetThumbnail id={magnet.id} image={magnet.image} />
+              ))}
+            </GridList>
+          <CardText>
+            {props.selectedSpeaker.bio}
+          </CardText>
+        </Card>
+      </div>
+    </div>
   )
 }
 
