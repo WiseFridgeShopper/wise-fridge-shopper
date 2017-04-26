@@ -54,14 +54,14 @@ describe('<SingleMagnetContainer />', () => {
   })
 
   // I think this test is wrong because I am forcing the props onto the component
-  it.only('takes Magnet and Review props', () => {
+  it('takes Magnet and Review props', () => {
     expect(Object.keys(singleMagnetContainerWrapper.instance().props)).to.contain('allMagnets')
     expect(Object.keys(singleMagnetContainerWrapper.instance().props)).to.contain('selectedMagnet')
     expect(Object.keys(singleMagnetContainerWrapper.instance().props)).to.contain('reviews')
   })
 
   // Continue tests from here
-  it.only('renders proper components', () => {
+  it('renders proper components', () => {
     expect(singleMagnetContainerWrapper.contains(<AppBar style={{backgroundColor: 'black'}} showMenuIconButton={false}/>)).to.equal(true)
   })
 })

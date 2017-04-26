@@ -18,7 +18,8 @@ describe('/api/speakers', () => {
     // Refactor to Promise.all()? Z tried and failed here!
       Speaker.create({
         name: 'God',
-        bio: 'creator of all things (except computers)'
+        bio: 'creator of all things (except computers)',
+        image: 'cdn.shopify.com/s/files/1/0273/4903/products/ralph-waldo-emerson-fridge-magnet-1_large.jpg?v=1380467104',
       })
       .then((speaker) => Magnet.create({
         quote: 'Many a test has failed',
@@ -40,7 +41,7 @@ describe('/api/speakers', () => {
 
   describe('GET /', () => {
     describe('gets all speakers', () =>
-      it('responds with a 200 and sends an array of speakers', () =>
+      it.only('responds with a 200 and sends an array of speakers', () =>
           request(app)
           .get(`/api/speakers`)
           .expect(200)
@@ -53,7 +54,7 @@ describe('/api/speakers', () => {
   })
   describe('GET /:id', () => {
     describe('finds a speaker by id', () =>
-      it('responds with a 200 and a single speaker', () =>
+      it.only('responds with a 200 and a single speaker', () =>
         request(app)
           .get('/api/speakers/1')
           .expect(200)
@@ -87,7 +88,7 @@ describe('/api/speakers', () => {
   })
   describe('PUT /:id', () => {
     describe('updates (put) a speaker by id', () =>
-      it('responds with a 200 and an updated speaker', () =>
+      it.only('responds with a 200 and an updated speaker', () =>
       request(app)
         .put('/api/speakers/1')
         .send({
