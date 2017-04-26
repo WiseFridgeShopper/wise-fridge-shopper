@@ -39,9 +39,15 @@ class CheckoutContainer extends React.Component {
     order.shippingMethod = event.target.shipping.value
     axios.put(`api/orders/${this.props.cart.id}`, order)
     .then(res => {
-      store.dispatch(loadCartOrder(1))
       browserHistory.push('/home')
       console.log('happy')
+    })
+    .then(() => {
+      axios.post('/api/orders', {user_id: this.props.user.id, products: {} })
+      .then(res => {
+        console.log('new cart created')
+        store.dispatch(loadCartOrder(this.props.user.id))
+      })
     })
   }
 }
@@ -49,7 +55,8 @@ class CheckoutContainer extends React.Component {
 const mapStateToProps = (state) => {
   return {
     cart: state.cart,
-    order: state.cart
+    order: state.cart,
+    user: state.auth
   }
 }
 
