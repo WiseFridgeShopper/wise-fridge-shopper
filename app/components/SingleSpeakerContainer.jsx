@@ -6,40 +6,6 @@ import AppBar from 'material-ui/AppBar'
 import MagnetThumbnail from './MagnetThumbnail'
 import SpeakerThumbnail from './SpeakerThumbnail'
 
-const tilesData = [
-  {
-    title: 'Marcus Aurelius Fridge Magnet #1',
-    quote: 'Though no one can go back and make a brand new start, anyone can start from now and make a brand new ending.',
-    image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/marcus-aurelius-quote-fridge-magnet-1_large.jpg?v=1380466387'
-  },
-  {
-    title: 'Marcus Aurelius Fridge Magnet #2',
-    quote: 'When you arise in the morning, think of what a precious privilege it is to be alive - to breathe, to think, to enjoy, to love.',
-    image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/marcus-aurelius-quote-fridge-magnet-2_large.jpg?v=1380466539'
-  },
-  {
-    title: 'Marcus Aurelius Fridge Magnet #3',
-    quote: 'You have power over your mind - not oustide events. Realize this, and you will find strength.',
-    image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/marcus-aurelius-quote-fridge-magnet-3_large.jpg?v=1380466642'
-  },
-  {
-    title: 'Virginia Woolf Fridge Magnet #1',
-    quote: 'Lock up your libraries if you like; but there is no gate, no lock, no bolt that you can set upon the freedom of my mind.',
-    image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/virginia-woolf-quote-fridge-magnet-1_large.jpg?v=1380467337'
-  },
-  {
-    title: 'Virginia Woolf Fridge Magnet #2',
-    quote: 'If you do not tell the truth about yourself you cannot tell it about other people.',
-    image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/virginia-woolf-quote-fridge-magnet-2_large.jpg?v=1380467420'
-  },
-  {
-    title: 'Virginia Woolf Fridge Magnet #3',
-    quote: 'One cannot think well, love well, sleep well, if one has not dined well.',
-    image: 'http://cdn.shopify.com/s/files/1/0273/4903/products/virginia-woolf-quote-fridge-magnet-3_large.jpg?v=1380467486',
-
-  }
-]
-
 const styles = {
   root: {
     display: 'flex',
@@ -60,27 +26,31 @@ const SingleSpeaker = props => {
   return (
     <div className={'row'}>
       <div className={'col-md-6'}>
+        <GridList style={styles.gridList} cellHeight={350} cols={1.1}>
         <SpeakerThumbnail
           key={props.selectedSpeaker.id}
           id={props.selectedSpeaker.id}
           name={props.selectedSpeaker.name}
           bio={props.selectedSpeaker.bio}
           image={props.selectedSpeaker.image} />
+        </GridList>
+          <Card>
+            <CardText>
+              {props.selectedSpeaker.bio}
+            </CardText>
+          </Card>
       </div>
       <div className={'col-md-6'}>
         <Card>
-          <AppBar title={props.selectedSpeaker.name}
+
+          <AppBar title={`Magnets by ${props.selectedSpeaker.name}`}
             style={{backgroundColor: 'black'}}
             showMenuIconButton={false}/>
-
             <GridList style={styles.gridList} cols={2.2}>
               {props.allMagnets.filter(magnet => magnet.speaker_id === props.selectedSpeaker.id).map((magnet) => (
                 <MagnetThumbnail id={magnet.id} image={magnet.image} />
               ))}
             </GridList>
-          <CardText>
-            {props.selectedSpeaker.bio}
-          </CardText>
         </Card>
       </div>
     </div>

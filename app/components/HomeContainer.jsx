@@ -7,88 +7,6 @@ import IconButton from 'material-ui/IconButton' // used for purchase button
 import MagnetThumbnail from './MagnetThumbnail'
 import SpeakerThumbnail from './SpeakerThumbnail'
 
-const testMagnets = [
-  {
-    quote: 'Many a test has failed',
-    price: 3.95,
-    image: 'cdn.shopify.com/s/files/1/0273/4903/products/ralph-waldo-emerson-fridge-magnet-1_large.jpg?v=1380467104',
-    title: 'Koans about Testing',
-    description: 'Amazing magnet with Koans from testing',
-    itemNumber: 12345,
-    size: [2, 4],
-    mood: ['zany', 'moody'],
-    id: 1
-  },
-  {
-    quote: 'Many a great day has happened',
-    price: 3.95,
-    image: 'cdn.shopify.com/s/files/1/0273/4903/products/ralph-waldo-emerson-fridge-magnet-1_large.jpg?v=1380467104',
-    title: 'Koans about Testing',
-    description: 'Amazing magnet with Koans from testing',
-    itemNumber: 12345,
-    size: [2, 4],
-    mood: ['zany', 'moody'],
-    id: 2
-  },
-  {
-    quote: 'I love life',
-    price: 3.95,
-    image: 'cdn.shopify.com/s/files/1/0273/4903/products/ralph-waldo-emerson-fridge-magnet-1_large.jpg?v=1380467104',
-    title: 'Koans about Testing',
-    description: 'Amazing magnet with Koans from testing',
-    itemNumber: 12345,
-    size: [2, 4],
-    mood: ['zany', 'moody'],
-    id: 3
-  },
-  {
-    quote: 'Life is hard',
-    price: 3.95,
-    image: 'cdn.shopify.com/s/files/1/0273/4903/products/ralph-waldo-emerson-fridge-magnet-1_large.jpg?v=1380467104',
-    title: 'Koans about Testing',
-    description: 'Amazing magnet with Koans from testing',
-    itemNumber: 12345,
-    size: [2, 4],
-    mood: ['zany', 'moody'],
-    id: 4
-  },
-  {
-    quote: 'Wow I\'m profound',
-    price: 3.95,
-    image: 'cdn.shopify.com/s/files/1/0273/4903/products/ralph-waldo-emerson-fridge-magnet-1_large.jpg?v=1380467104',
-    title: 'Koans about Testing',
-    description: 'Amazing magnet with Koans from testing',
-    itemNumber: 12345,
-    size: [2, 4],
-    mood: ['zany', 'moody'],
-    id: 5
-  },
-  {
-    quote: 'Many a test has failed',
-    price: 3.95,
-    image: 'cdn.shopify.com/s/files/1/0273/4903/products/ralph-waldo-emerson-fridge-magnet-1_large.jpg?v=1380467104',
-    title: 'Koans about Testing',
-    description: 'Amazing magnet with Koans from testing',
-    itemNumber: 12345,
-    size: [2, 4],
-    mood: ['zany', 'moody'],
-    id: 6
-  }
-]
-
-const testSpeakers = [
-  {
-    id: 1,
-    name: 'Batman',
-    bio: 'Im rich',
-  },
-  {
-    id: 2,
-    name: 'Superman',
-    bio: 'With great power comes great responsibility',
-  }
-]
-
 class Home extends React.Component {
   constructor(props) {
     super(props)
@@ -104,7 +22,7 @@ class Home extends React.Component {
   }
 
   filterBySpeakerName(item) {
-    return item.name.toLowerCase().includes(this.state.query) || item.bio.toLowerCase().includes(this.state.query)
+    return item.name.toLowerCase().includes(this.state.query.toLowerCase()) || item.bio.toLowerCase().includes(this.state.query.toLowerCase())
   }
 
   filterByQuote(item) {
@@ -126,7 +44,6 @@ class Home extends React.Component {
 
   renderFilteredSpeakers() {
     if (this.state.query) {
-
       return this.props.speakers && this.props.speakers.filter(item => this.filterBySpeakerName(item))
         .map(item => <SpeakerThumbnail key={item.id} id={item.id} name={item.name} bio={item.bio} image={item.image} />)
     } else {
@@ -147,7 +64,7 @@ class Home extends React.Component {
         </div>
         <div className='row'>
           <div className='col-md-12'>
-            <GridList padding={50} cols={4} title='Products' >
+            <GridList padding={10} cols={3} cellHeight={320} title='Products' >
               { this.props.selectedTab === 'speakers' ? this.renderFilteredSpeakers() : this.renderFilteredMagnets() }
             </GridList>
           </div>

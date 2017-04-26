@@ -2,7 +2,10 @@ import React from 'react'
 import RaisedButton from 'material-ui/RaisedButton'
 import MenuItem from 'material-ui/MenuItem'
 import store from '../store'
+
 import {removeFromOrder, addToOrder} from '../reducers/cart'
+import {notify} from 'react-notify-toast'
+
 
 export default class CartMenuItem extends React.Component {
   constructor(props) {
@@ -23,8 +26,7 @@ export default class CartMenuItem extends React.Component {
   };
 
   removeFromCart = (evt) => {
-    console.log('Clicked to remove!')
-    console.log('Props ', this.props)
+    notify.show('Removed from cart', 'warning')
     store.dispatch(removeFromOrder(this.props.cart.id, this.props.magnet.id))
   }
 
@@ -42,7 +44,7 @@ export default class CartMenuItem extends React.Component {
             <span style={{padding: '0 20px', width: '150px', height: '75px'}}>{`ID: ${this.props.magnet.id}`}</span>
           </div>
           <div style={{display: 'inLine'}}>
-            <span style={{padding: '0 20px', width: '200px'}} >{`$${(this.props.magnet.price) / 100} x`}</span>
+            <span style={{padding: '0 20px', width: '200px'}} >{`$${this.props.magnet.price / 100} x`}</span>
           </div>
           <div style={{display: 'inLine'}}>
             <input style={{padding: '0 20px'}} onChange={this.handleQuantChange} style={{width: '35px', height: '25px', fontSize: 14}} type='number' defaultValue={1} />

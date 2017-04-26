@@ -5,8 +5,11 @@ import IconButton from 'material-ui/IconButton' // used for purchase button
 import {notify} from 'react-notify-toast'
 
 const style = {
-  minHeight: '220px',
-  maxHeight: '220px',
+  // minHeight: '220px',
+  maxWidth: '500px',
+  maxHeight: '320px',
+  height: 'auto',
+  width: '100%'
 }
 
 const addToCart = (evt) => {
@@ -16,7 +19,7 @@ const addToCart = (evt) => {
 const MagnetThumbnail = props => (
     <Link key={props.id} to={`/magnets/${props.id}`}>
       <GridTile key={props.id} style={style} actionIcon={<IconButton onClick={addToCart} children={<i className="material-icons md-light">add shopping cart</i>}></IconButton>}>
-        <img src={`${props.image}`}/>
+        <img style={style} src={`${props.image}`}/>
       </GridTile></Link>
     )
 

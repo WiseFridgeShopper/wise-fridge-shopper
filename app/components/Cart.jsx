@@ -5,8 +5,7 @@ import CartMenuItem from './CartMenuItem'
 import RaisedButton from 'material-ui/RaisedButton'
 import MenuItem from 'material-ui/MenuItem'
 import AppBar from 'material-ui/AppBar'
-import Paper from 'material-ui/Paper'
-
+import Badge from 'material-ui/Badge'
 import {stringToJson} from '../reducers/cart'
 import { connect } from 'react-redux'
 import { Link, browserHistory } from 'react-router'
@@ -43,10 +42,11 @@ class Cart extends React.Component {
     const products = this.props.cart.products
     const currentOrderProducts = products ? stringToJson(products) : {}
     const magnetsIncludedInOrder = this.props.allMagnets ? this.props.allMagnets.filter(magnet => currentOrderProducts[magnet.id]) : []
+    const cartSize = magnetsIncludedInOrder.length
     return (
       <div>
         <RaisedButton onTouchTap={this.handleToggle} style={{ paddingTop: 12 }}
-        ><i className="material-icons">shopping_cart</i></RaisedButton>
+        ><Badge badgeContent={cartSize} badgeStyle={{top: 10}}style={{top: '-20px', left: '20px', position: 'absolute'}} primary={true} ><i className="material-icons">shopping_cart</i></Badge></RaisedButton>
         <Drawer
           docked={false}
           width={700}
