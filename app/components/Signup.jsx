@@ -45,24 +45,6 @@ const Signup = props => {
           <button style={{ backgroundColor: '#3D69A2' }} type="submit" className="btn btn-block btn-primary">{props.message}</button>
         </form>
       </div>
-      <div className="or buffer">
-        <div className="back-line">
-          <span>OR</span>
-        </div>
-      </div>
-      <div className="buffer oauth">
-        <div>
-          <p>
-            <a
-              target="_self"
-              href="/auth/google"
-              className="btn btn-social btn-google">
-              <i className="fa fa-google" />
-              <span>{props.message} with Google</span>
-            </a>
-          </p>
-        </div>
-      </div>
     </div>
   )
 }
