@@ -44,15 +44,15 @@ export default class NewReview extends React.Component {
     const magnetsToReview = [{id: 1, text: 'mag1'}, {id: 2, text: 'mag2'}, {id: 3, text: 'mag3'}]
     return (
       <form>
-       <DropDownMenu value={this.state.magnetToReview} onChange={this.handleChange}>
+       <DropDownMenu value={this.state.magnetToReview} onChange={this.onMagnetChange}>
          {magnetsToReview && magnetsToReview.map(magnet => {
            return <MenuItem value={magnet.id} primaryText={magnet} />
          })}
        </DropDownMenu>
        <br />
-       <TextField ref="login" type="text" name="login" floatingLabelText="Insert Comment Here"/>
+       <TextField ref="login" type="text" name="login" value={this.state.comment} floatingLabelText="Insert Comment Here"/>
        <br />
-       <TextField ref="password" type="number" name="password" floatingLabelText="Rating (Number between 1-5)"/>
+       <TextField ref="password" type="number" name="password" value={this.state.rating} floatingLabelText="Rating (Number between 1-5)"/>
        <br />
         <RaisedButton type="submit" label="Create Review" className="button-submit" primary={true} />
       </form>
