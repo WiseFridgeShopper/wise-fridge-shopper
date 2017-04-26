@@ -26,7 +26,7 @@ class Cart extends React.Component {
   calculateTotal = () => {
     const products = this.props.cart.products
     let totalPrice = 0
-    for (let item in products){
+    for (const item in products) {
       totalPrice += 3.95 * products[item]
     }
     return totalPrice.toFixed(2)
@@ -92,4 +92,3 @@ const mapDispatchToProps = (dispatch) => ({})
 const CartContainer = connect(mapStateToProps, mapDispatchToProps)(Cart)
 
 export default CartContainer
-// onTouchTap={this.handleClose}

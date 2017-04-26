@@ -6,7 +6,6 @@ import store from '../store'
 import {removeFromOrder, addToOrder} from '../reducers/cart'
 import {notify} from 'react-notify-toast'
 
-
 export default class CartMenuItem extends React.Component {
   constructor(props) {
     super(props)
