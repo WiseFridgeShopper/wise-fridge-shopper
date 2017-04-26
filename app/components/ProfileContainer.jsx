@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link, browserHistory } from 'react-router'
 import Menu from 'material-ui/Menu'
 import MenuItem from 'material-ui/MenuItem'
 import Receipt from 'material-ui/svg-icons/action/reorder'
@@ -10,6 +11,8 @@ import CartMenuItem from './CartMenuItem'
 import AppBar from 'material-ui/AppBar'
 import OrderHistory from './OrderHistory'
 import {connect} from 'react-redux'
+import Cart from './Cart'
+import {stringToJson} from '../reducers/cart'
 
 class Profile extends React.Component {
   constructor(props) {
@@ -83,23 +86,51 @@ class Profile extends React.Component {
 
 // RaisedButton should link us to checkout page
 const CurrentCart = props => {
-  const currentOrderProducts = props.cart.order ? props.cart.order : {}
+  //const currentOrderProducts = props.cart.order ? props.cart.order : {}
+  //const magnetsIncludedInOrder = props.allMagnets ? props.allMagnets.filter(magnet => currentOrderProducts[magnet.id]) : []
+  const calculateTotal = () => {
+    const products = props.cart.products
+    let totalPrice = 0
+    for (let item in products){
+      totalPrice += 3.95 * products[item]
+    }
+    return totalPrice.toFixed(2)
+  }
+
+  const style = {
+    height: 100,
+    width: 100,
+    margin: 20,
+    textAlign: 'center',
+    display: 'inline-block',
+  }
+  const products = props.cart.products
+  const currentOrderProducts = products ? stringToJson(products) : {}
   const magnetsIncludedInOrder = props.allMagnets ? props.allMagnets.filter(magnet => currentOrderProducts[magnet.id]) : []
-  return (<div>
-    <AppBar title="Shopping Cart" showMenuIconButton={false} style={{ backgroundColor: 'black' }} />
-    <h2>Magnets</h2>
-    {magnetsIncludedInOrder.length && magnetsIncludedInOrder.map(magnet => {
-      return (
-        <div key={magnet.itemNumber}>
-          <CartMenuItem magnet={magnet}/>
-          <hr/>
-        </div>
-      )
-    })}
-    <RaisedButton
-      label="Checkout"
-    />
-  </div>)
+  const cartSize = magnetsIncludedInOrder.length
+  return (
+      <div>
+          <AppBar title="Shopping Cart" showMenuIconButton={false} style={{ backgroundColor: 'black' }} />
+          <MenuItem>Magnets</MenuItem>
+          {magnetsIncludedInOrder.length && magnetsIncludedInOrder.map(magnet => (
+            <div key={magnet.id}>
+              <CartMenuItem cart={props.cart} magnet={magnet} />
+              <hr />
+            </div>
+          ))}
+          <div style={{display: 'block'}}>
+            <Link to="/checkout">
+              <RaisedButton
+                style={{ float: 'right', marginRight: '30px' }}
+                label="Checkout"
+              />
+            </Link>
+          </div>
+          <div>
+            <MenuItem style={{ float: 'right', marginRight: '30px' }}>{`Subtotal: $${calculateTotal()}`}</MenuItem>
+          </div>
+      </div>
+  )
 }
 
 const mapStateToProps = (storeState, ownProps) => ({
@@ -111,3 +142,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)
+
