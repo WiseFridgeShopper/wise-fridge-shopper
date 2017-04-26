@@ -9,7 +9,8 @@ import RaisedButton from 'material-ui/RaisedButton'
 import CartMenuItem from './CartMenuItem'
 import AppBar from 'material-ui/AppBar'
 import OrderHistory from './OrderHistory'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import { Link } from 'react-router'
 
 class Profile extends React.Component {
   constructor(props) {
@@ -71,10 +72,10 @@ class Profile extends React.Component {
         </div>
         <div className="col-md-8">
           {this.state.current ? <CurrentCart allMagnets={this.props.allMagnets} cart={this.props.cart} />
-          : this.state.history ? <OrderHistory userOrders={this.props} />
-          : this.state.edit ? <AppBar title="Edit Profile" showMenuIconButton={false} style={{ backgroundColor: 'black' }} />
-          : this.state.review ? <AppBar title="Reviews" showMenuIconButton={false} style={{ backgroundColor: 'black' }} />
-          : <div/>}
+            : this.state.history ? <OrderHistory userOrders={this.props} />
+              : this.state.edit ? <AppBar title="Edit Profile" showMenuIconButton={false} style={{ backgroundColor: 'black' }} />
+                : this.state.review ? <AppBar title="Reviews" showMenuIconButton={false} style={{ backgroundColor: 'black' }} />
+                  : <div />}
         </div>
       </div>
     )
@@ -91,14 +92,16 @@ const CurrentCart = props => {
     {magnetsIncludedInOrder.length && magnetsIncludedInOrder.map(magnet => {
       return (
         <div key={magnet.itemNumber}>
-          <CartMenuItem magnet={magnet}/>
-          <hr/>
+          <CartMenuItem magnet={magnet} />
+          <hr />
         </div>
       )
     })}
-    <RaisedButton
-      label="Checkout"
-    />
+    <Link to="/checkout">
+      <RaisedButton
+        label="Checkout"
+      />
+    </Link>
   </div>)
 }
 
